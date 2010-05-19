@@ -4,7 +4,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import br.com.zebys.makeatest.MakeATestRunner;
-import br.com.zebys.makeatest.test.annotations.IsNotNull;
+import br.com.zebys.makeatest.test.annotation.FileExists;
+import br.com.zebys.makeatest.test.annotation.FileExistsExecute;
 
 
 
@@ -15,8 +16,14 @@ public class MakeATestRunnerTest {
 	public void runner() {
 		String firstName = "Marcus";
 		String lastName = null;
-		
-		@IsNotNull()
-		String fullName = firstName + lastName;
+		System.out.println("Test execute");
+	}
+	
+	@Test
+	@FileExists(klass=FileExistsExecute.class,filePath="./file.txt")
+	public void runne2() {
+		String firstName = "Marcus";
+		String lastName = null;
+		System.out.println("Test execute 2");
 	}
 }

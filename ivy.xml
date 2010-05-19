@@ -26,5 +26,6 @@
 	</info>
 	<dependencies>
 		<dependency org="junit" name="junit" rev="4.8.1"></dependency>
+		<dependency rev="2.2" name="cglib" org="cglib"></dependency>
 	</dependencies>
 </ivy-module>
