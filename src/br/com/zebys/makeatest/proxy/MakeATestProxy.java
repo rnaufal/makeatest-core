@@ -19,7 +19,7 @@ public class MakeATestProxy implements MethodInterceptor {
 	public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
 		Annotation [] annotations = method.getAnnotations();
 		for (Annotation annotation : annotations) {
-			System.out.println(annotation.annotationType().get);
+			//System.out.println(annotation.annotationType().get);
 		}
 		return method.invoke(this.object, args);
 	}
