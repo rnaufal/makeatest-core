@@ -10,7 +10,7 @@ import br.com.zebys.makeatest.test.asserts.fileexists.FileExists;
 import br.com.zebys.makeatest.test.asserts.fileexists.FileNotExists;
 
 @RunWith(MakeATestRunner.class)
-public class MakeATestRunnerTest {
+public class FileAnnotationTest {
 	
 	@Test
 	public void runner() {
