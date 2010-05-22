@@ -7,7 +7,6 @@ import java.lang.reflect.Method;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
-import br.com.zebys.makeatest.MakeATestExecuteInterface;
 import br.com.zebys.makeatest.annotations.MakeATestConfig;
 
 public class MakeATestProxy implements MethodInterceptor {

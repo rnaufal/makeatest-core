@@ -1,11 +1,13 @@
 package br.com.zebys.makeatest.test;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import br.com.zebys.makeatest.MakeATestRunner;
-import br.com.zebys.makeatest.test.annotation.FileExists;
-import br.com.zebys.makeatest.test.annotation.FileExistsExecute;
+import br.com.zebys.makeatest.test.asserts.fileexists.FileExists;
+import br.com.zebys.makeatest.test.asserts.fileexists.FileNotExists;
 
 @RunWith(MakeATestRunner.class)
 public class MakeATestRunnerTest {
@@ -13,15 +15,16 @@ public class MakeATestRunnerTest {
 	@Test
 	public void runner() {
 		String firstName = "Marcus";
-		String lastName = null;
-		System.out.println("Test execute");
+		assertEquals("Marcus", firstName);
 	}
 	
 	@Test
 	@FileExists(filePath="./file.txt")
-	public void runne2() {
-		String firstName = "Marcus";
-		String lastName = null;
-		System.out.println("Test execute 2");
+	public void runneFileExists() {
+	}
+	
+	@Test
+	@FileNotExists(filePath="./file.txt")
+	public void runneFileNotExists() {
 	}
 }
