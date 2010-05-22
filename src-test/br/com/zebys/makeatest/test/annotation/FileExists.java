@@ -11,9 +11,11 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import br.com.zebys.makeatest.annotations.MakeATestConfig;
+
+@MakeATestConfig(klass = FileExistsExecute.class)
 @Target({TYPE, FIELD, METHOD, PARAMETER, CONSTRUCTOR, LOCAL_VARIABLE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface FileExists {
 	String filePath();
-	Class<?> klass();
 }

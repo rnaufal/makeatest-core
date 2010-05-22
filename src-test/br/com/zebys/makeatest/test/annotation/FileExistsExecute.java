@@ -1,14 +1,14 @@
 package br.com.zebys.makeatest.test.annotation;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.lang.annotation.Annotation;
 
 import br.com.zebys.makeatest.MakeATestExecuteInterface;
-import br.com.zebys.makeatest.exception.MakeATestException;
 
 public class FileExistsExecute implements MakeATestExecuteInterface {
 
-	public void execute(Annotation annotation) {
+	public void execute(Annotation annotation) throws FileNotFoundException {
 		System.out.println("Execute file exists");
 		System.out.println(annotation.annotationType());
 		FileExists fileExists = (FileExists) annotation;
@@ -19,7 +19,7 @@ public class FileExistsExecute implements MakeATestExecuteInterface {
 			System.out.println("File exists!!!");
 		} else {
 			System.out.println("File not found!!");
-			throw new MakeATestException("Ops");
+			throw new FileNotFoundException();
 		}
 	}
 

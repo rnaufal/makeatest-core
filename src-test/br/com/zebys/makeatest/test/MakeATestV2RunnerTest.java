@@ -1,18 +1,16 @@
 package br.com.zebys.makeatest.test;
 
 import junit.framework.TestCase;
-import br.com.zebys.makeatest.exception.MakeATestException;
 import br.com.zebys.makeatest.proxy.MakeATestV2Proxy;
 import br.com.zebys.makeatest.test.annotation.FileExists;
-import br.com.zebys.makeatest.test.annotation.FileExistsExecute;
 
 public class MakeATestV2RunnerTest extends TestCase {
 	
 	public interface TesteInterf {
 		public String metodoSemAnotacao();		
-		@FileExists(filePath="/etc/hosts", klass=FileExistsExecute.class)
+		@FileExists(filePath="/etc/hosts")
 		public String metodoArquivoExiste();
-		@FileExists(filePath="/etc/xpto", klass=FileExistsExecute.class)
+		@FileExists(filePath="/etc/xpto")
 		public String metodoArquivoNaoExiste();
 	}
 	
@@ -39,7 +37,7 @@ public class MakeATestV2RunnerTest extends TestCase {
 			String retorno = target.metodoArquivoNaoExiste();
 			fail("O arquivo n‹o existe");
 		} catch (RuntimeException e) {
-			assertTrue(e instanceof MakeATestException);
+			assertTrue(e instanceof RuntimeException);
 		}
 	}
 	public void testComArquivo(){

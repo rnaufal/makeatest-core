@@ -7,8 +7,6 @@ import br.com.zebys.makeatest.MakeATestRunner;
 import br.com.zebys.makeatest.test.annotation.FileExists;
 import br.com.zebys.makeatest.test.annotation.FileExistsExecute;
 
-
-
 @RunWith(MakeATestRunner.class)
 public class MakeATestRunnerTest {
 	
@@ -20,7 +18,7 @@ public class MakeATestRunnerTest {
 	}
 	
 	@Test
-	@FileExists(klass=FileExistsExecute.class,filePath="./file.txt")
+	@FileExists(filePath="./file.txt")
 	public void runne2() {
 		String firstName = "Marcus";
 		String lastName = null;

@@ -1,13 +1,13 @@
 package br.com.zebys.makeatest.annotations;
 
-import java.lang.annotation.ElementType;
+import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+@Target({ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.TYPE)
-public @interface Configure {
-	   String author();
-	   String date();
+public @interface MakeATestConfig {
+	Class<?> klass();
 }
