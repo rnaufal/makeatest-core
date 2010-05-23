@@ -19,7 +19,7 @@ public class FileAnnotationTest {
 	}
 	
 	@Test
-	@FileExists(filePath="./file.txt")
+	@FileExists(filePath="/etc/hosts")
 	public void runneFileExists() {
 	}
 	
