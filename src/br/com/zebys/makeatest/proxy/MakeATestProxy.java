@@ -1,7 +1,6 @@
 package br.com.zebys.makeatest.proxy;
 
 import java.lang.annotation.Annotation;
-import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -24,12 +23,12 @@ public class MakeATestProxy implements MethodInterceptor {
 	
 	@Override
 	public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
-		this.methodAnnotations(obj, method, args, proxy);
-		this.fieldAnnotation(obj, method, args, proxy);
+		this.methodAnnotation(method);
+		this.fieldAnnotation();
 		return method.invoke(this.object, args);
 	}
 	
-	private void fieldAnnotation(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
+	private void fieldAnnotation() throws Throwable {
 		Class<?> klass = this.object.getClass();
 		Field [] fields = klass.getDeclaredFields();
 		
@@ -37,35 +36,26 @@ public class MakeATestProxy implements MethodInterceptor {
 			Annotation[] annotations = field.getDeclaredAnnotations();
 			for (Annotation annotation : annotations) {
 				if(annotation.annotationType().isAnnotationPresent(MakeATestConfig.class)) {
-					this.invoke(annotation, field);
+					MakeATestConfig makeATestConfig = annotation.annotationType().getAnnotation(MakeATestConfig.class);
+			    	Class<?> executorClasse = (Class<?>) makeATestConfig.klass();
+					this.invokeField(executorClasse, annotation, field);
 				}
 			}
 		}
 	}
 	
-	private void methodAnnotations(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
+	private void methodAnnotation(Method method) throws Throwable {
 		Annotation[] annotations = method.getDeclaredAnnotations();
 		
 		for (Annotation annotation : annotations) {
 			if(annotation.annotationType().isAnnotationPresent(MakeATestConfig.class)) {
-				this.invoke(annotation, method);
+				MakeATestConfig makeATestConfig = annotation.annotationType().getAnnotation(MakeATestConfig.class);
+		    	Class<?> executorClasse = (Class<?>) makeATestConfig.klass();
+		    	this.invokeMethod(executorClasse, annotation, method);
 			}			
 		}	
 	}
 	
-	private void invoke(Annotation annotation, AccessibleObject accessibleObject) throws Throwable {
-		MakeATestConfig makeATestConfig = annotation.annotationType().getAnnotation(MakeATestConfig.class);
-    	Class<?> executorClasse = (Class<?>) makeATestConfig.klass();
-    	    	
-    	if(accessibleObject.getClass().equals(Method.class)) {
-    		this.invokeMethod(executorClasse, annotation, (Method) accessibleObject);
-    	} else if(accessibleObject.getClass().equals(Field.class)) {
-    		this.invokeField(executorClasse, annotation, (Field) accessibleObject);
-    	} else {
-    		throw new MakeATestException("The invoke for accessibleObject not implemented: " + accessibleObject.getClass().getCanonicalName());
-    	}    	
-	}
-
 	private void invokeMethod(Class<?> executorClasse, Annotation annotation, Method method) throws Throwable {
     	try {
     		executorClasse.asSubclass(MakeATestMethodExecuteInterface.class);
