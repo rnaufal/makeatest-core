@@ -8,10 +8,7 @@ import java.lang.reflect.Method;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
-import br.com.zebys.makeatest.MakeATestFieldExecuteInterface;
-import br.com.zebys.makeatest.MakeATestMethodExecuteInterface;
 import br.com.zebys.makeatest.annotations.MakeATestConfig;
-import br.com.zebys.makeatest.exception.MakeATestException;
 
 public class MakeATestProxy implements MethodInterceptor {
 
@@ -38,7 +35,13 @@ public class MakeATestProxy implements MethodInterceptor {
 				if(annotation.annotationType().isAnnotationPresent(MakeATestConfig.class)) {
 					MakeATestConfig makeATestConfig = annotation.annotationType().getAnnotation(MakeATestConfig.class);
 			    	Class<?> executorClasse = (Class<?>) makeATestConfig.klass();
-					this.invokeField(executorClasse, annotation, field);
+			    	Object executor = executorClasse.newInstance();
+			        Method execute = executorClasse.getMethod("execute", Annotation.class, Field.class, Object.class);
+			    	try {
+			        	execute.invoke(executor, annotation, field, this.object);
+			        } catch (InvocationTargetException e) {
+			            throw e.getTargetException();
+			        }
 				}
 			}
 		}
@@ -51,41 +54,15 @@ public class MakeATestProxy implements MethodInterceptor {
 			if(annotation.annotationType().isAnnotationPresent(MakeATestConfig.class)) {
 				MakeATestConfig makeATestConfig = annotation.annotationType().getAnnotation(MakeATestConfig.class);
 		    	Class<?> executorClasse = (Class<?>) makeATestConfig.klass();
-		    	this.invokeMethod(executorClasse, annotation, method);
+		    	Object executor = executorClasse.newInstance();
+		        Method execute = executorClasse.getMethod("execute", Annotation.class, Method.class, Object.class);
+		    	try {
+		        	execute.invoke(executor, annotation, method, this.object);
+		        } catch (InvocationTargetException e) {
+		            throw e.getTargetException();
+		        } 
 			}			
 		}	
-	}
-	
-	private void invokeMethod(Class<?> executorClasse, Annotation annotation, Method method) throws Throwable {
-    	try {
-    		executorClasse.asSubclass(MakeATestMethodExecuteInterface.class);
-    	} catch (Exception e) {
-			throw new MakeATestException("The class executing not implements the " + MakeATestMethodExecuteInterface.class.getCanonicalName());
-		}
-
-    	Object executor = executorClasse.newInstance();
-        Method execute = executorClasse.getMethod("execute", Annotation.class, Method.class, Object.class);
-    	try {
-        	execute.invoke(executor, annotation, method, this.object);
-        } catch (InvocationTargetException e) {
-            throw e.getTargetException();
-        } 
-	}
-
-	private void invokeField(Class<?> executorClasse, Annotation annotation, Field field) throws Throwable {
-    	try {
-    		executorClasse.asSubclass(MakeATestFieldExecuteInterface.class);
-    	} catch (Exception e) {
-			throw new MakeATestException("The class executing not implements the " + MakeATestMethodExecuteInterface.class.getCanonicalName());
-		}
-
-    	Object executor = executorClasse.newInstance();
-        Method execute = executorClasse.getMethod("execute", Annotation.class, Field.class, Object.class);
-    	try {
-        	execute.invoke(executor, annotation, field, this.object);
-        } catch (InvocationTargetException e) {
-            throw e.getTargetException();
-        }		
 	}
 	
 	@SuppressWarnings("unchecked")
