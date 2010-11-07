@@ -196,8 +196,7 @@
 %
 % paper title
 % can use linebreaks \\ within to get better formatting as desired
-\title{Metadata-based framework to verify external effects in unit tests}
-
+\title{Metadata-based Test Framework to Verify External Effects of the Target Classes}
 % author names and affiliations
 % use a multiple column layout for up to three different
 % affiliations
@@ -251,7 +250,7 @@ Email: guerraem@gmail.com}}
 \maketitle
 \begin{abstract}
 %\boldmath
-Metadata-based frameworks are those that use metadata to process their logic. Many tests are dependent on external resources such as database, web services, sockets, files and so on, but it is difficult to check these external effects on unit tests. As a result, this paper presents a framework based on metadata in order to help developers to verify the external effects in their unit tests.
+Metadata-based frameworks are those that use information(metadata) of the classes that are working to process their logic. Many tests are dependent on external resources such as database, web services, sockets, files and so on, but it is difficult to check these external effects on unit tests. As a result, this paper presents a framework based on metadata in order to help developers to verify the external effects in their unit tests.
 
 \end{abstract}
 % IEEEtran.cls defaults to using nonbold math in the Abstract.
@@ -273,6 +272,11 @@ Metadata-based frameworks are those that use metadata to process their logic. Ma
 % creates the second title. It will be ignored for other modes.
 \IEEEpeerreviewmaketitle
 
+*****Categories and Subject Descriptors\\
+
+*****General Terms\\
+
+*****Keywords\\
 
 
 \section{Introduction}
@@ -290,65 +294,38 @@ Our purpose is to build a metadata-based tool that allows the creation of annota
 
 
 
-
-*******
-
-
-
-(falem dos problemas, pq é difícil de testar e etc..)
+*******(falem dos problemas, pq é difícil de testar e etc..)
 ver se aquele artigo do google escolar  tem algo q dá pra colocar aqui
 
 
 \section{Existing solutions}
 
-(o que elas fazem e porque não resolvem o problema)
 
-
-Originalidade e Relevância
-
-Algumas soluções parciais foram encontradas, como por exemplo a associação da anotação a uma classe de execução utilizando reflexão.\\
-
+*****(o que elas fazem e porque não resolvem o problema)
 Falar daquela solucao que nao me lembro o nome. procurar a referencia bibliografica dela para referenciar aqui.
 
-
-A solução proposta, como extensão do JUnit a partir da funcionalidade “runners” e a criação de um framework para facilitar a criação de anotações e classes de execução, não foi encontrada até o presente momento.\\
+The proposed solution, as an extension of JUnit functionality "runners" and the creation of a framework to facilitate the creation of annotations and execution classes, has not been found until now. \\
+But some partial solutions were found. Some of them do the combination of annotation to a class of implementation using reflection. \\
 
 
 \section{Configured tests through metadata}
- (falem da idéia de vocês de forma mais abstrata, mostrem soluções parecidas e digam que elas são específicas)
+***** (falem da idéia de vocês de forma mais abstrata, mostrem soluções parecidas e digam que elas são específicas)
 
-
- Com o objetivo de criar um framework simples de ser utilizado pelos desenvolvedores, focou-se no uso das anotações, pois elas permitem inclusão de meta-informação em atributos, métodos e classes. \\
-	Para processar essas anotações é necessário que os métodos de testes possam ser interceptados. Um proxy dinâmico consegue interceptar os métodos sem a necessidade de implementar a mesma interface da classe original, assumindo esse comportamento de forma dinâmica. 
-	Esse artigo apresenta como combinar reflexão e anotações para criar componentes mais flexíveis. [guerra06]\\
+Aiming to create a simple framework to be used by developers, this work focused on the use of annotations, since they allow the inclusion of metadata in attributes, methods and classes. \\
+To process these annotations is necessary that the test methods can be intercepted. A dynamic proxy can intercept methods without the need to implement the same interface as the original class, assuming that behavior dynamically. \\
+This framework was developed combining reflection and annotations to create more flexible components. [Guerra06] \ \
  
- 
- São apresentados nesse artigo os conceitos de proxys estáticos e dinâmicos e as várias formas de criá-los. O artigo serviu como guia no início da construção da ferramenta desse trabalho, pois utilizamos proxy dinâmico para interceptar os métodos de teste e adicionar funcionalidades. [guerra08]\\
- 
- Frameworks baseados em metadados são aqueles que processam sua lógica baseando-se nas informações (metadados) das classes que estão trabalhando. \\
-	A ferramenta proposta nesse trabalho é um framework desse tipo. Como nesse artigo são apresentados padrões de linguagem para desenvolvimento de frameworks baseado em metadados, ele será o ponto de partida para a refatoração a ser realizada no núcleo da ferramenta. O propósito desse artigo é ajudar no entendimento e desenvolvimento desse tipo de framework.
-  [guerra-pattern] \\
-
 \section{Framework "Make A Test"}
-A arquitetura xUnit contém as definições genéricas para qualquer estrutura de testes unitários automatizados. O JUnit é uma instância dessa arquitetura na linguagem Java.\\
-O JUnit é um framework simples e open source para a criação e execução de testes de unidades, atualmente é bem utilizada por desenvolvedores. Dessa forma a solução tem como objetivo principal manter todas as funcionalidades existentes no JUnit sendo assertions, fixtures, anotações, @Test, @Before e @After.\\
-A solução proposta estende o JUnit usando uma funcionalidade denomina “runners”  (@RunWith) do JUnit 4, que basicamente permite interceptar o contexto do teste executado e adicionar novas funcionalidades. Dessa forma todas as funcionalidades são preservadas apenas adicionando as novas funcionalidades da solução.\\
-A outra parte da solução é a criação de um framework que permite o desenvolvimento de anotações, como por exemplo “@FileExists(filepath)”. Essa anotação é criada juntamente com uma classe que é responsável por executar a inteligência da anotação. \\
-A anotação pode ser criada para ser adicionada no setup do teste ou em um método de teste. A ferramenta entende que existe uma anotação e executa a classe associada a essa anotação que contém a lógica implementada, ou seja, para a anotação criada “@FileExists(filepath)”, é verifica a existência ou não do arquivo.\\
-
-
- falem da solução de vocês como uma validação da idéia
- 
+XUnit architecture contains generic settings for any automated unit testing framework. JUnit is an instance of this architecture in Java. [JUNIT] \\
+JUnit is a simple open source framework for creating and running unit tests, and is currently used by developers. Thus the solution's main objective is to keep all the existing features in JUnit and assertions, fixtures, annotations, @ Test, @ Before and @ After. \\
+The proposed solution extends the JUnit using a feature called "runners" (@ RunWith) of the JUnit 4, which basically allows you to intercept the context of the executed test and add new features. Thus all the features are preserved only by adding new features of the solution. \\
+The other part of the solution is to create a framework that allows the development of notations such as "@ FileExists (filepath). This annotation is created along with a class that is responsible for executing the intelligence of the annotation. \\
+The annotation can be created to be added in the setup of the test or a test method. The tool understands that there is an annotation and runs the class associated with this annotation that contains the logic implemented, that is created for the annotation "@ FileExists (filepath)", it checks whether or not the file.  \\
  
 \section{Case Study}
 
-Mostrem o uso da implementação de vocês para pelo menos duas situações diferentes.
+*****Mostrar a solução de leitura de arquivos
 
-Validação
-
-Será apresentada a ferramenta para uma equipe de desenvolvimento, que localizará nos testes de unidade existentes um ponto para aplicar a ferramenta. A ferramenta proposta será aplicada e os testes serão executados com a nova e a velha versão.\\
-O objetivo é validar os resultados, com uma visão sobre a cobertura dos testes, a complexidade de desenvolvimento e a reutilização.\\
-Outra validação é a construção de soluções para verificar os efeitos externos, como a validação de criação e formatos de conteúdos de arquivos e a verificação de efeitos externos em Web Services.\\
 
 %\hfill mds 
 %\hfill January 11, 2007
@@ -446,13 +423,12 @@ Outra validação é a construção de soluções para verificar os efeitos externos, c
 \section{Conclusion}
 The conclusion goes here.
 
-Conclusão (resumir o artigo, ressaltar contribuições, trabalhos futuros)
+A contribution of this work is the ease in creating annotations to verify the external effects caused by unit tests. \\
+This feature occurs because the proposed solution is to create a framework that enable that the creation of the annotation and association with the implementation class can be done transparently to the developer. So the only developer's work is to implement the verification logic. \\
+Another contribution is the aspect of reuse. How to check external effects could be repeated in methods, classes and even different applications, the annotations and implementing classes can be packaged in a jar and reuse in any project, since the annotations developed can be reused. \\
 
-Contribuições
-Uma contribuição desse trabalho é a facilidade na criação de anotações para verificar os efeitos externos ocasionados pelos testes de unidade. \\
-Essa facilidade ocorre pois a solução proposta é criar um framework que permita com que a criação da anotação e a associação à classe de execução seja de feita de forma transparente para o desenvolvedor. Assim o único trabalho do desenvolvedor é implementar a lógica da verificação.\\
-Outra contribuição está no aspecto de reuso. Como a verificação de efeitos externos pode se repetir em métodos, classes e até aplicações diferentes, as anotações e as classes de execução podem ser empacotadas em um JAR e serem reutilizadas em qualquer projeto, uma vez que a anotação desenvolvida possa ser reutilizada.\\
-
+As future works ......
+*****falar do desenvolvimento da verificacao de efeitos externos em webservices
 
 % conference papers do not normally have an appendix
 

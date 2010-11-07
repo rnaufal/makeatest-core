@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2010.11.5)  7 NOV 2010 16:48
+This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2010.11.5)  7 NOV 2010 18:49
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -193,67 +193,57 @@ LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <24> not available
 LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <24> not available
 (Font)              Font shape `T1/ptm/b/it' tried instead on input line 195.
 
-Underfull \hbox (badness 2469) in paragraph at lines 279--283
+Underfull \hbox (badness 10000) in paragraph at lines 275--276
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 277--278
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 279--280
+
+ []
+
+
+Underfull \hbox (badness 2469) in paragraph at lines 283--287
 []\T1/ptm/m/n/10 Software usu-ally rely on ex-ter-nal re-sour-ces such as
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 279--283
+Underfull \hbox (badness 10000) in paragraph at lines 283--287
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 285--290
+Underfull \hbox (badness 10000) in paragraph at lines 289--294
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 309--310
+Underfull \hbox (badness 7649) in paragraph at lines 307--309
+[]\T1/ptm/m/n/10 The pro-po-sed so-lu-tion, as an ex-ten-sion of JU-nit
+ []
+
+
+Underfull \hbox (badness 2573) in paragraph at lines 307--309
+\T1/ptm/m/n/10 func-ti-o-na-lity "run-ners"and the cre-a-tion of a fra-mework
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 307--309
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 314--315
-
+Underfull \hbox (badness 3525) in paragraph at lines 319--324
+[]\T1/ptm/m/n/10 XUnit ar-chi-tec-ture con-tains ge-ne-ric set-tings for any
  []
 
 
-Underfull \hbox (badness 2103) in paragraph at lines 321--324
-[]\T1/ptm/m/n/10 Com o ob-je-tivo de criar um fra-mework sim-ples de
- []
-
-
-Underfull \hbox (badness 1728) in paragraph at lines 321--324
-\T1/ptm/m/n/10 con-se-gue in-ter-cep-tar os mé-to-dos sem a ne-ces-si-dade de
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 321--324
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 326--327
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 328--331
-[]\T1/ptm/m/n/10 Frameworks ba-se-a-dos em me-ta-da-dos são aque-les
- []
-
-
-Underfull \hbox (badness 2126) in paragraph at lines 328--331
-\T1/ptm/m/n/10 que pro-ces-sam sua ló-gica baseando-se nas in-for-ma-ções
- []
-
-
-Underfull \hbox (badness 1769) in paragraph at lines 328--331
-\T1/ptm/m/n/10 A fer-ra-menta pro-posta nesse tra-ba-lho é um fra-mework
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 328--331
+Underfull \hbox (badness 10000) in paragraph at lines 319--324
 
  []
 
@@ -261,42 +251,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 328--331
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 333--338
-\T1/ptm/m/n/10 A so-lu-ção pro-posta es-tende o JU-nit usando uma
+Underfull \hbox (badness 1783) in paragraph at lines 426--429
+[]\T1/ptm/m/n/10 A con-tri-bu-tion of this work is the ease in cre-a-ting
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 333--338
-
- []
-
-
-Underfull \hbox (badness 3460) in paragraph at lines 349--352
-[]\T1/ptm/m/n/10 Será apre-sen-tada a fer-ra-menta para uma equipe de
- []
-
-
-Underfull \hbox (badness 3792) in paragraph at lines 349--352
-\T1/ptm/m/n/10 de-sen-vol-vi-mento, que lo-ca-li-zará nos tes-tes de uni-dade
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 349--352
-
- []
-
-
-Underfull \hbox (badness 4726) in paragraph at lines 451--455
-[]\T1/ptm/m/n/10 Contribuições Uma con-tri-bui-ção desse tra-ba-lho é a
- []
-
-
-Underfull \hbox (badness 2150) in paragraph at lines 451--455
-\T1/ptm/m/n/10 Outra con-tri-bui-ção está no as-pecto de reuso. Como a
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 451--455
+Underfull \hbox (badness 10000) in paragraph at lines 426--429
 
  []
 
@@ -311,20 +271,22 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[2] (./bare_conf.aux) ) 
+[2
+
+] (./bare_conf.aux) ) 
 Here is how much of TeX's memory you used:
- 1574 strings out of 493747
- 23420 string characters out of 3143546
- 83618 words of memory out of 3000000
- 4906 multiletter control sequences out of 15000+200000
+ 1578 strings out of 493747
+ 23484 string characters out of 3143546
+ 84618 words of memory out of 3000000
+ 4910 multiletter control sequences out of 15000+200000
  102603 words of font info for 101 fonts, out of 3000000 for 9000
  717 hyphenation exceptions out of 8191
- 26i,8n,24p,408b,301s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/local/texlive/2010/texmf-dist/fonts/enc/dvips/base
-/8r.enc}</usr/local/texlive/2010/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></
-usr/local/texlive/2010/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local
-/texlive/2010/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on bare_conf.pdf (2 pages, 47163 bytes).
+ 26i,8n,24p,453b,301s stack positions out of 5000i,500n,10000p,200000b,50000s
+{/usr/local/texlive/2010/texmf-dist/fonts/enc/dvips/base/8
+r.enc}</usr/local/texlive/2010/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></us
+r/local/texlive/2010/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/t
+exlive/2010/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
+Output written on bare_conf.pdf (2 pages, 46097 bytes).
 PDF statistics:
  24 PDF objects out of 1000 (max. 8388607)
  16 compressed objects within 1 object stream
