@@ -251,7 +251,7 @@ Email: guerraem@gmail.com}}
 \maketitle
 \begin{abstract}
 %\boldmath
-Muitos dos testes que precisamos realizar dependem de recursos externos como banco de dados, web services, etc. Diante da dificuldade de verificação dos efeitos externos nos testes, surgiu a idéia desse trabalho, que é o desenvolvimento de uma ferramenta baseada em metadados para veriifcar os efeitos externos em testes de unidade.
+Metadata-based frameworks are those that use metadata to process their logic. Many tests are dependent on external resources such as database, web services, sockets, files and so on, but it is difficult to check these external effects on unit tests. As a result, this paper presents a framework based on metadata in order to help developers to verify the external effects in their unit tests.
 
 \end{abstract}
 % IEEEtran.cls defaults to using nonbold math in the Abstract.
@@ -275,26 +275,31 @@ Muitos dos testes que precisamos realizar dependem de recursos externos como ban
 
 
 
-\section{Introdução}
-Normalmente os softwares tem a necessidade de recursos externos, como banco de dados, web services, sockets, arquivos e etc.\\
-Visando melhorar a qualidade do software desenvolvido, são criados testes de unidade. Durante a verificação do software utilizando esses testes de unidade, as funcionalidades que trabalham com os recursos externos são verificadas, mas não é simples saber o efeito do teste sobre o recurso externo.\\
-Quando as verificações desses efeitos externos não são feitas, não é possível afirmar que o software está totalmente testado, e que  todas as funcionalidades que dependem dos recursos externos estão funcionando corretamente, visto que não foi possível verificar o resultado.\\
-Esse trabalho foca em dar uma solução que permita a verificação dos efeitos externos ao software desenvolvido de forma simplificada.\\
+\section{Introduction}
+Software usually rely on external resources such as databases, web services, sockets, files and so on. \\
+Aiming to improve software quality, unit tests are created. During the verifications of software using these unit tests, the features that work with external resources are verified, but it is not easy to know the effect of the test on the external resource. \\
+When the verifications of these external effects are not done, we can not say that the software is fully tested and that all features that depend on external resources are functioning properly, since the result could not be verified. \\
+This paper aims to provide a solution in a simplified way that allows verification of external effects of the developed software. \\
 
-\section{Testes com dependências externas}
+\section{Tests with external dependencies}
+To ensure the quality of software, during its development mechanisms are used to verify the quality of what is being developed. One way is through the creation of unit tests. \\
+Unit tests are one way to ensure, programmatically, the verification of a particular feature, always focusing on the software being developed. \\
+Analyzing the external effects that cause these tests, for example, a feature that depends on a web service, in the unit test is complicated to verify the result of tests on the service called. \\
+Another example is when you have a feature that saves files in a particular place or format. Verify the file format created or if the content is correct are more labor intensive tasks. \\
+Our purpose is to build a metadata-based tool that allows the creation of annotations to check the external effects caused by the unit tests, in a much simpler way and giving opportunity for reuse. \\
 
-Para garantir a qualidade de um software, durante o seu desenvolvimento são utilizados mecanismos que verificam a qualidade do que está sendo desenvolvido. Uma forma é através da criação de testes de unidade.\\
-Testes de unidade são para garantir, de forma programática, a verificação de uma determinada funcionalidade, sempre focando no software que está sendo desenvolvido.\\
-Analisando os efeitos externos que esses testes causam, como por exemplo, uma funcionalidade que depende de um Web Service, no teste de unidade é complicado verificar o resultado do testes no serviço chamado.\\
-Um outro exemplo é quando se tem uma funcionalidade que grava arquivos em um determinado local ou formado, verificar se o formato do arquivo foi criado, ou se o conteúdo está correto, são verificações mais trabalhosas.\\
-A proposta do trabalho é a construção de uma ferramenta baseada em metadados que permite a criação de anotações para verificar os efeitos externos ocasionados pelos testes de unidades, de forma mais simplificada e dando possibilidade à reutilização.\\
+
+
+
+*******
+
 
 
 (falem dos problemas, pq é difícil de testar e etc..)
 ver se aquele artigo do google escolar  tem algo q dá pra colocar aqui
 
 
-\section{Soluções existentes}
+\section{Existing solutions}
 
 (o que elas fazem e porque não resolvem o problema)
 
@@ -309,7 +314,7 @@ Falar daquela solucao que nao me lembro o nome. procurar a referencia bibliograf
 A solução proposta, como extensão do JUnit a partir da funcionalidade “runners” e a criação de um framework para facilitar a criação de anotações e classes de execução, não foi encontrada até o presente momento.\\
 
 
-\section{Testes configurados por metadados}
+\section{Configured tests through metadata}
  (falem da idéia de vocês de forma mais abstrata, mostrem soluções parecidas e digam que elas são específicas)
 
 
@@ -335,7 +340,7 @@ A anotação pode ser criada para ser adicionada no setup do teste ou em um método
  falem da solução de vocês como uma validação da idéia
  
  
-\section{Estudo de caso}
+\section{Case Study}
 
 Mostrem o uso da implementação de vocês para pelo menos duas situações diferentes.
 
