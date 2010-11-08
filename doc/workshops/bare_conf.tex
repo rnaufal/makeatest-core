@@ -307,6 +307,7 @@ To make everything work just adding some annotations and creating a few classes 
 Proxy is a design pattern that provides a means to another object to control access to it \cite{GOF}. In a standard class implements the same interface and another one takes its place. So the syntax used to communicate both with the actual object as the proxy is the same. When needed, the proxy delegates the method calls to the original class, but it is possible with the proxy to take additional action before calling the action in the real object.\\
 A dynamic proxy is a class that can implement interfaces at runtime, and is an elegant way to create proxies for different classes with different interfaces \cite{GUERRA-2008}. \\
 In MakeATest, the proxy is used in the creating of the Runner of the framework, specifically in the method of creating a test. Thus, with annotations in the code, it is possible that they are intercepted before they run the JUnit test and thus be processed in accordance with the annotation configuration. \\
+The framework presented in this paper uses internally some patterns language for metadata-based frameworks \cite{GUERRA-PATTERN} such as Metadata Repository and Metadata Container. \\
  
 \section{Framework "Make A Test"}
 XUnit architecture contains generic settings for any automated unit testing framework. JUnit is an instance of this architecture in Java. \cite{JUNIT} \\
@@ -317,7 +318,7 @@ The annotation can be created to be added in the setup of the test or a test met
  
 \section{Case Study}
 
-*****Mostrar a solução de leitura de arquivos
+A test class is nothing more than a regular class with additional information that makes this class a test class. Below, in Figure 2 is presents a simple class and a class in Figure 3 with the additional information to be a test class:
 
 Annotation @FileExists.
 
@@ -478,14 +479,11 @@ public class FileCreationTest {
 % footnotes above bottom floats. This can be corrected via the \fnbelowfloat
 % command of the stfloats package.
 
-
-
 \section{Conclusion}
 A contribution of this work is the ease in creating annotations to verify the external effects caused by unit tests. \\
 This feature occurs because the proposed solution is to create a framework that enable that the creation of the annotation and association with the implementation class can be done transparently to the developer. So the only developer's work is to implement the verification logic. \\
 Another contribution is the aspect of reuse. How to check external effects could be repeated in methods, classes and even different applications, the annotations and implementing classes can be packaged in a jar and reuse in any project, since the annotations developed can be reused. \\
-As future works we want to develop a study case using webservices to verify the external effects. Integrations with frameworks like Mockito and Seleinum are in our plans too. \\
-
+As future works we want to develop a study case using web services to verify the external effects. Integrations with frameworks like Mockito and Selenium are in our plans too. \\
 
 % conference papers do not normally have an appendix
 
