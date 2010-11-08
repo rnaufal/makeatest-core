@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2010.10.28)  8 NOV 2010 01:22
+This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2010.11.5)  8 NOV 2010 01:40
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -223,17 +223,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 289--294
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 305--306
-
+Underfull \hbox (badness 2245) in paragraph at lines 305--310
+\T1/ptm/m/n/10 Aiming to cre-ate a sim-ple fra-mework to be used by
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 307--308
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 309--310
+Underfull \hbox (badness 10000) in paragraph at lines 305--310
 
  []
 
@@ -241,45 +236,35 @@ Underfull \hbox (badness 10000) in paragraph at lines 309--310
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 311--312
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 313--314
-
- []
-
-
-Underfull \hbox (badness 1540) in paragraph at lines 316--320
+Underfull \hbox (badness 1540) in paragraph at lines 312--316
 \T1/ptm/m/n/10 ob-ject to con-trol ac-cess to it [[]]. In a stan-dard class
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 316--320
+Underfull \hbox (badness 10000) in paragraph at lines 312--316
 
  []
 
 
-Underfull \hbox (badness 3525) in paragraph at lines 322--327
+Underfull \hbox (badness 3525) in paragraph at lines 318--323
 []\T1/ptm/m/n/10 XUnit ar-chi-tec-ture con-tains ge-ne-ric set-tings for any
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 322--327
+Underfull \hbox (badness 10000) in paragraph at lines 318--323
 
  []
 
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 332.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 328.
 (/usr/local/texlive/2010/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
-Underfull \hbox (badness 1783) in paragraph at lines 438--441
+Underfull \hbox (badness 1783) in paragraph at lines 434--437
 []\T1/ptm/m/n/10 A con-tri-bu-tion of this work is the ease in cre-a-ting
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 438--441
+Underfull \hbox (badness 10000) in paragraph at lines 434--437
 
  []
 
@@ -297,8 +282,8 @@ Before submitting the final camera ready copy, remember to:
 [2] (./bare_conf.aux) ) 
 Here is how much of TeX's memory you used:
  1612 strings out of 493747
- 23950 string characters out of 3143545
- 82618 words of memory out of 3000000
+ 23950 string characters out of 3143546
+ 83618 words of memory out of 3000000
  4938 multiletter control sequences out of 15000+200000
  104360 words of font info for 104 fonts, out of 3000000 for 9000
  717 hyphenation exceptions out of 8191
@@ -309,7 +294,7 @@ Here is how much of TeX's memory you used:
 l/texlive/2010/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive
 /2010/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2010/texm
 f-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on bare_conf.pdf (2 pages, 66872 bytes).
+Output written on bare_conf.pdf (2 pages, 66963 bytes).
 PDF statistics:
  32 PDF objects out of 1000 (max. 8388607)
  22 compressed objects within 1 object stream

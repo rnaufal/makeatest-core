@@ -303,13 +303,9 @@ Apache Synapse \cite{APACHE-SYNAPSE} is a specific solution to solve the verific
 
 \section{Configured tests through metadata}
 The MakeATest was created by extending the JUnit. To use the developer will need to create annotations that are associated with a particular class. This class should contain the implementation of a method during the tests will be invoked to validate a particular need.\\
-
 Aiming to create a simple framework to be used by developers, this work focused on the use of annotations, since they allow the inclusion of metadata in attributes, methods and classes. \\
-
 To process these annotations is necessary that the test methods can be intercepted. A dynamic proxy can intercept methods without the need to implement the same interface as the original class, assuming that behavior dynamically. \\
-
 This framework was developed combining reflection and annotations to create more flexible components \cite{GUERRA-2006}. \\
-
 Below is explained how to accomplish the extension of JUnit and how to use MakeATest.\\
  
 \subsection{Intercepting tests methods using a dynamic proxy}
@@ -330,8 +326,12 @@ The annotation can be created to be added in the setup of the test or a test met
 *****Mostrar a solução de leitura de arquivos
 
 \begin{verbatim}
-public class CommentTest {  public void commentingOnAText() {
-  }  public void commentingOnAPhoto() {		  }}
+public class CommentTest {
+  public void commentingOnAText() {
+  }
+  public void commentingOnAPhoto() {		
+  }
+}
 \end{verbatim}
 
 
@@ -483,6 +483,9 @@ The authors would like to thank...
 \bibitem{APACHE-SYNAPSE}
 “Apache Synapse”. Available at http://synapse.apache.org/, 2010.
 
+\bibitem{GOF}
+Gamma, Erich et al (2000). “Padrões de projeto: Soluções Reutilizáveis de Software Orientado a Objetos”, Bookman
+
 \bibitem{GUERRA-PATTERN}
 Guerra, Eduardo; Souza, Jerffeson; Fernandes, Clovis, "A Pattern Language for Metadata-based Frameworks", 16th Conference on Pattern Languages of Programming, Chicago, August, 2009.
 
@@ -495,8 +498,6 @@ Guerra, Eduardo, "Proxys Estáticos e Dinâmicos", Revista Mundo Java, Ed. 0032, p
 \bibitem{JUNIT}
 “JUnit”. Available at http://junit.org/, 2010.
 
-\bibitem{GOF}
-GOF
 
 \end{thebibliography}
 
