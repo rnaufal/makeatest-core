@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2010.11.5)  8 NOV 2010 00:13
+This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2010.10.28)  8 NOV 2010 01:22
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -223,17 +223,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 289--294
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 308--309
+Underfull \hbox (badness 10000) in paragraph at lines 305--306
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 310--311
+Underfull \hbox (badness 10000) in paragraph at lines 307--308
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 312--313
+Underfull \hbox (badness 10000) in paragraph at lines 309--310
 
  []
 
@@ -241,37 +241,45 @@ Underfull \hbox (badness 10000) in paragraph at lines 312--313
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 314--315
+Underfull \hbox (badness 10000) in paragraph at lines 311--312
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 316--317
+Underfull \hbox (badness 10000) in paragraph at lines 313--314
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 319--323
+Underfull \hbox (badness 1540) in paragraph at lines 316--320
+\T1/ptm/m/n/10 ob-ject to con-trol ac-cess to it [[]]. In a stan-dard class
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 316--320
 
  []
 
 
-Underfull \hbox (badness 3525) in paragraph at lines 325--330
+Underfull \hbox (badness 3525) in paragraph at lines 322--327
 []\T1/ptm/m/n/10 XUnit ar-chi-tec-ture con-tains ge-ne-ric set-tings for any
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 325--330
+Underfull \hbox (badness 10000) in paragraph at lines 322--327
 
  []
 
-
-Underfull \hbox (badness 1783) in paragraph at lines 432--435
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 332.
+(/usr/local/texlive/2010/texmf-dist/tex/latex/psnfss/t1pcr.fd
+File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
+)
+Underfull \hbox (badness 1783) in paragraph at lines 438--441
 []\T1/ptm/m/n/10 A con-tri-bu-tion of this work is the ease in cre-a-ting
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 432--435
+Underfull \hbox (badness 10000) in paragraph at lines 438--441
 
  []
 
@@ -288,22 +296,23 @@ Before submitting the final camera ready copy, remember to:
 
 [2] (./bare_conf.aux) ) 
 Here is how much of TeX's memory you used:
- 1580 strings out of 493747
- 23507 string characters out of 3143546
+ 1612 strings out of 493747
+ 23950 string characters out of 3143545
  82618 words of memory out of 3000000
- 4911 multiletter control sequences out of 15000+200000
- 103739 words of font info for 102 fonts, out of 3000000 for 9000
+ 4938 multiletter control sequences out of 15000+200000
+ 104360 words of font info for 104 fonts, out of 3000000 for 9000
  717 hyphenation exceptions out of 8191
- 26i,8n,24p,464b,301s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 26i,8n,24p,475b,301s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/local/texlive/2010/texmf-dist/fonts/enc/dvips/base
-/8r.enc}</usr/local/texlive/2010/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></
-usr/local/texlive/2010/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local
-/texlive/2010/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2
-010/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on bare_conf.pdf (2 pages, 56264 bytes).
+/8r.enc}</usr/local/texlive/2010/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>
+</usr/local/texlive/2010/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/loca
+l/texlive/2010/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive
+/2010/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2010/texm
+f-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on bare_conf.pdf (2 pages, 66872 bytes).
 PDF statistics:
- 28 PDF objects out of 1000 (max. 8388607)
- 19 compressed objects within 1 object stream
+ 32 PDF objects out of 1000 (max. 8388607)
+ 22 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
