@@ -275,10 +275,6 @@ Metadata-based frameworks are those that use information(metadata) of the classe
  Test Framework, Unit Tests, Integration Tests, Metadata Framework, Annotation.
 \end{IEEEkeywords}
 
-*****Categories and Subject Descriptors\\
-
-*****General Terms\\
-
 \section{Introduction}
 Software usually rely on external resources such as databases, web services, sockets, files and so on. \\
 Aiming to improve software quality, unit tests are created. During the verifications of software using these unit tests, the features that work with external resources are verified, but it is not easy to know the effect of the test on the external resource. \\
@@ -286,14 +282,12 @@ When the verifications of these external effects are not done, we can not say th
 This paper aims to provide a solution in a simplified way that allows verification of external effects of the developed software. \\
 
 \section{Tests with external dependencies}
-To ensure the quality of software, during its development mechanisms are used to verify the quality of what is being developed. One way is through the creation of unit tests. \\
+To ensure the quality, during the software development mechanisms are used to verify the quality of what is being developed. One way is through the creation of unit tests. \\
 Unit tests are one way to ensure, programmatically, the verification of a particular feature, always focusing on the software being developed. \\
 Analyzing the external effects that cause these tests, for example, a feature that depends on a web service, in the unit test is complicated to verify the result of tests on the service called. \\
+It is not easy to test when you have a external dependency because this resource is not available all the time.\\
 Another example is when you have a feature that saves files in a particular place or format. Verify the file format created or if the content is correct are more labor intensive tasks. \\
 Our purpose is to build a metadata-based tool that allows the creation of annotations to check the external effects caused by the unit tests, in a much simpler way and giving opportunity for reuse. \\
-
-*******(falem dos problemas, pq é difícil de testar e etc..)
-ver se aquele artigo do google escolar  tem algo q dá pra colocar aqui
 
 \section{Existing solutions}
 The proposed solution, as an extension of JUnit functionality "runners" and the creation of a framework to facilitate the creation of annotations and execution classes, has not been found until now. \\
@@ -303,13 +297,9 @@ Apache Synapse \cite{APACHE-SYNAPSE} is a specific solution to solve the verific
 
 \section{Configured tests through metadata}
 The MakeATest was created by extending the JUnit. To use the developer will need to create annotations that are associated with a particular class. This class should contain the implementation of a method during the tests will be invoked to validate a particular need.\\
-
 Aiming to create a simple framework to be used by developers, this work focused on the use of annotations, since they allow the inclusion of metadata in attributes, methods and classes. \\
-
 To process these annotations is necessary that the test methods can be intercepted. A dynamic proxy can intercept methods without the need to implement the same interface as the original class, assuming that behavior dynamically. \\
-
 This framework was developed combining reflection and annotations to create more flexible components \cite{GUERRA-2006}. \\
-
 Below is explained how to accomplish the extension of JUnit and how to use MakeATest.\\
  
 \subsection{Intercepting tests methods using a dynamic proxy}
@@ -331,8 +321,15 @@ The annotation can be created to be added in the setup of the test or a test met
 
 \begin{verbatim}
 public class CommentTest {
+<<<<<<< HEAD
   public void commentingOnAText() { }
   public void commentingOnAPhoto() { }
+=======
+  public void commentingOnAText() {
+  }
+  public void commentingOnAPhoto() {		
+  }
+>>>>>>> f5eafbe4026371f88d03a962b4c4e38251507638
 }
 \end{verbatim}
 
@@ -504,12 +501,7 @@ As future works we want to develop a study case using webservices to verify the 
 
 % use section* for acknowledgement
 \section*{Acknowledgment}
-
 The authors wish to express special thanks to friends and family for understanding the time dedicated to studies and for always being by our side.
-
-
-
-
 
 % trigger a \newpage just before the given reference
 % number - used to balance the columns on the last page
@@ -543,6 +535,9 @@ The authors wish to express special thanks to friends and family for understandi
 \bibitem{APACHE-SYNAPSE}
 “Apache Synapse”. Available at http://synapse.apache.org/, 2010.
 
+\bibitem{GOF}
+Gamma, Erich et al , "Padrões de projeto: Soluções Reutilizáveis de Software Orientado a Objetos", Bookman, 2000
+
 \bibitem{GUERRA-PATTERN}
 Guerra, Eduardo; Souza, Jerffeson; Fernandes, Clovis, "A Pattern Language for Metadata-based Frameworks", 16th Conference on Pattern Languages of Programming, Chicago, August, 2009.
 
@@ -555,11 +550,6 @@ Guerra, Eduardo, "Proxys Estáticos e Dinâmicos", Revista Mundo Java, Ed. 0032, p
 \bibitem{JUNIT}
 “JUnit”. Available at http://junit.org/, 2010.
 
-<<<<<<< HEAD
-\bibitem{GOF}
-GOF
-=======
->>>>>>> 2e010947e52245da804fed22eb894afcc3ec34af
 
 \end{thebibliography}
 
