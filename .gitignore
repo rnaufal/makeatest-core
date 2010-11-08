@@ -1,1 +1,7 @@
+.DS_Store
 bin/*
+doc/workshops/*.log
+doc/workshops/*.pdf
+doc/workshops/*.synctex.gz
+doc/workshops/*.aux
+
