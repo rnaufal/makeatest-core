@@ -196,26 +196,23 @@
 %
 % paper title
 % can use linebreaks \\ within to get better formatting as desired
-\title{Ferramenta baseada em metadados para verificar efeitos externos em testes de unidade}
-
+\title{Metadata-based Test Framework to Verify External Effects of the Target Classes}
 % author names and affiliations
 % use a multiple column layout for up to three different
 % affiliations
-\author{\IEEEauthorblockN{Debora A. L. Chama}
-\IEEEauthorblockA{Instituto Tecnológico de Aeronáutica – ITA\\
-Pós-Graduação em Engenharia de Software\\
+\author{\IEEEauthorblockN{Marcus V. C. Floriano}
+\IEEEauthorblockA{Aeronautical Institute of Technology\\
 Praça Marechal Eduardo Gomes, 50\\
-Vila das Acácias – CEP 12.228-900\\
-São José dos Campos – SP – Brasil\\
-Email: deborachama@gmail.com}
-\and
-\IEEEauthorblockN{Marcus V. C. Floriano}
-\IEEEauthorblockA{Instituto Tecnológico de Aeronáutica – ITA\\
-Pós-Graduação em Engenharia de Software\\
-Praça Marechal Eduardo Gomes, 50\\
-Vila das Acácias – CEP 12.228-900\\
-São José dos Campos – SP – Brasil\\
+Vl Acácias - SJ Campos – SP, Brazil\\
++55 12 39475899\\
 Email: marcus.floriano@gmail.com}
+\and
+\IEEEauthorblockN{Debora A. L. Chama}
+\IEEEauthorblockA{Aeronautical Institute of Technology\\
+Praça Marechal Eduardo Gomes, 50\\
+Vl Acácias - SJ Campos – SP, Brazil\\
++55 12 39475899\\
+Email: deborachama@gmail.com}
 \and
 \IEEEauthorblockN{Eduardo M. Guerra}
 \IEEEauthorblockA{Aeronautical Institute of Technology\\
@@ -253,7 +250,8 @@ Email: guerraem@gmail.com}}
 \maketitle
 \begin{abstract}
 %\boldmath
-The abstract goes here.
+Metadata-based frameworks are those that use information(metadata) of the classes that are working to process their logic. Many tests are dependent on external resources such as database, web services, sockets, files and so on, but it is difficult to check these external effects on unit tests. As a result, this paper presents a framework based on metadata in order to help developers to verify the external effects in their unit tests.
+
 \end{abstract}
 % IEEEtran.cls defaults to using nonbold math in the Abstract.
 % This preserves the distinction between vectors and scalars. However,
@@ -274,15 +272,66 @@ The abstract goes here.
 % creates the second title. It will be ignored for other modes.
 \IEEEpeerreviewmaketitle
 
+*****Categories and Subject Descriptors\\
+
+*****General Terms\\
+
+*****Keywords\\
 
 
-\section{Introdução}
-\section{Testes com dependências externas}
+\section{Introduction}
+Software usually rely on external resources such as databases, web services, sockets, files and so on. \\
+Aiming to improve software quality, unit tests are created. During the verifications of software using these unit tests, the features that work with external resources are verified, but it is not easy to know the effect of the test on the external resource. \\
+When the verifications of these external effects are not done, we can not say that the software is fully tested and that all features that depend on external resources are functioning properly, since the result could not be verified. \\
+This paper aims to provide a solution in a simplified way that allows verification of external effects of the developed software. \\
 
-\section{Soluções existentes}
-\section{Testes configurados por metadados}
+\section{Tests with external dependencies}
+To ensure the quality of software, during its development mechanisms are used to verify the quality of what is being developed. One way is through the creation of unit tests. \\
+Unit tests are one way to ensure, programmatically, the verification of a particular feature, always focusing on the software being developed. \\
+Analyzing the external effects that cause these tests, for example, a feature that depends on a web service, in the unit test is complicated to verify the result of tests on the service called. \\
+Another example is when you have a feature that saves files in a particular place or format. Verify the file format created or if the content is correct are more labor intensive tasks. \\
+Our purpose is to build a metadata-based tool that allows the creation of annotations to check the external effects caused by the unit tests, in a much simpler way and giving opportunity for reuse. \\
+
+
+
+*******(falem dos problemas, pq é difícil de testar e etc..)
+ver se aquele artigo do google escolar  tem algo q dá pra colocar aqui
+
+
+\section{Existing solutions}
+The proposed solution, as an extension of JUnit functionality "runners" and the creation of a framework to facilitate the creation of annotations and execution classes, has not been found until now. \\
+But some partial solutions were found. Some of them do the combination of annotation to a class of implementation using reflection. \\
+Other solutions such as Mock (which simulates the behavior of real objects) are used to solve the external verification to software, but it brings a greater complexity of development.\\
+Apache Synapse [APACHE-SYNAPSE] is a specific solution to solve the verification of Web Service. It is an ESB for simplified creation of services, but this way  an external dependence is created.
+
+\section{Configured tests through metadata}
+The MakeATest was created by extending the JUnit. To use the developer will need to create annotations that are associated with a particular class. This class should contain the implementation of a method during the tests will be invoked to validate a particular need.\\
+
+Aiming to create a simple framework to be used by developers, this work focused on the use of annotations, since they allow the inclusion of metadata in attributes, methods and classes. \\
+
+To process these annotations is necessary that the test methods can be intercepted. A dynamic proxy can intercept methods without the need to implement the same interface as the original class, assuming that behavior dynamically. \\
+
+This framework was developed combining reflection and annotations to create more flexible components. [Guerra06] \\
+
+Below is explained how to accomplish the extension of JUnit and how to use MakeATest.\\
+ 
+\subsection{Intercepting tests methods using a dynamic proxy}
+To make everything work just adding some annotations and creating a few classes we use the concept of dynamic proxy to capture every class and method [GUERRA08].\\
+Proxy is a design pattern that provides a means to another object to control access to it [GOF]. In a standard class implements the same interface and another one takes its place. So the syntax used to communicate both with the actual object as the proxy is the same. When needed, the proxy delegates the method calls to the original class, but it is possible with the proxy to take additional action before calling the action in the real object.\\
+A dynamic proxy is a class that can implement interfaces at runtime, and is an elegant way to create proxies for different classes with different interfaces [GUERRA08]. \\
+In MakeATest, the proxy is used in the creating of the Runner of the framework, specifically in the method of creating a test. Thus, with annotations in the code, it is possible that they are intercepted before they run the JUnit test and thus be processed in accordance with the annotation configuration. \\
+ 
 \section{Framework "Make A Test"}
-\section{Estudo de caso}
+XUnit architecture contains generic settings for any automated unit testing framework. JUnit is an instance of this architecture in Java. [JUNIT] \\
+JUnit is a simple open source framework for creating and running unit tests, and is currently used by developers. Thus the solution's main objective is to keep all the existing features in JUnit and assertions, fixtures, annotations, @Test, @Before and @After. \\
+The proposed solution extends the JUnit using a feature called "runners" (@RunWith) of the JUnit 4, which basically allows you to intercept the context of the executed test and add new features. Thus all the features are preserved only by adding new features of the solution. \\
+The other part of the solution is to create a framework that allows the development of notations such as "@FileExists (filepath). This annotation is created along with a class that is responsible for executing the intelligence of the annotation. \\
+The annotation can be created to be added in the setup of the test or a test method. The tool understands that there is an annotation and runs the class associated with this annotation that contains the logic implemented, that is created for the annotation "@FileExists (filepath)", it checks whether or not the file.  \\
+ 
+\section{Case Study}
+
+*****Mostrar a solução de leitura de arquivos
+
 
 %\hfill mds 
 %\hfill January 11, 2007
@@ -380,8 +429,12 @@ The abstract goes here.
 \section{Conclusion}
 The conclusion goes here.
 
+A contribution of this work is the ease in creating annotations to verify the external effects caused by unit tests. \\
+This feature occurs because the proposed solution is to create a framework that enable that the creation of the annotation and association with the implementation class can be done transparently to the developer. So the only developer's work is to implement the verification logic. \\
+Another contribution is the aspect of reuse. How to check external effects could be repeated in methods, classes and even different applications, the annotations and implementing classes can be packaged in a jar and reuse in any project, since the annotations developed can be reused. \\
 
-
+As future works ......
+*****falar do desenvolvimento da verificacao de efeitos externos em webservices
 
 % conference papers do not normally have an appendix
 
@@ -420,14 +473,27 @@ The authors would like to thank...
 % (used to reserve space for the reference number labels box)
 \begin{thebibliography}{1}
 
-\bibitem{IEEEhowto:kopka}
-H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
-  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
+%\bibitem{IEEEhowto:kopka}
+%H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
+% 0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
+
+
+\bibitem{APACHE-SYNAPSE}
+“Apache Synapse”. Available at http://synapse.apache.org/, 2010.
+
+\bibitem{GUERRA-PATTERN}
+Guerra, Eduardo; Souza, Jerffeson; Fernandes, Clovis, "A Pattern Language for Metadata-based Frameworks", 16th Conference on Pattern Languages of Programming, Chicago, August, 2009.
+
+\bibitem{GUERRA-2006}
+Guerra, Eduardo, "Reflexão + Anotações - Uma Combinação Explosiva", Revista Mundo Java,Ed. 0019, p.15-26, 2006.
+
+\bibitem{GUERRA-2008}
+Guerra, Eduardo, "Proxys Estáticos e Dinâmicos", Revista Mundo Java, Ed. 0032, p. 51-56, 2008.
+
+\bibitem{JUNIT}
+“JUnit”. Available at http://junit.org/, 2010.
 
 \end{thebibliography}
-
-
-
 
 % that's all folks
 \end{document}

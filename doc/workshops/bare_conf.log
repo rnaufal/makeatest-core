@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2010.10.28)  3 NOV 2010 23:06
+This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2010.11.5)  8 NOV 2010 00:13
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -140,64 +140,140 @@ File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 (./bare_conf.aux)
 \openout1 = `bare_conf.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 354.
-LaTeX Font Info:    ... okay on input line 354.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 354.
-LaTeX Font Info:    ... okay on input line 354.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 354.
-LaTeX Font Info:    ... okay on input line 354.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 354.
-LaTeX Font Info:    ... okay on input line 354.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 354.
-LaTeX Font Info:    ... okay on input line 354.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 354.
-LaTeX Font Info:    ... okay on input line 354.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 195.
+LaTeX Font Info:    ... okay on input line 195.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 195.
+LaTeX Font Info:    ... okay on input line 195.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 195.
+LaTeX Font Info:    ... okay on input line 195.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 195.
+LaTeX Font Info:    ... okay on input line 195.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 195.
+LaTeX Font Info:    ... okay on input line 195.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 195.
+LaTeX Font Info:    ... okay on input line 195.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <5> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 354.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 195.
 LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <5> not available
-(Font)              Font shape `T1/ptm/b/it' tried instead on input line 354.
+(Font)              Font shape `T1/ptm/b/it' tried instead on input line 195.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 354.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 195.
 LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <7> not available
-(Font)              Font shape `T1/ptm/b/it' tried instead on input line 354.
+(Font)              Font shape `T1/ptm/b/it' tried instead on input line 195.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 354.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 195.
 LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <8> not available
-(Font)              Font shape `T1/ptm/b/it' tried instead on input line 354.
+(Font)              Font shape `T1/ptm/b/it' tried instead on input line 195.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 354.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 195.
 LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <9> not available
-(Font)              Font shape `T1/ptm/b/it' tried instead on input line 354.
+(Font)              Font shape `T1/ptm/b/it' tried instead on input line 195.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 354.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 195.
 LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <10> not available
-(Font)              Font shape `T1/ptm/b/it' tried instead on input line 354.
+(Font)              Font shape `T1/ptm/b/it' tried instead on input line 195.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <11> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 354.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 195.
 LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <11> not available
-(Font)              Font shape `T1/ptm/b/it' tried instead on input line 354.
+(Font)              Font shape `T1/ptm/b/it' tried instead on input line 195.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 354.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 195.
 LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <12> not available
-(Font)              Font shape `T1/ptm/b/it' tried instead on input line 354.
+(Font)              Font shape `T1/ptm/b/it' tried instead on input line 195.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <17> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 354.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 195.
 LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <17> not available
-(Font)              Font shape `T1/ptm/b/it' tried instead on input line 354.
+(Font)              Font shape `T1/ptm/b/it' tried instead on input line 195.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <20> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 354.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 195.
 LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <20> not available
-(Font)              Font shape `T1/ptm/b/it' tried instead on input line 354.
+(Font)              Font shape `T1/ptm/b/it' tried instead on input line 195.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <24> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 354.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 195.
 LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <24> not available
-(Font)              Font shape `T1/ptm/b/it' tried instead on input line 354.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 587.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 587.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 587.
+(Font)              Font shape `T1/ptm/b/it' tried instead on input line 195.
+
+Underfull \hbox (badness 10000) in paragraph at lines 275--276
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 277--278
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 279--280
+
+ []
+
+
+Underfull \hbox (badness 2469) in paragraph at lines 283--287
+[]\T1/ptm/m/n/10 Software usu-ally rely on ex-ter-nal re-sour-ces such as
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 283--287
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 289--294
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 308--309
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 310--311
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 312--313
+
+ []
+
+[1{/usr/local/texlive/2010/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 314--315
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 316--317
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 319--323
+
+ []
+
+
+Underfull \hbox (badness 3525) in paragraph at lines 325--330
+[]\T1/ptm/m/n/10 XUnit ar-chi-tec-ture con-tains ge-ne-ric set-tings for any
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 325--330
+
+ []
+
+
+Underfull \hbox (badness 1783) in paragraph at lines 432--435
+[]\T1/ptm/m/n/10 A con-tri-bu-tion of this work is the ease in cre-a-ting
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 432--435
+
+ []
 
 
 ** Conference Paper **
@@ -210,29 +286,24 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[1{/usr/local/texlive/2010/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
-
-
-
-]
-(./bare_conf.aux) ) 
+[2] (./bare_conf.aux) ) 
 Here is how much of TeX's memory you used:
- 1589 strings out of 493747
- 23557 string characters out of 3143545
- 77618 words of memory out of 3000000
- 4913 multiletter control sequences out of 15000+200000
- 108410 words of font info for 110 fonts, out of 3000000 for 9000
+ 1580 strings out of 493747
+ 23507 string characters out of 3143546
+ 82618 words of memory out of 3000000
+ 4911 multiletter control sequences out of 15000+200000
+ 103739 words of font info for 102 fonts, out of 3000000 for 9000
  717 hyphenation exceptions out of 8191
- 26i,8n,24p,190b,301s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/local/texlive/2010/texmf-dist/fonts/enc/dvips/base/8r.
-enc}</usr/local/texlive/2010/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/
-local/texlive/2010/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/tex
-live/2010/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2010/
-texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on bare_conf.pdf (1 page, 42240 bytes).
+ 26i,8n,24p,464b,301s stack positions out of 5000i,500n,10000p,200000b,50000s
+{/usr/local/texlive/2010/texmf-dist/fonts/enc/dvips/base
+/8r.enc}</usr/local/texlive/2010/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></
+usr/local/texlive/2010/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local
+/texlive/2010/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2
+010/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on bare_conf.pdf (2 pages, 56264 bytes).
 PDF statistics:
- 25 PDF objects out of 1000 (max. 8388607)
- 17 compressed objects within 1 object stream
+ 28 PDF objects out of 1000 (max. 8388607)
+ 19 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
