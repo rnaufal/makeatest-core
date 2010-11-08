@@ -321,71 +321,122 @@ The annotation can be created to be added in the setup of the test or a test met
 
 \begin{verbatim}
 public class CommentTest {
-<<<<<<< HEAD
   public void commentingOnAText() { }
   public void commentingOnAPhoto() { }
-=======
-  public void commentingOnAText() {
-  }
-  public void commentingOnAPhoto() {		
-  }
->>>>>>> f5eafbe4026371f88d03a962b4c4e38251507638
 }
 \end{verbatim}
 
 \begin{verbatim}
-public class CommentTest {  @Test  public void commentingOnAText() { }  @Test  public void commentingOnAPhoto() { }}
+public class CommentTest {
+  @Test
+  public void commentingOnAText() { }
+  @Test
+  public void commentingOnAPhoto() { }
+}
 \end{verbatim}
 
 \begin{verbatim}
-@RunWith(MakeATestRunner.class)public class CommentTest {
-  @Test  public void commentingOnAText() { }
+@RunWith(MakeATestRunner.class)
+public class CommentTest {
   @Test
-  public void commentingOnAPhoto() { }}
+  public void commentingOnAText() { }
+  @Test
+  public void commentingOnAPhoto() { }
+}
 \end{verbatim}
 
 \begin{verbatim}
 @MakeATestConfig(
-klass = MyAnnotationExecute.class)@Target({METHOD})@Retention(RetentionPolicy.RUNTIME)public @interface MyAnnotation {  String something();}
+klass = MyAnnotationExecute.class)
+@Target({METHOD})
+@Retention(RetentionPolicy.RUNTIME)
+public @interface MyAnnotation {
+  String something();
+}
 \end{verbatim}
 
 \begin{verbatim}
 public class MyAnnotationExecute implements
-  MakeATestExecuteInterface {  @Override
+  MakeATestExecuteInterface {
+  @Override
   public void execute(Annotation annotation,
         Method method, Object object) 
-        throws FileNotFoundException {    MyAnnotation myAnnotation = 
-        (MyAnnotation) annotation;    String result = myAnnotation.something();    ...   }  @Override  public void execute(Annotation annotation, 
+        throws FileNotFoundException {
+    MyAnnotation myAnnotation = 
+        (MyAnnotation) annotation;
+    String result = myAnnotation.something();
+    ... 
+  }
+  @Override
+  public void execute(Annotation annotation, 
         Field field, Object object) 
-        throws Exception {  }}
+        throws Exception {
+  }
+}
 \end{verbatim}
 
 \begin{verbatim}
-@RunWith(MakeATestRunner.class)public class FileCreationTest {  @Test  @MyAnnotation(something="blablabla")  public void myTest() {  ...  }}
+@RunWith(MakeATestRunner.class)
+public class FileCreationTest {
+  @Test
+  @MyAnnotation(something="blablabla")
+  public void myTest() {
+  ...
+  }
+}
 \end{verbatim}
 
 \begin{verbatim}
-@RunWith(MakeATestRunner.class)public class FileCreationTest {  @Test  @FileExists(filePath="./file.txt")  public void createFile() {  ...  }  @Test  @FileNotExists(filePath="./file.txt")  public void deleteFile() {  ...  }}
+@RunWith(MakeATestRunner.class)
+public class FileCreationTest {
+  @Test
+  @FileExists(filePath="./file.txt")
+  public void createFile() {
+  ...
+  }
+  @Test
+  @FileNotExists(filePath="./file.txt")
+  public void deleteFile() {
+  ...
+  }
+}
 \end{verbatim}
 
 \begin{verbatim}
 @MakeATestConfig(klass = 
-      FileExistsExecute.class)@Target({METHOD})@Retention(RetentionPolicy.RUNTIME)public @interface FileExists {  String filePath();}
+      FileExistsExecute.class)
+@Target({METHOD})
+@Retention(RetentionPolicy.RUNTIME)
+public @interface FileExists {
+  String filePath();
+}
 \end{verbatim}
 
 \begin{verbatim}
 public class FileExistsExecute implements 
-        MakeATestExecuteInterface {  @Override  public void execute(
+        MakeATestExecuteInterface {
+  @Override
+  public void execute(
         Annotation annotation, 
         Method method, Object object) 
-        throws FileNotFoundException {    FileExists fileExists = 
+        throws FileNotFoundException {
+    FileExists fileExists = 
         (FileExists) annotation;
     String path = fileExists.filePath();
-    File f = new File(path);    if (!f.exists()) {      throw new FileNotFoundException();    }  }  @Override  public void execute(
+    File f = new File(path);
+    if (!f.exists()) {
+      throw new FileNotFoundException();
+    }
+  }
+  @Override
+  public void execute(
         Annotation annotation, 
         Field field, Object object) 
         throws Exception {
-  ...  }}
+  ...
+  }
+}
+
 \end{verbatim}
 
 \begin{figure}[htp]
