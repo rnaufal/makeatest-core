@@ -317,10 +317,27 @@ The other part of the solution is to create a framework that allows the developm
 The annotation can be created to be added in the setup of the test or a test method. The tool understands that there is an annotation and runs the class associated with this annotation that contains the logic implemented, that is created for the annotation "@FileExists (filepath)", it checks whether or not the file.  \\
  
 \section{Case Study}
+MakeATest is a framework that allows developers to create annotations that are connected with a class for implementing a particular need. \\
+An annotation is used as a metadata in Java code, allowing that its interpretation can be used to perform some predefined task. \\
+Thus, the proposed solution requires the creation of an annotation and a class that runs it. Once created the annotation and its implementation class, developer just need to use it in their testing. \\
+To illustrate the use of MakeATest, an annotation was developed to verify the existence of a file. It is a simple example to demonstrate how to verify the existence of a local file, but could easily be modified to validate the existence of a remote file. \\
+Figure 4 shows how you want to use the annotations of MakeATest in our tests. We want to create two annotations @FileExists checks that after running the test if the file was actually created and the other annotation @FileNotExists verify that after running the test if the file was removed. \\
+These annotations are created along with the classes of tests, since it has to be visible for both classes tests and also other classes of MakeATest. \\
+An annotation is used to help to perform some predefined task. For the annotation "FileExists", the task is to verify that the specified file exists in the annotation system. \\
+Figure 2 is the code for the annotation "FileExists", which follows the standard structure of the proposed annotation. Was included in the annotation MakeATest called "@MakeATestConfig. It is for this annotation that the framework knows the class responsible for executing the annotation that this will actually verify the existence of the file. The task of verifying the file is implemented in class "FileExistsExecute" that is described in property "klass" as show. \\
+Figure 3 is the implementation of the execution class regarding the annotation "@FileExists". This execution class of the annotation, implements the methods defined in the interface MakeATestExecuteInterface as proposed. \\
+When creating the body of the tests in Figure 4, we can call a feature of the software (downloaded from a remote file for example) that has as a result a creation of the file locally. When you run this TestCase, we have the annotation @FileExists processed and your class validation performed, verifying if the file exists or not, sending exception when necessary. \\
+Because JUnit is already integrated with various IDEs, the eclipse could recognize the signs of success or failure in the test. \\
 
-A test class is nothing more than a regular class with additional information that makes this class a test class. Below, in Figure 2 is presents a simple class and a class in Figure 3 with the additional information to be a test class:
+\begin{figure}[htp]
+\centering
+\includegraphics{ProxyIntegration}
+\caption{Proxy Integration}
+\label{fig:proxyintgr}
+\end{figure}
 
-Annotation @FileExists.
+
+Fig 2. Annotation @FileExists.
 
 \begin{verbatim}
 @MakeATestConfig(klass = 
@@ -332,15 +349,8 @@ public @interface FileExists {
 }
 \end{verbatim}
 
-\begin{figure}[htp]
-\centering
-\includegraphics{ProxyIntegration}
-\caption{Proxy Integration}
-\label{fig:proxyintgr}
-\end{figure}
 
-
-Implementation of class execution annotation @FileExists.\\
+Fig 3. Implementation of class execution annotation @FileExists.\\
 
 \begin{verbatim}
 public class FileExistsExecute implements 
@@ -369,7 +379,7 @@ public class FileExistsExecute implements
 
 \end{verbatim}
 
-Class test util the MakeATest.\\
+Fig4. Class test util the MakeATest.\\
 
 \begin{verbatim}
 @RunWith(MakeATestRunner.class)
