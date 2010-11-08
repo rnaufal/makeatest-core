@@ -250,7 +250,7 @@ Email: guerraem@gmail.com}}
 \maketitle
 \begin{abstract}
 %\boldmath
-Metadata-based frameworks are those that use information(metadata) of the classes that are working to process their logic. Many tests are dependent on external resources such as database, web services, sockets, files and so on, but it is difficult to check these external effects on unit tests. As a result, this paper presents a framework based on metadata in order to help developers to verify the external effects in their unit tests.\\
+Metadata-based frameworks are those that use information(metadata) of the classes that are working to process their logic. Many tests are dependent on external resources such as database, web services, sockets, files and so on, but it is difficult to check these external effects on unit tests. As a result, this paper presents a test framework based on metadata in order to help developers to verify the external effects in their unit tests.\\
 \end{abstract}
 % IEEEtran.cls defaults to using nonbold math in the Abstract.
 % This preserves the distinction between vectors and scalars. However,
@@ -272,7 +272,7 @@ Metadata-based frameworks are those that use information(metadata) of the classe
 \IEEEpeerreviewmaketitle
 
 \begin{IEEEkeywords}
- Unit Tests, Integration Tests, Metadata Framework.
+ Test Framework, Unit Tests, Integration Tests, Metadata Framework, Annotation.
 \end{IEEEkeywords}
 
 *****Categories and Subject Descriptors\\
@@ -437,14 +437,11 @@ public class CommentTest {  public void commentingOnAText() {
 
 
 \section{Conclusion}
-The conclusion goes here.
-
 A contribution of this work is the ease in creating annotations to verify the external effects caused by unit tests. \\
 This feature occurs because the proposed solution is to create a framework that enable that the creation of the annotation and association with the implementation class can be done transparently to the developer. So the only developer's work is to implement the verification logic. \\
 Another contribution is the aspect of reuse. How to check external effects could be repeated in methods, classes and even different applications, the annotations and implementing classes can be packaged in a jar and reuse in any project, since the annotations developed can be reused. \\
+As future works we want to develop a study case using webservices to verify the external effects. Integrations with frameworks like Mockito and Seleinum are in our plans too. \\
 
-As future works ......
-*****falar do desenvolvimento da verificacao de efeitos externos em webservices
 
 % conference papers do not normally have an appendix
 
@@ -452,8 +449,7 @@ As future works ......
 % use section* for acknowledgement
 \section*{Acknowledgment}
 
-
-The authors would like to thank...
+The authors wish to express special thanks to friends and family for understanding the time dedicated to studies and for always being by our side.
 
 
 
@@ -503,8 +499,11 @@ Guerra, Eduardo, "Proxys Estáticos e Dinâmicos", Revista Mundo Java, Ed. 0032, p
 \bibitem{JUNIT}
 “JUnit”. Available at http://junit.org/, 2010.
 
+<<<<<<< HEAD
 \bibitem{GOF}
 GOF
+=======
+>>>>>>> 2e010947e52245da804fed22eb894afcc3ec34af
 
 \end{thebibliography}
 
