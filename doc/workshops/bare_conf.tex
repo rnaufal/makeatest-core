@@ -308,7 +308,7 @@ Proxy is a design pattern that provides a means to another object to control acc
 A dynamic proxy is a class that can implement interfaces at runtime, and is an elegant way to create proxies for different classes with different interfaces \cite{GUERRA-2008}. \\
 In MakeATest, the proxy is used in the creating of the Runner of the framework, specifically in the method of creating a test. Thus, with annotations in the code, it is possible that they are intercepted before they run the JUnit test and thus be processed in accordance with the annotation configuration. \\
 The framework presented in this paper uses internally some patterns language for metadata-based frameworks \cite{GUERRA-PATTERN} such as Metadata Repository and Metadata Container. \\
- 
+
 \section{Framework "Make A Test"}
 XUnit architecture contains generic settings for any automated unit testing framework. JUnit is an instance of this architecture in Java. \cite{JUNIT} \\
 JUnit is a simple open source framework for creating and running unit tests, and is currently used by developers. Thus the solution's main objective is to keep all the existing features in JUnit and assertions, fixtures, annotations, @Test, @Before and @After. \\
@@ -320,16 +320,9 @@ The annotation can be created to be added in the setup of the test or a test met
 MakeATest is a framework that allows developers to create annotations that are connected with a class for implementing a particular need. \\
 An annotation is used as a metadata in Java code, allowing that its interpretation can be used to perform some predefined task. \\
 Thus, the proposed solution requires the creation of an annotation and a class that runs it. Once created the annotation and its implementation class, developer just need to use it in their testing. \\
-To illustrate the use of MakeATest, an annotation was developed to verify the existence of a file. It is a simple example to demonstrate how to verify the existence of a local file, but could easily be modified to validate the existence of a remote file. \\
-Figure 4 shows how you want to use the annotations of MakeATest in our tests. We want to create two annotations @FileExists checks that after running the test if the file was actually created and the other annotation @FileNotExists verify that after running the test if the file was removed. \\
-These annotations are created along with the classes of tests, since it has to be visible for both classes tests and also other classes of MakeATest. \\
-An annotation is used to help to perform some predefined task. For the annotation "FileExists", the task is to verify that the specified file exists in the annotation system. \\
-Figure 2 is the code for the annotation "FileExists", which follows the standard structure of the proposed annotation. Was included in the annotation MakeATest called "@MakeATestConfig. It is for this annotation that the framework knows the class responsible for executing the annotation that this will actually verify the existence of the file. The task of verifying the file is implemented in class "FileExistsExecute" that is described in property "klass" as show. \\
-Figure 3 is the implementation of the execution class regarding the annotation "@FileExists". This execution class of the annotation, implements the methods defined in the interface MakeATestExecuteInterface as proposed. \\
-When creating the body of the tests in Figure 4, we can call a feature of the software (downloaded from a remote file for example) that has as a result a creation of the file locally. When you run this TestCase, we have the annotation @FileExists processed and your class validation performed, verifying if the file exists or not, sending exception when necessary. \\
-Because JUnit is already integrated with various IDEs, the eclipse could recognize the signs of success or failure in the test. \\
 
-\begin{figure}[htp]
+
+ \begin{figure}[htp]
 \centering
 \includegraphics{ProxyIntegration}
 \caption{Proxy Integration}
@@ -337,7 +330,8 @@ Because JUnit is already integrated with various IDEs, the eclipse could recogni
 \end{figure}
 
 
-Fig 2. Annotation @FileExists.
+To illustrate the use of MakeATest, an annotation was developed to verify the existence of a file. It is a simple example to demonstrate how to verify the existence of a local file, but could easily be modified to validate the existence of a remote file. \\
+
 
 \begin{verbatim}
 @MakeATestConfig(klass = 
@@ -348,9 +342,13 @@ public @interface FileExists {
   String filePath();
 }
 \end{verbatim}
+Figure 2. Annotation @FileExists.\\
 
-
-Fig 3. Implementation of class execution annotation @FileExists.\\
+Figure 4 shows how you want to use the annotations of MakeATest in our tests. We want to create two annotations @FileExists checks that after running the test if the file was actually created and the other annotation @FileNotExists verify that after running the test if the file was removed. \\
+These annotations are created along with the classes of tests, since it has to be visible for both classes tests and also other classes of MakeATest. \\
+An annotation is used to help to perform some predefined task. For the annotation "FileExists", the task is to verify that the specified file exists in the annotation system. \\
+Figure 2 is the code for the annotation "FileExists", which follows the standard structure of the proposed annotation. Was included in the annotation MakeATest called "@MakeATestConfig. It is for this annotation that the framework knows the class responsible for executing the annotation that this will actually verify the existence of the file. The task of verifying the file is implemented in class "FileExistsExecute" that is described in property "klass" as show. \\
+Figure 3 is the implementation of the execution class regarding the annotation "@FileExists". This execution class of the annotation, implements the methods defined in the interface MakeATestExecuteInterface as proposed. \\
 
 \begin{verbatim}
 public class FileExistsExecute implements 
@@ -376,10 +374,9 @@ public class FileExistsExecute implements
   ...
   }
 }
-
 \end{verbatim}
 
-Fig4. Class test util the MakeATest.\\
+Figure 3. Implementation of class execution annotation @FileExists.\\
 
 \begin{verbatim}
 @RunWith(MakeATestRunner.class)
@@ -396,6 +393,10 @@ public class FileCreationTest {
   }
 }
 \end{verbatim}
+Figure 4. Class test util the MakeATest.\\
+When creating the body of the tests in Figure 4, we can call a feature of the software (downloaded from a remote file for example) that has as a result a creation of the file locally. When you run this TestCase, we have the annotation @FileExists processed and your class validation performed, verifying if the file exists or not, sending exception when necessary. \\
+Because JUnit is already integrated with various IDEs, the eclipse could recognize the signs of success or failure in the test. \\
+
 
 
 %\hfill mds 
