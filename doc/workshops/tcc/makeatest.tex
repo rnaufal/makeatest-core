@@ -1,0 +1,58 @@
+\documentclass{abnt}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazilian]{babel}
+\usepackage[alf]{abntcite}
+\usepackage[pdftex]{graphicx}
+\usepackage[pdftex,table]{xcolor}
+
+\autor{Marcus V. C. Floriano e Debora A. L. Chama}
+\titulo{Metadata-based Test Framework to Verify External Effects of the Target Classes}
+\orientador{Eduardo M. Guerra}
+\instituicao{Aeronautical Institute of Technology \par
+Praça Marechal Eduardo Gomes, 50 \par
+Vl Acácias - SJ Campos – SP, Brazil}
+\local{São Paulo - SP}
+\data{03/2012}
+
+\makeindex
+
+\begin{document}
+
+\capa
+\folhaderosto
+
+\setlength{\ABNTsignthickness}{1pt}
+\begin{folhadeaprovacao}
+	Seu texto aqui, onde você deve informar o titulo, data da aprovação (dia, mês e ano), autor do trabalho, local (cidade e estado). E por fim a banca examinadora:
+	\assinatura{Prof. fulano \\ Orientador}
+	\assinatura{Prof. fulano II \\ Faculdade}
+\end{folhadeaprovacao}
+
+\begin{resumo}
+	Resumo em portugues.
+\end{resumo}
+
+\begin{abstract}
+	Abstract in englis.
+\end{abstract}
+
+\sumario
+
+%corpo do texto do trabalho 
+\chapter{Introdução} 
+texto do capítulo.
+
+\chapter{Testes com dependencias externas} 
+texto do capítulo.
+
+\chapter{Soluções externas} 
+texto do capítulo.
+
+\chapter{O framework "Make a Test"} 
+texto do capítulo. \cite{apache-synapse}
+
+\bibliography{makeatest}
+
+\end{document}
