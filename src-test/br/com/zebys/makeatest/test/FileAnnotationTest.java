@@ -23,7 +23,7 @@ public class FileAnnotationTest {
 	public void runneFileExists() {
 	}
 	
-	@Test
+	//@Test
 	@FileNotExists(filePath="./file.txt")
 	public void runneFileNotExists() {
 	}
