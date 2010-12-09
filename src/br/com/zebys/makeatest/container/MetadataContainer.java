@@ -6,6 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Container
+ * @author deborachama
+ *
+ */
 public class MetadataContainer {
 	private Map<Method, List<PropertyDescriptor>> properties;
 

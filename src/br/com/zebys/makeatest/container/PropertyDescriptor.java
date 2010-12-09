@@ -3,23 +3,28 @@ package br.com.zebys.makeatest.container;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
+/**
+ * Container
+ * @author deborachama
+ *
+ */
 public class PropertyDescriptor {
-	private Annotation makeATestConfig;
+	private Annotation annotation;
 	private Method method;
 	private Object object;
 
-	public PropertyDescriptor(Annotation makeATestConfig, Method method, Object object) {
-		this.makeATestConfig = makeATestConfig;
+	public PropertyDescriptor(Annotation annotation, Method method, Object object) {
+		this.annotation = annotation;
 		this.method = method;
 		this.object = object;
 	}
 
-	public Annotation getMakeATestConfig() {
-		return makeATestConfig;
+	public Annotation getAnnotation() {
+		return annotation;
 	}
 
-	public void setMakeATestConfig(Annotation makeATestConfig) {
-		this.makeATestConfig = makeATestConfig;
+	public void setAnnotation(Annotation annotation) {
+		this.annotation = annotation;
 	}
 
 	public Method getMethod() {
@@ -37,9 +42,6 @@ public class PropertyDescriptor {
 	public void setObject(Object object) {
 		this.object = object;
 	}
-	
-	
-
 	
 
 }

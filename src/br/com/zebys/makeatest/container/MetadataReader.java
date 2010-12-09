@@ -5,11 +5,16 @@ import java.lang.reflect.Method;
 
 import br.com.zebys.makeatest.annotations.MakeATestConfig;
 
+/**
+ * Reader do Container
+ * @author deborachama
+ *
+ */
 public class MetadataReader {
 	private MetadataContainer container = null;
 
 	public MetadataContainer createContainer(Method method) {
-		System.out.println("Criando container: " + method.getName());
+		//System.out.println("Criando container: " + method.getName());
 		// create
 		this.container = new MetadataContainer();
 		// populate
@@ -31,7 +36,7 @@ public class MetadataReader {
 				try {
 					Object executor = executorClasse.newInstance();
 					Method execute = executorClasse.getMethod("execute", Annotation.class, Method.class, Object.class);
-					this.container.put(method, new PropertyDescriptor(makeATestConfig, execute, executor));
+					this.container.put(method, new PropertyDescriptor(annotation, execute, executor));
 				} catch (InstantiationException e) {
 					e.printStackTrace(); //TODO
 				} catch (IllegalAccessException e) {

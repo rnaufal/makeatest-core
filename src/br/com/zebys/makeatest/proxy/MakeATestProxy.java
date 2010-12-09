@@ -58,14 +58,15 @@ public class MakeATestProxy implements MethodInterceptor {
 	private void methodAnnotation(Method method) throws Throwable {
 		List<PropertyDescriptor> props = this.reader.getContainer().getProperties(method);
 		if (props != null) { //TODO verificar nulo ou retornar lista vazia no metodo acima?
-			System.out.println("props" + props.size());
+			
 			for (PropertyDescriptor propertyDescriptor : props) {
-				MakeATestConfig makeATestConfig = (MakeATestConfig)propertyDescriptor.getMakeATestConfig();
+				Annotation annotation = propertyDescriptor.getAnnotation();
+				MakeATestConfig makeATestConfig = annotation.annotationType().getAnnotation(MakeATestConfig.class);
 		    	Class<?> executorClasse = (Class<?>) makeATestConfig.klass();
 		    	Object executor = executorClasse.newInstance();
 		        Method execute = executorClasse.getMethod("execute", Annotation.class, Method.class, Object.class);
 		    	try {
-		        	execute.invoke(executor, propertyDescriptor.getMakeATestConfig(), method, this.object);
+		        	execute.invoke(executor, annotation, method, this.object);
 		        } catch (InvocationTargetException e) {
 		            throw e.getTargetException();
 		        } 
