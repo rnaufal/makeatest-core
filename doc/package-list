@@ -1,9 +1,0 @@
-br.com.zebys.makeatest
-br.com.zebys.makeatest.annotations
-br.com.zebys.makeatest.exception
-br.com.zebys.makeatest.proxy
-br.com.zebys.makeatest.test
-br.com.zebys.makeatest.test.asserts.fileexists
-br.com.zebys.makeatest.test.jmocha
-br.com.zebys.makeatest.test.jmocha.Exemples
-br.com.zebys.makeatest.test.mockito

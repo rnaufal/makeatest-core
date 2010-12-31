@@ -15,7 +15,9 @@ import br.com.zebys.makeatest.container.PropertyDescriptor;
 
 //FrameworkController
 /**
- * Proxy responsável por interceptar todas as chamadas para a classe de teste em execução
+ * Essa classe implementa o MethodInterceptor e cria um proxy para um objeto. Dessa forma é possível interceptar todas as chamadas feita para o objeto real.
+ * Assim nesta mesma classe é feita a criação do @see MetadataReader (responsável por recuperar as informações das anotações da classe), e a execução
+ * referente a cada anotação.  
  */
 public class MakeATestProxy implements MethodInterceptor {
 
@@ -51,7 +53,7 @@ public class MakeATestProxy implements MethodInterceptor {
 	}
 	
 	/**
-	 * Método responsável por recuperar as anotações do tipo TYPE (class, interface or enum declaration)
+	 * Método responsável por executar as anotações do tipo TYPE (class, interface or enum declaration)
 	 * @throws Throwable
 	 */
 	private void fieldAnnotation() throws Throwable {
@@ -77,7 +79,7 @@ public class MakeATestProxy implements MethodInterceptor {
 	}
 	
 	/**
-	 * Método responsável por recuperar as anotações do tipo METHOD.
+	 * Método responsável por executar as anotações do tipo METHOD.
 	 * 
 	 * @param method Método para ser verificado a existencia de anotações
 	 * @throws Throwable
