@@ -1,13 +1,17 @@
+#MACOSX
 .DS_Store
+
+#Arquivos compilados do Jav
 bin/*
-doc/workshops/*/*.log
-doc/workshops/*/*.pdf
-doc/workshops/*/*.synctex.gz
-doc/workshops/*/*.aux
-doc/workshops/*/*.bbl
-doc/workshops/*/*.blg
-doc/workshops/*/*.idx
-doc/workshops/*/*.toc
-doc/workshops/*/*.ilg
-doc/workshops/*/*.ind
-doc/tcc/*.log
+
+#Arquivos do LATEX
+doc/**/*.log
+doc/**/*.pdf
+doc/**/*.synctex.gz
+doc/**/*.aux
+doc/**/*.bbl
+doc/**/*.blg
+doc/**/*.idx
+doc/**/*.toc
+doc/**/*.ilg
+doc/**/*.ind

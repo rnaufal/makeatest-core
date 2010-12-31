@@ -15,9 +15,12 @@ import br.com.zebys.makeatest.container.PropertyDescriptor;
 
 //FrameworkController
 /**
- * Essa classe implementa o MethodInterceptor e cria um proxy para um objeto. Dessa forma é possível interceptar todas as chamadas feita para o objeto real.
- * Assim nesta mesma classe é feita a criação do @see MetadataReader (responsável por recuperar as informações das anotações da classe), e a execução
- * referente a cada anotação.  
+ * Essa classe implementa o MethodInterceptor e cria um proxy para um objeto. Dessa forma √© poss√≠vel interceptar todas as chamadas feita para o objeto real.
+ * Assim nesta mesma classe √© feita a cria√ß√£o do MetadataReader (respons√°vel por recuperar as informa√ß√µes das anota√ß√µes da classe), e a execu√ß√£o
+ * referente a cada anota√ß√£o...
+ * 
+ * @see MetadataReader
+ * 
  */
 public class MakeATestProxy implements MethodInterceptor {
 
@@ -25,7 +28,7 @@ public class MakeATestProxy implements MethodInterceptor {
 	protected MetadataReader reader;
 	
 	/**
-	 * Contrutor responsável por receber o objeto que representa a instancia da classe de testes
+	 * Contrutor respons√°vel por receber o objeto que representa a instancia da classe de testes
 	 * e criar uma instancia do MetadataReader.
 	 * 
 	 * @param object
@@ -36,12 +39,12 @@ public class MakeATestProxy implements MethodInterceptor {
 	}
 
 	/**
-	 * Método que intercepta as chamadas para os metodos da classe de test
+	 * M√©todo que intercepta as chamadas para os metodos da classe de test
 	 * 
 	 * @param obj Instancia da classe de teste
-	 * @param method Method que está sendo chamado
-	 * @param args Argumentos passados para o método
-	 * @param proxy O proxy do método
+	 * @param method Method que est√° sendo chamado
+	 * @param args Argumentos passados para o m√©todo
+	 * @param proxy O proxy do m√©todo
 	 */
 	//execute do pattern MetadataContainer
 	@Override
@@ -53,7 +56,7 @@ public class MakeATestProxy implements MethodInterceptor {
 	}
 	
 	/**
-	 * Método responsável por executar as anotações do tipo TYPE (class, interface or enum declaration)
+	 * M√©todo respons√°vel por executar as anota√ß√µes do tipo TYPE (class, interface or enum declaration)
 	 * @throws Throwable
 	 */
 	private void fieldAnnotation() throws Throwable {
@@ -79,9 +82,9 @@ public class MakeATestProxy implements MethodInterceptor {
 	}
 	
 	/**
-	 * Método responsável por executar as anotações do tipo METHOD.
+	 * M√©todo respons√°vel por executar as anota√ß√µes do tipo METHOD.
 	 * 
-	 * @param method Método para ser verificado a existencia de anotações
+	 * @param method M√©todo para ser verificado a existencia de anota√ß√µes
 	 * @throws Throwable
 	 */
 	private void methodAnnotation(Method method) throws Throwable {
@@ -106,7 +109,7 @@ public class MakeATestProxy implements MethodInterceptor {
 
 	@SuppressWarnings("unchecked")
 	/**
-	 * Método responsável em criar um proxy a partir de um objeto possíbilidando interceptar todas as chamadas para esse objeto
+	 * M√©todo respons√°vel em criar um proxy a partir de um objeto poss√≠bilidando interceptar todas as chamadas para esse objeto
 	 * @param object Objeto passado para ser criado o proxy e interceptar todas as chamadas para esse objeto
 	 */
 	public static <E> E getProxy(E object) {

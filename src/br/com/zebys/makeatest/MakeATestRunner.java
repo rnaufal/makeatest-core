@@ -21,8 +21,8 @@ public class MakeATestRunner extends BlockJUnit4ClassRunner {
 	}
 	
 	/**
-	 * Sobre escrita do método da classe principal para a inclusão de um proxy
-	 * Neste proxy é possível interceptar todas as chamadas da classe de teste 
+	 * Sobre escrita do m√©todo da classe principal para a inclus√£o de um proxy
+	 * Neste proxy √© poss√©vel interceptar todas as chamadas da classe de teste 
 	 */
 	@Override
 	protected Object createTest() throws Exception {
