@@ -10,3 +10,4 @@ doc/workshops/*/*.idx
 doc/workshops/*/*.toc
 doc/workshops/*/*.ilg
 doc/workshops/*/*.ind
+doc/tcc/*.log
