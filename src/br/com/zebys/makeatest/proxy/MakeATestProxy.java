@@ -14,16 +14,33 @@ import br.com.zebys.makeatest.container.MetadataReader;
 import br.com.zebys.makeatest.container.PropertyDescriptor;
 
 //FrameworkController
+/**
+ * Proxy responsável por interceptar todas as chamadas para a classe de teste em execução
+ */
 public class MakeATestProxy implements MethodInterceptor {
 
 	private Object object;
 	protected MetadataReader reader;
 	
+	/**
+	 * Contrutor responsável por receber o objeto que representa a instancia da classe de testes
+	 * e criar uma instancia do MetadataReader.
+	 * 
+	 * @param object
+	 */
 	private MakeATestProxy(Object object) {
 		this.object = object;
 		this.reader = new MetadataReader();
 	}
-	
+
+	/**
+	 * Método que intercepta as chamadas para os metodos da classe de test
+	 * 
+	 * @param obj Instancia da classe de teste
+	 * @param method Method que está sendo chamado
+	 * @param args Argumentos passados para o método
+	 * @param proxy O proxy do método
+	 */
 	//execute do pattern MetadataContainer
 	@Override
 	public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
@@ -33,6 +50,10 @@ public class MakeATestProxy implements MethodInterceptor {
 		return method.invoke(this.object, args);
 	}
 	
+	/**
+	 * Método responsável por recuperar as anotações do tipo TYPE (class, interface or enum declaration)
+	 * @throws Throwable
+	 */
 	private void fieldAnnotation() throws Throwable {
 		Class<?> klass = this.object.getClass();
 		Field [] fields = klass.getDeclaredFields();
@@ -55,6 +76,12 @@ public class MakeATestProxy implements MethodInterceptor {
 		}
 	}
 	
+	/**
+	 * Método responsável por recuperar as anotações do tipo METHOD.
+	 * 
+	 * @param method Método para ser verificado a existencia de anotações
+	 * @throws Throwable
+	 */
 	private void methodAnnotation(Method method) throws Throwable {
 		List<PropertyDescriptor> props = this.reader.getContainer().getProperties(method);
 		if (props != null) { //TODO verificar nulo ou retornar lista vazia no metodo acima?
@@ -74,9 +101,12 @@ public class MakeATestProxy implements MethodInterceptor {
 		}
 		
 	}
-	
 
 	@SuppressWarnings("unchecked")
+	/**
+	 * Método responsável em criar um proxy a partir de um objeto possíbilidando interceptar todas as chamadas para esse objeto
+	 * @param object Objeto passado para ser criado o proxy e interceptar todas as chamadas para esse objeto
+	 */
 	public static <E> E getProxy(E object) {
 		try {
 			MakeATestProxy proxy = new MakeATestProxy(object);

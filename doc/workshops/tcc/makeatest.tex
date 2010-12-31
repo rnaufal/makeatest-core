@@ -4,9 +4,15 @@
 \usepackage[T1]{fontenc}
 \usepackage[brazilian]{babel}
 \usepackage[alf]{abntcite}
+\usepackage{url}
+
+\ifx\pdftexversion\undefined
+\usepackage[dvips]{graphicx}
+\else
 \usepackage[pdftex]{graphicx}
 \usepackage[pdftex,table]{xcolor}
-\usepackage{url}
+\DeclareGraphicsRule{*}{mps}{*}{}
+\fi
 
 \autor{Marcus V. C. Floriano e Debora A. L. Chama}
 \titulo{Metadata-based Test Framework to Verify External Effects of the Target Classes}
@@ -38,21 +44,51 @@ Vl Acácias - SJ Campos – SP, Brazil}
 \begin{abstract}
 	Abstract in english!///>>>.
 \end{abstract}
-
 \sumario
-
 %corpo do texto do trabalho 
 \chapter{Introdução} 
-texto do capítulo.
+O trabalho tem como principal objetivo apresentar uma ferramenta baseada em metadados para efeitos externos em testes de unidade. Para isso é apresentando conceitos básicos sobre testes de unidade, bem como a relação e problemas enfrentados com dependências externas e as soluções existentes atualmente.\\
+Para entendimento completo é apresentado a solução que foi desenvolvida com base em um padrão para frameworks baseados em meta-dados, a extensão do JUnit4 utilizando a funcionalidade "Runners" e a utilização de Proxy Dinâmico como meio de interceptar as chamadas para os métodos dos testes de unidade.\\
+\chapter{Conceitos básicos sobre testes de unidade}
+\chapter{Utilizando testes de unidade com dependências externas} 
+\chapter{Soluções existentes}
+\chapter{Framework baseado em meta-dados}
+São frameworks cujo processamento lógico é baseado em metadados adicionados nas classes, e as instancias dessas classes trabalham com essa informação. O artigo "A Pattern Language for Metada-based Frameworks" \cite{GUERRA-PATTERN} descreve os frameworks que utilizam dessa abordagem, e apresenta um padrão para o desenvolvimento dessas soluções.\\
 
-\chapter{Testes com dependências externas} 
-texto do capítulo.
+Basicamente esse padrão é estruturado da seguinte forma:\\
 
-\chapter{Soluções externas} 
-texto do capítulo.
+\begin{itemize}
+	\item Organization Patterns
+		\begin{description}
+			\item Esse é a base do padrão, responsável pela organização da estrutura interna do metadados do framework.
+		\end{description}
+	\item Metadata Reading Patterns
+	\item Logic Processing Patterns
+\end{itemize}
 
-\chapter{O framework "Make a Test"} 
-texto do capítulo. \cite{apache-synapse}
+\chapter{O framework "Make a Test"}
+\section{JUnit 4 - Runners}
+\section{Proxy dinâmicos}
+\section{Estrutura do "Make a Test"}
+A estrutura está baseada no padrão para frameworks baseads em metadados \cite{GUERRA-PATTERN}, assim temos Organization Patterns, Metada Reading Patterns e Logic Processing Patterns.
+\subsection{Organization Patterns}
+
+\subsection{Metada Container}
+MakeATestRunner
+MakeATestProxy
+MetadataReader
+MetadataContainer
+
+
+Primeiro é criado um Descriptor que representa as anotações em valores, Propertie Description e Comparison Descriptor.\\
+Um PropertieDescription representa um unico valore, o ComparisonDescriptor representa um conjunto de PropertieDescription.\\
+
+O ComparisonMetadataReader cria o conjunto de valores para o ComparisonDescriptor a partir de uma objeto do tipo CLASS.\\
+
+O ComparisonComponent recupera o ComparisonMetadataReader para recuperar os valores.\\
+
+O Repositorio é utilizado para criar uma unica instancia, que é utilizado o padrão singleton, no Repositorio são criados o ComparisonMetadataReader e um cache que é formado por um hashmap e a chave é a CLASS que contêm as anotações.
+
 
 \bibliography{makeatest}
 

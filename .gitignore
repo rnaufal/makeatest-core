@@ -8,4 +8,5 @@ doc/workshops/*/*.bbl
 doc/workshops/*/*.blg
 doc/workshops/*/*.idx
 doc/workshops/*/*.toc
-
+doc/workshops/*/*.ilg
+doc/workshops/*/*.ind
