@@ -18,9 +18,9 @@
 \titulo{Metadata-based Test Framework to Verify External Effects of the Target Classes}
 \orientador{Eduardo M. Guerra}
 \instituicao{Aeronautical Institute of Technology \par
-Pra√ßa Marechal Eduardo Gomes, 50 \par
-Vl Ac√°cias - SJ Campos ‚Äì SP, Brazil}
-\local{S√£o Paulo - SP}
+Praça Marechal Eduardo Gomes, 50 \par
+Vl Acácias - SJ Campos - SP, Brazil}
+\local{São Paulo - SP}
 \data{03/2012}
 
 \makeindex
@@ -32,13 +32,13 @@ Vl Ac√°cias - SJ Campos ‚Äì SP, Brazil}
 
 \setlength{\ABNTsignthickness}{1pt}
 \begin{folhadeaprovacao}
-	Seu texto aqui, onde voc√™ deve informar o titulo, data da aprova√ß√£o (dia, m√™s e ano), autor do trabalho, local (cidade e estado). E por fim a banca examinadora:
+	Seu texto aqui, onde você deve informar o titulo, data da aprovação (dia, mês e ano), autor do trabalho, local (cidade e estado). E por fim a banca examinadora:
 	\assinatura{Prof. fulano \\ Orientador}
 	\assinatura{Prof. fulano II \\ Faculdade}
 \end{folhadeaprovacao}
 
 \begin{resumo}
-	Resumo em portugu√™s!!!.
+	Resumo em português!!!.
 \end{resumo}
 
 \begin{abstract}
@@ -46,21 +46,21 @@ Vl Ac√°cias - SJ Campos ‚Äì SP, Brazil}
 \end{abstract}
 \sumario
 %corpo do texto do trabalho 
-\chapter{Introdu√ß√£o} 
-O trabalho tem como principal objetivo apresentar uma ferramenta baseada em metadados para efeitos externos em testes de unidade. Para isso √© apresentando conceitos b√°sicos sobre testes de unidade, bem como a rela√ß√£o e problemas enfrentados com depend√™ncias externas e as solu√ß√µes existentes atualmente.\\
-Para entendimento completo √© apresentado a solu√ß√£o que foi desenvolvida com base em um padr√£o para frameworks baseados em meta-dados, a extens√£o do JUnit4 utilizando a funcionalidade "Runners" e a utiliza√ß√£o de Proxy Din√¢mico como meio de interceptar as chamadas para os m√©todos dos testes de unidade.\\
-\chapter{Conceitos b√°sicos sobre testes de unidade}
-\chapter{Utilizando testes de unidade com depend√™ncias externas} 
-\chapter{Solu√ß√µes existentes}
+\chapter{Introdução} 
+O trabalho tem como principal objetivo apresentar uma ferramenta baseada em metadados para efeitos externos em testes de unidade. Para isso são apresentando conceitos básicos sobre testes de unidade, bem como a relação e problemas enfrentados com dependências externas e as soluções existentes atualmente.\\
+Para entendimento completo é apresentado a solução que foi desenvolvida com base em um padrão para frameworks baseados em meta-dados, a extensão do JUnit4 utilizando a funcionalidade "Runners" e a utilização de Proxy Dinâmico como meio de interceptar as chamadas para os métodos dos testes de unidade.\\
+\chapter{Conceitos básicos sobre testes de unidade}
+\chapter{Utilizando testes de unidade com dependências externas} 
+\chapter{Soluções existentes}
 \chapter{Framework baseado em meta-dados}
-S√£o frameworks cujo processamento l√≥gico √© baseado em metadados adicionados nas classes, e as instancias dessas classes trabalham com essa informa√ß√£o. O artigo ``A Pattern Language for Metada-based Frameworks'' \cite{GUERRA-PATTERN} descreve os frameworks que utilizam dessa abordagem, e apresenta um padr√£o para o desenvolvimento dessas solu√ß√µes.\\
+São frameworks cujo processamento lógico é baseado em metadados adicionados nas classes, e as instancias dessas classes trabalham com essa informação. O artigo ``A Pattern Language for Metada-based Frameworks'' \cite{GUERRA-PATTERN} descreve os frameworks que utilizam dessa abordagem, e apresenta um padrão para o desenvolvimento dessas soluções.\\
 
-Basicamente esse padr√£o √© estruturado da seguinte forma:\\
+Basicamente esse padrão é estruturado da seguinte forma:\\
 
 \begin{itemize}
 	\item Organization Patterns
 		\begin{description}
-			\item Esse √© a base do padr√£o, respons√°vel pela organiza√ß√£o da estrutura interna do metadados do framework.
+			\item Esse é a base do padrão, responsável pela organização da estrutura interna do metadados do framework.
 		\end{description}
 	\item Metadata Reading Patterns
 	\item Logic Processing Patterns
@@ -68,26 +68,26 @@ Basicamente esse padr√£o √© estruturado da seguinte forma:\\
 
 \chapter{O framework Make a Test}
 \section{JUnit 4 - Runners}
-\section{Proxy din√¢micos}
+\section{Proxy dinâmicos}
 \section{Estrutura do ``Make a Test''}
-A estrutura est√° baseada no padr√£o para frameworks baseads em metadados \cite{GUERRA-PATTERN}, assim temos Organization Patterns, Metada Reading Patterns e Logic Processing Patterns.
+A estrutura está baseada no padrão para frameworks baseads em metadados \cite{GUERRA-PATTERN}, assim temos Organization Patterns, Metada Reading Patterns e Logic Processing Patterns.
 \subsection{Organization Patterns}
 
-\subsection{Metada Container}
+\subsection{Metadata Container}
 MakeATestRunner
 MakeATestProxy
 MetadataReader
 MetadataContainer
 
 
-Primeiro √© criado um Descriptor que representa as anota√ß√µes em valores, Propertie Description e Comparison Descriptor.\\
+Primeiro é criado um Descriptor que representa as anotações em valores, Propertie Description e Comparison Descriptor.\\
 Um PropertieDescription representa um unico valore, o ComparisonDescriptor representa um conjunto de PropertieDescription.\\
 
 O ComparisonMetadataReader cria o conjunto de valores para o ComparisonDescriptor a partir de uma objeto do tipo CLASS.\\
 
 O ComparisonComponent recupera o ComparisonMetadataReader para recuperar os valores.\\
 
-O Repositorio √© utilizado para criar uma unica instancia, que √© utilizado o padr√£o singleton, no Repositorio s√£o criados o ComparisonMetadataReader e um cache que √© formado por um hashmap e a chave √© a CLASS que cont√™m as anota√ß√µes.
+O Repositorio é utilizado para criar uma unica instancia, que é utilizado o padrão singleton, no Repositorio são criados o ComparisonMetadataReader e um cache que é formado por um hashmap e a chave é a CLASS que contém as anotações.
 
 
 \bibliography{makeatest}
