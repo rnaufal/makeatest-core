@@ -28,8 +28,8 @@ public class MakeATestProxy implements MethodInterceptor {
 	protected MetadataReader reader;
 	
 	/**
-	 * Contrutor responsável por receber o objeto que representa a instancia da classe de testes
-	 * e criar uma instancia do MetadataReader.
+	 * Construtor responsável por receber o objeto que representa a instância da classe de testes
+	 * e criar uma instância do MetadataReader.
 	 * 
 	 * @param object
 	 */
@@ -39,9 +39,9 @@ public class MakeATestProxy implements MethodInterceptor {
 	}
 
 	/**
-	 * Método que intercepta as chamadas para os metodos da classe de test
+	 * Método que intercepta as chamadas para os métodos da classe de teste
 	 * 
-	 * @param obj Instancia da classe de teste
+	 * @param obj Instância da classe de teste
 	 * @param method Method que está sendo chamado
 	 * @param args Argumentos passados para o método
 	 * @param proxy O proxy do método
@@ -84,7 +84,7 @@ public class MakeATestProxy implements MethodInterceptor {
 	/**
 	 * Método responsável por executar as anotações do tipo METHOD.
 	 * 
-	 * @param method Método para ser verificado a existencia de anotações
+	 * @param method Método para ser verificado a existência de anotações
 	 * @throws Throwable
 	 */
 	private void methodAnnotation(Method method) throws Throwable {
