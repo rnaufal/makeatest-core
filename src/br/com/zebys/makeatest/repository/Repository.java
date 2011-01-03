@@ -1,6 +1,8 @@
 package br.com.zebys.makeatest.repository;
 
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 
 import br.com.zebys.makeatest.container.MetadataContainer;
 import br.com.zebys.makeatest.container.MetadataReader;
@@ -16,7 +18,7 @@ public class Repository {
 	private static Repository instance;
 	
 	private MetadataReader reader;
-	private MetadataContainer metadataContainer;
+	private Map<Method, MetadataContainer> cache;
 
 	public static Repository getInstance() {
 		if (instance == null) {
@@ -27,13 +29,15 @@ public class Repository {
 
 	private Repository() {
 		reader = new MetadataReader();
-		metadataContainer = null;
+		cache = new HashMap<Method, MetadataContainer>();
 	}
 
 	public MetadataContainer getMetadata(Method method) {
-		if (metadataContainer == null) {
-			metadataContainer = reader.createContainer(method);
+		if (cache.containsKey(method)) {
+			return cache.get(method);
 		}
+		MetadataContainer metadataContainer = reader.createContainer(method);
+		cache.put(method, metadataContainer);
 		return metadataContainer;
 	}
 
