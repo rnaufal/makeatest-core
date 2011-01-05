@@ -101,7 +101,7 @@ public class MakeATestProxy implements MethodInterceptor {
 		    	Object executor = executorClasse.newInstance();
 		        Method execute = executorClasse.getMethod("execute", Annotation.class, Method.class, Object.class);
 		    	try {
-		    		//FIXME Quando o invoke do método para processamento da anotação é chamado neste momento, o código do método ainda não foi chamado, então no teste de FileExist dá erro pois o método não criou o arquivo ainda.
+		    		//BUG Quando o invoke do método para processamento da anotação é chamado neste momento, o código do método ainda não foi chamado, então no teste de FileExist dá erro pois o método não criou o arquivo ainda.
 		        	execute.invoke(executor, annotation, method, this.object);
 		        } catch (InvocationTargetException e) {
 		            throw e.getTargetException();
