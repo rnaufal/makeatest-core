@@ -4,7 +4,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
 /**
- * Container
+ * Utilizado para armazenas a anotação que foi recuperada com o método a ser executado e a classe executora referente a esse método.
  * @author deborachama
  *
  */

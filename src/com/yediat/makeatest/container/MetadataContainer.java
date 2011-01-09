@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Container
+ * Utilizado para armazenar objetos do tipo {@link PropertyDescriptor}. 
  * @author deborachama
  *
  */

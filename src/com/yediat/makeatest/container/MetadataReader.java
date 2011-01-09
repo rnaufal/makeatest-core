@@ -7,7 +7,7 @@ import com.yediat.makeatest.annotations.MakeATestConfig;
 
 
 /**
- * Reader do Container
+ * Responsável pela criação do container das anotações e a leitura das anotação dos métodos
  * @author deborachama
  *
  */

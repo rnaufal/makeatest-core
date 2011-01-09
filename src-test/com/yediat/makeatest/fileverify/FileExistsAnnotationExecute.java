@@ -16,12 +16,6 @@ import com.yediat.makeatest.MakeATestExecuteInterface;
 
 public class FileExistsAnnotationExecute implements MakeATestExecuteInterface {
 	
-	/**
-	 * Classe que processa as anotações dos métodos
-	 * @param annotation Anotação
-	 * @param method Método anotado
-	 * @param objecto Objecto em execução
-	 */
 	@Override
 	public void execute(Annotation annotation, Method method, Object object) throws FileNotFoundException {
 		FileExistsAnnotation fileExists = (FileExistsAnnotation) annotation;
@@ -32,15 +26,10 @@ public class FileExistsAnnotationExecute implements MakeATestExecuteInterface {
 		}
 	}
 
-	/**
-	 * Classe que processa as anotações dos FIELD
-	 * @param annotation Anotação
-	 * @param field Field que foi anotado
-	 * @param objecto Objecto em execução
-	 */
 	@Override
 	public void execute(Annotation annotation, Field field, Object object)
 			throws Exception {
-		//FIXME Implementar essa funcionalidade de anotação em FIELDs, mas tem que verificar se esse tipo de anotação é mesmo necessára.
+		//FIXME Implementar essa funcionalidade de anotação.
 	}
+
 }
