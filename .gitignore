@@ -15,6 +15,7 @@ doc/**/*.idx
 doc/**/*.toc
 doc/**/*.ilg
 doc/**/*.ind
+doc/**/*.lof
 
 #Arquivos de merge
 *.orig

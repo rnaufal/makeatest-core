@@ -9,13 +9,13 @@ import com.yediat.makeatest.container.MetadataReader;
 
 
 /**
- * Repository
+ * Classe responsável em iniciar o processo de leitura e por armazenar os meta-dados recuperados das classes.
+ *  
  * @author deborachama
  *
  */
 public class Repository {
 	
-	//singleton
 	private static Repository instance;
 	
 	private MetadataReader reader;

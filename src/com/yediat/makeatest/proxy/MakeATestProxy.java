@@ -41,7 +41,8 @@ public class MakeATestProxy implements MethodInterceptor {
 	}
 
 	/**
-	 * Método que intercepta as chamadas para os métodos da classe de teste
+	 * Método que intercepta as chamadas para os métodos da classe de teste.
+	 * Esse método sempre é chamado quando um método da classe interceptada for chamado.
 	 * 
 	 * @param obj Instância da classe de teste
 	 * @param method Method que está sendo chamado

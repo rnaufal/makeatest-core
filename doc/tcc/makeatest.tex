@@ -44,41 +44,84 @@ Vl Acácias - SJ Campos – SP, Brazil}
 \begin{abstract}
 	Abstract in english!///>>>.
 \end{abstract}
+
 \sumario
+\listoffigures
+
 %corpo do texto do trabalho 
 \chapter{Introdução} 
 O trabalho tem como principal objetivo apresentar uma ferramenta baseada em metadados para efeitos externos em testes de unidade. Para isso é apresentando conceitos básicos sobre testes de unidade, bem como a relação e problemas enfrentados com dependências externas e as soluções existentes atualmente.\\
 Para entendimento completo é apresentado a solução que foi desenvolvida com base em um padrão para frameworks baseados em meta-dados, a extensão do JUnit4 utilizando a funcionalidade "Runners" e a utilização de Proxy Dinâmico como meio de interceptar as chamadas para os métodos dos testes de unidade.\\
+
 \chapter{Conceitos básicos sobre testes de unidade}
+
+
+
 \chapter{Utilizando testes de unidade com dependências externas} 
 \chapter{Soluções existentes}
 \chapter{Framework baseado em meta-dados}
-São frameworks cujo processamento lógico é baseado em metadados adicionados nas classes, e as instancias dessas classes trabalham com essa informação. O artigo ``A Pattern Language for Metada-based Frameworks'' \cite{GUERRA-PATTERN} descreve os frameworks que utilizam dessa abordagem, e apresenta um padrão para o desenvolvimento dessas soluções.\\
+São frameworks cujo processamento lógico é baseado em meta-dados adicionados nas classes, e as instancias dessas classes trabalham com essa informação. O artigo ``A Pattern Language for Metada-based Frameworks'' \cite{GUERRA-PATTERN} descreve os frameworks que utilizam dessa abordagem, e apresenta um conjunto de padrões cujo o objetivo é a organização do desenvolvimento dessas soluções.\\
 
-Basicamente esse padrão é estruturado da seguinte forma:\\
+Basicamente esse conjunto de padrões é estruturado em Padrões Estruturais, Padrões para Leitura dos Meta-dados e Padrões para o Processamento Lógico.\\
 
-\begin{itemize}
-	\item Organization Patterns
-		\begin{description}
-			\item Esse é a base do padrão, responsável pela organização da estrutura interna do metadados do framework.
-		\end{description}
-	\item Metadata Reading Patterns
-	\item Logic Processing Patterns
-\end{itemize}
+\section{Padrões Estruturais}
+
+Os padrões estruturais estão divididos e dois o ``Metadata Container'' e o ``Metadata Repository'', esses padrões definem como estruturar as classes de um framework baseado em meta-dados, pode-se dizer que esse é a base para do ``Patter Language'' sendo que todos os outros padrões são dependente desses.
+
+O Metadata Container tem o objetivo de separar a leitura dos metas-dados da lógica de execução.
+
+
+\section{Padrões para Leitura dos Meta-dados}
+\section{Padrões para o Processamento Lógico}
 
 \chapter{O framework ``Make a Test''}
 \section{JUnit 4 - Runners}
 \section{Proxy dinâmicos}
 \section{Estrutura do ``Make a Test''}
-A estrutura está baseada no padrão para frameworks baseads em metadados \cite{GUERRA-PATTERN}, assim temos Organization Patterns, Metada Reading Patterns e Logic Processing Patterns.
+
+Para a execução da ferramenta é utilizado a funcionalidade ``Runners'' do JUnit \cite{junit}, assim é possível utilizar todas as funcionalidades do JUnit e adicionar as novas dessa ferramenta.
+
+O Proxy dinâmico facilita a forma de interceptar as chamadas para os métodos das classes de testes de unidade, a fim de permitir a injeção de comportamentos para verificar os efeitos externos.
+
+A estrutura do ``Make a Test'' está baseada em um ``Pattern Language'' para frameworks baseados em meta-dados \cite{GUERRA-PATTERN}, conforme descrito anteriormente em maiores detalhes.
+
+A utilização da ferramenta nas classes de testes de unidade são feitas a partir de anotações e das classes executoras dessas anotações.
+
 \subsection{Runners}
 
-\begin{figure}
+Runners é a forma de adicionar funcionalidade ao JUnit.
+
+\begin{figure}[!ht]
 	\centering
-	\includegraphics[]{uml/runners.jpg}
+	\includegraphics[scale=0.50]{uml/runners.jpg}
+	\caption{Estrutura de classes que representa a extensão do BlockJUnit4ClassRunner, e a implementação MethodInterface para a criação do Proxy.}
+	\label{uml-class-runners}
 \end{figure}
 
-\subsection{Organization Patterns}
+\subsection{Proxy dinâmico}
+
+\subsection{Pattern Language}
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[scale=0.70]{uml/makeatest.jpg}
+	\caption{Estrutura de classes do ``Make a Test''.}
+	\label{uml-class-makeatest}
+\end{figure}
+
+
+\subsubsection{Padrões Estruturais}
+
+
+
+\subsubsection{Padrões para Leitura dos Meta-Dados}
+\subsubsection{Padrões para Processamento Lógico}
+
+\subsection{Anotações e Configurações}
+
+
+
+
 
 \subsection{Metada Container}
 MakeATestRunner
