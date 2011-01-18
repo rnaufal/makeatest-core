@@ -5,6 +5,7 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses( { 	FileExistsAnnotationTest.class,
-						FileNotExistsAnnotationTest.class
+						FileNotExistsAnnotationTest.class,
+						RequiredFileAnnotationTest.class
 })
 public class ExecuteAllTests {}

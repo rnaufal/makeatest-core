@@ -10,15 +10,16 @@ import com.yediat.makeatest.annotations.MakeATestConfig;
 import com.yediat.makeatest.metadatareading.delegate.DelegateReader;
 
 /**
- * Anotação para o Make a Test verificar se o arquivo existe no local indicado
- * @author Marcus Floriano
+ * Anotação para o Make a Test que indica o path de um arquivo requerido
+ * que deve existir nesse local ANTES da execução do teste.
+ * @author Debora Chama
  *
  */
 
-@MakeATestConfig(klass = FileExistsAnnotationExecute.class)
+@MakeATestConfig(klass = RequiredFileAnnotationReader.class)
 @Target({METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-@DelegateReader(FileExistsAnnotationExecute.class)
-public @interface FileExistsAnnotation {
+@DelegateReader(RequiredFileAnnotationReader.class)
+public @interface RequiredFileAnnotation {
 	String filePath();
 }
