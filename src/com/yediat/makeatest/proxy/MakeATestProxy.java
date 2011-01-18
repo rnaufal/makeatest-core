@@ -1,19 +1,15 @@
 package com.yediat.makeatest.proxy;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
-
-import com.yediat.makeatest.annotations.MakeATestConfig;
-import com.yediat.makeatest.container.MetadataReader;
-import com.yediat.makeatest.container.PropertyDescriptor;
-import com.yediat.makeatest.repository.Repository;
 
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
+
+import com.yediat.makeatest.container.MetadataReader;
+import com.yediat.makeatest.container.PropertyDescriptor;
+import com.yediat.makeatest.repository.Repository;
 
 //FrameworkController
 /**
@@ -54,34 +50,7 @@ public class MakeATestProxy implements MethodInterceptor {
 	public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
 		this.repository.getMetadata(method);
 		this.methodAnnotation(method);
-		this.fieldAnnotation();
 		return method.invoke(this.object, args);
-	}
-	
-	/**
-	 * Método responsável por executar as anotações do tipo TYPE (class, interface or enum declaration)
-	 * @throws Throwable
-	 */
-	private void fieldAnnotation() throws Throwable {
-		Class<?> klass = this.object.getClass();
-		Field [] fields = klass.getDeclaredFields();
-		
-		for (Field field : fields) {
-			Annotation[] annotations = field.getDeclaredAnnotations();
-			for (Annotation annotation : annotations) {
-				if(annotation.annotationType().isAnnotationPresent(MakeATestConfig.class)) {
-					MakeATestConfig makeATestConfig = annotation.annotationType().getAnnotation(MakeATestConfig.class);
-			    	Class<?> executorClasse = (Class<?>) makeATestConfig.klass();
-			    	Object executor = executorClasse.newInstance();
-			        Method execute = executorClasse.getMethod("execute", Annotation.class, Field.class, Object.class);
-			    	try {
-			        	execute.invoke(executor, annotation, field, this.object);
-			        } catch (InvocationTargetException e) {
-			            throw e.getTargetException();
-			        }
-				}
-			}
-		}
 	}
 	
 	/**
@@ -96,7 +65,7 @@ public class MakeATestProxy implements MethodInterceptor {
 		if (props != null) { //TODO verificar nulo ou retornar lista vazia no metodo acima?
 			
 			for (PropertyDescriptor propertyDescriptor : props) {
-				Annotation annotation = propertyDescriptor.getAnnotation();
+				/*Annotation annotation = propertyDescriptor.getAnnotation();
 				MakeATestConfig makeATestConfig = annotation.annotationType().getAnnotation(MakeATestConfig.class);
 		    	Class<?> executorClasse = (Class<?>) makeATestConfig.klass();
 		    	Object executor = executorClasse.newInstance();
@@ -106,7 +75,12 @@ public class MakeATestProxy implements MethodInterceptor {
 		        	execute.invoke(executor, annotation, method, this.object);
 		        } catch (InvocationTargetException e) {
 		            throw e.getTargetException();
-		        } 
+		        } */
+				
+				/*
+				 * executação de anotaçao de configuracao de cenario é feita aqui
+				 */
+				propertyDescriptor.getProcessor().process();
 			}
 		}
 		

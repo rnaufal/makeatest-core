@@ -12,6 +12,9 @@ import java.util.Map;
  *
  */
 public class MetadataContainer {
+	/*
+	 * A chave é o metodo de teste. Pode ter mais de uma anotacao por metodo, entao ele tem varios PropertyDescriptor
+	 */
 	private Map<Method, List<PropertyDescriptor>> properties;
 
 	public MetadataContainer() {

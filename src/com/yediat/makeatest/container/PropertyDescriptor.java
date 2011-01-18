@@ -1,47 +1,28 @@
 package com.yediat.makeatest.container;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
+import com.yediat.makeatest.metadataprocessor.DefaultMetadataProcessor;
+import com.yediat.makeatest.metadataprocessor.MetadataProcessor;
 
 /**
- * Utilizado para armazenas a anotação que foi recuperada com o método a ser executado e a classe executora referente a esse método.
+ * Utilizado para armazenas a anotação que foi recuperada com o método a ser
+ * executado e a classe executora referente a esse método.
+ * 
  * @author deborachama
- *
+ * 
  */
 public class PropertyDescriptor {
-	private Annotation annotation;
-	private Method method;
-	private Object object;
 
-	public PropertyDescriptor(Annotation annotation, Method method, Object object) {
-		this.annotation = annotation;
-		this.method = method;
-		this.object = object;
-	}
+	private MetadataProcessor processor;
 
-	public Annotation getAnnotation() {
-		return annotation;
-	}
-
-	public void setAnnotation(Annotation annotation) {
-		this.annotation = annotation;
-	}
-
-	public Method getMethod() {
-		return method;
-	}
-
-	public void setMethod(Method method) {
-		this.method = method;
-	}
-
-	public Object getObject() {
-		return object;
-	}
-
-	public void setObject(Object object) {
-		this.object = object;
+	public MetadataProcessor getProcessor() {
+		if (processor == null) {
+			processor = new DefaultMetadataProcessor();
+		}
+		return processor;
 	}
 	
+	public void setProcessor(MetadataProcessor processor) {
+		this.processor = processor;
+	}
 
 }
