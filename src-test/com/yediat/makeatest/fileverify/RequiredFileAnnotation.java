@@ -6,7 +6,6 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import com.yediat.makeatest.annotations.MakeATestConfig;
 import com.yediat.makeatest.metadatareading.delegate.DelegateReader;
 
 /**
@@ -16,7 +15,6 @@ import com.yediat.makeatest.metadatareading.delegate.DelegateReader;
  *
  */
 
-@MakeATestConfig(klass = RequiredFileAnnotationReader.class)
 @Target({METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @DelegateReader(RequiredFileAnnotationReader.class)

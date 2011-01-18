@@ -51,29 +51,6 @@ public class MetadataReader {
 				}
 			}
 			
-			/*
-			
-			if (annotation.annotationType().isAnnotationPresent(MakeATestConfig.class)) {
-				MakeATestConfig makeATestConfig = annotation.annotationType().getAnnotation(MakeATestConfig.class);
-				Class<?> executorClasse = (Class<?>) makeATestConfig.klass();
-				try {
-					Object executor = executorClasse.newInstance();
-					Method execute = executorClasse.getMethod("execute", Annotation.class, Method.class, Object.class);
-					this.container.put(method, new PropertyDescriptor(annotation, execute, executor));
-				} catch (InstantiationException e) {
-					e.printStackTrace(); //TODO
-				} catch (IllegalAccessException e) {
-					e.printStackTrace(); //TODO
-				} catch (SecurityException e) {
-					e.printStackTrace(); //TODO
-				} catch (NoSuchMethodException e) {
-					e.printStackTrace(); //TODO
-				}
-				
-			}*/
-			
-			
-			
 		}
 	}
 
