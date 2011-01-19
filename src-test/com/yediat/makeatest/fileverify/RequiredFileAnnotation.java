@@ -6,7 +6,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import com.yediat.makeatest.metadatareading.delegate.DelegateReader;
+import com.yediat.makeatest.core.metadata.reading.MakeATestReader;
 
 /**
  * Anotação para o Make a Test que indica o path de um arquivo requerido
@@ -17,7 +17,7 @@ import com.yediat.makeatest.metadatareading.delegate.DelegateReader;
 
 @Target({METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-@DelegateReader(RequiredFileAnnotationReader.class)
+@MakeATestReader(RequiredFileAnnotationReader.class)
 public @interface RequiredFileAnnotation {
 	String filePath();
 }

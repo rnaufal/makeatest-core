@@ -1,4 +1,4 @@
-package com.yediat.makeatest.exception;
+package com.yediat.makeatest.core.exception;
 
 public class MakeATestException extends Exception {
 	

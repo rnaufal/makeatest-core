@@ -1,9 +1,9 @@
-package com.yediat.makeatest;
+package com.yediat.makeatest.junit;
 
 import org.junit.runners.BlockJUnit4ClassRunner;
 import org.junit.runners.model.InitializationError;
 
-import com.yediat.makeatest.proxy.MakeATestProxy;
+import com.yediat.makeatest.junit.proxy.MakeATestProxy;
 
 
 /**

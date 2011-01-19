@@ -1,7 +1,6 @@
-package com.yediat.makeatest.container;
+package com.yediat.makeatest.core.container;
 
-import com.yediat.makeatest.metadataprocessor.DefaultMetadataProcessor;
-import com.yediat.makeatest.metadataprocessor.MetadataProcessor;
+import com.yediat.makeatest.core.metadata.processor.MetadataProcessor;
 
 /**
  * Utilizado para armazenas a anotação que foi recuperada com o método a ser
@@ -16,7 +15,14 @@ public class PropertyDescriptor {
 
 	public MetadataProcessor getProcessor() {
 		if (processor == null) {
-			processor = new DefaultMetadataProcessor();
+			processor = new MetadataProcessor() {
+				@Override
+				public void both() throws Exception {}
+				@Override
+				public void before() throws Exception {}
+				@Override
+				public void after() throws Exception {}
+			};
 		}
 		return processor;
 	}

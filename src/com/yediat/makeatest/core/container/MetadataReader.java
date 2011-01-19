@@ -1,10 +1,10 @@
-package com.yediat.makeatest.container;
+package com.yediat.makeatest.core.container;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
-import com.yediat.makeatest.metadatareading.delegate.AnnotationReader;
-import com.yediat.makeatest.metadatareading.delegate.DelegateReader;
+import com.yediat.makeatest.core.metadata.reading.MakeATestReaderInterface;
+import com.yediat.makeatest.core.metadata.reading.MakeATestReader;
 
 //TODO Verificar se essa classe precisa ser abstrata ou não. Se formos considerar a leitura de mais de uma 
 // fonte de dados é interessante refatorá-la
@@ -37,12 +37,12 @@ public class MetadataReader {
 
 		//Implementação da parte de Delegate Metadata Reader 
 		for (Annotation annotation : annotations) {
-			if(annotation.annotationType().isAnnotationPresent(DelegateReader.class)){
-				DelegateReader reader = (DelegateReader) annotation.annotationType().getAnnotation(DelegateReader.class);
+			if(annotation.annotationType().isAnnotationPresent(MakeATestReader.class)){
+				MakeATestReader reader = (MakeATestReader) annotation.annotationType().getAnnotation(MakeATestReader.class);
 				
-				Class<? extends AnnotationReader> readerClass = reader.value();
+				Class<? extends MakeATestReaderInterface> readerClass = reader.value();
 				try {
-					AnnotationReader annotationReader = readerClass.newInstance();
+					MakeATestReaderInterface annotationReader = readerClass.newInstance();
 					PropertyDescriptor propertyDescriptor = new PropertyDescriptor();
 					annotationReader.readAnnotation(annotation, propertyDescriptor);
 					this.container.put(method, propertyDescriptor);

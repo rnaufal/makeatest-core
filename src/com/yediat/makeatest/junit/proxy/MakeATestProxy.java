@@ -1,29 +1,23 @@
-package com.yediat.makeatest.proxy;
+package com.yediat.makeatest.junit.proxy;
 
 import java.lang.reflect.Method;
-import java.util.List;
 
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
 
-import com.yediat.makeatest.container.MetadataReader;
-import com.yediat.makeatest.container.PropertyDescriptor;
-import com.yediat.makeatest.repository.Repository;
+import com.yediat.makeatest.core.MakeATest;
+import com.yediat.makeatest.core.MakeATestEnum;
 
-//FrameworkController
 /**
  * Essa classe implementa o MethodInterceptor e cria um proxy para um objeto. Dessa forma é possível interceptar todas as chamadas feita para o objeto real.
- * Assim nesta mesma classe é feita a criação do Repository (responsável por recuperar e guardar as informações das anotações da classe), e a execução
- * referente a cada anotação...
- * 
- * @see MetadataReader
+ * Assim faz a chamada para o core do Make a Test a para sua execução.
+ * @see 
  * 
  */
 public class MakeATestProxy implements MethodInterceptor {
 
 	private Object object;
-	protected Repository repository;
 	
 	/**
 	 * Construtor responsável por receber o objeto que representa a instância da classe de testes
@@ -33,7 +27,6 @@ public class MakeATestProxy implements MethodInterceptor {
 	 */
 	private MakeATestProxy(Object object) {
 		this.object = object;
-		this.repository = Repository.getInstance();
 	}
 
 	/**
@@ -45,33 +38,15 @@ public class MakeATestProxy implements MethodInterceptor {
 	 * @param args Argumentos passados para o método
 	 * @param proxy O proxy do método
 	 */
-	//execute do pattern MetadataContainer
 	@Override
 	public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
-		this.repository.getMetadata(method);
-		this.methodAnnotation(method);
-		return method.invoke(this.object, args);
-	}
-	
-	/**
-	 * Método responsável por executar as anotações do tipo METHOD.
-	 * 
-	 * @param method Método para ser verificado a existência de anotações
-	 * @throws Throwable
-	 */
-	private void methodAnnotation(Method method) throws Throwable {
-		//TODO refatorar para não precisar passar duas vezes o method abaixo. Verificar "Listing8" para ver opcao de cache no repository.
-		List<PropertyDescriptor> props = this.repository.getMetadata(method).getProperties(method);
-		if (props != null) { //TODO verificar nulo ou retornar lista vazia no metodo acima?
-			
-			for (PropertyDescriptor propertyDescriptor : props) {
-				/*
-				 * executação de anotaçao de configuracao de cenario é feita aqui
-				 */
-				propertyDescriptor.getProcessor().process();
-			}
-		}
-		
+		MakeATest makeATest = new MakeATest();
+		makeATest.process(method, MakeATestEnum.PROCESS_BEFORE);
+		makeATest.process(method, MakeATestEnum.PROCESS_BOTH);
+		Object objectForInvoke =  method.invoke(this.object, args);
+		makeATest.process(method, MakeATestEnum.PROCESS_BOTH);
+		makeATest.process(method, MakeATestEnum.PROCESS_AFTER);
+		return objectForInvoke;
 	}
 
 	@SuppressWarnings("unchecked")

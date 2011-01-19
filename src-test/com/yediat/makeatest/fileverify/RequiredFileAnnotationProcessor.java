@@ -3,7 +3,7 @@ package com.yediat.makeatest.fileverify;
 import java.io.File;
 import java.io.IOException;
 
-import com.yediat.makeatest.metadataprocessor.MetadataProcessor;
+import com.yediat.makeatest.core.metadata.processor.MetadataProcessor;
 
 /**
  * Classe responsável pelo processamento da anotação
@@ -23,7 +23,7 @@ public class RequiredFileAnnotationProcessor implements MetadataProcessor {
 	}
 
 	@Override
-	public void process() throws Exception {
+	public void before() throws Exception {
 		File f = new File(this.filePath);
 		try {
 			f.createNewFile();
@@ -31,6 +31,18 @@ public class RequiredFileAnnotationProcessor implements MetadataProcessor {
 			throw e;
 		}
 
+	}
+
+	@Override
+	public void both() throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void after() throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -6,7 +6,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import com.yediat.makeatest.annotations.MakeATestConfig;
+import com.yediat.makeatest.core.metadata.reading.MakeATestReader;
 
 /**
  * Anotação para o Make a Test que verifica a não existencia do arquivo.
@@ -15,9 +15,9 @@ import com.yediat.makeatest.annotations.MakeATestConfig;
  * 
  */
 
-@MakeATestConfig(klass = FileNotExistsAnnotationExecute.class)
 @Target({METHOD})
 @Retention(RetentionPolicy.RUNTIME)
+@MakeATestReader(FileNotExistsAnnotationReader.class)
 public @interface FileNotExistsAnnotation {
 	String filePath();
 }

@@ -8,8 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.yediat.makeatest.MakeATestRunner;
 import com.yediat.makeatest.fileverify.RequiredFileAnnotation;
+import com.yediat.makeatest.junit.MakeATestRunner;
 
 @RunWith(MakeATestRunner.class)
 public class RequiredFileAnnotationTest {

@@ -1,7 +1,7 @@
 package com.yediat.makeatest.fileverify;
 
-import com.yediat.makeatest.container.PropertyDescriptor;
-import com.yediat.makeatest.metadatareading.delegate.AnnotationReader;
+import com.yediat.makeatest.core.container.PropertyDescriptor;
+import com.yediat.makeatest.core.metadata.reading.MakeATestReaderInterface;
 
 /**
  * Classe responsável pela leitura da anotação {@link RequiredFileAnnotation}. 
@@ -12,7 +12,7 @@ import com.yediat.makeatest.metadatareading.delegate.AnnotationReader;
  * 
  */
 
-public class RequiredFileAnnotationReader implements AnnotationReader<RequiredFileAnnotation> {
+public class RequiredFileAnnotationReader implements MakeATestReaderInterface<RequiredFileAnnotation> {
 
 	@Override
 	public void readAnnotation(RequiredFileAnnotation annotation, PropertyDescriptor descriptor) {

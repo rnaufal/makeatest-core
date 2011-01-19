@@ -1,4 +1,4 @@
-package com.yediat.makeatest.container;
+package com.yediat.makeatest.core.container;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;

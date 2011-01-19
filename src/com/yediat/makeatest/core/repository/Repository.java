@@ -1,11 +1,11 @@
-package com.yediat.makeatest.repository;
+package com.yediat.makeatest.core.repository;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.yediat.makeatest.container.MetadataContainer;
-import com.yediat.makeatest.container.MetadataReader;
+import com.yediat.makeatest.core.container.MetadataContainer;
+import com.yediat.makeatest.core.container.MetadataReader;
 
 
 /**
