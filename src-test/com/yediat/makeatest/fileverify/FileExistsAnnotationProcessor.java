@@ -1,8 +1,8 @@
 package com.yediat.makeatest.fileverify;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 
+import com.yediat.makeatest.core.MakeATestAssertionError;
 import com.yediat.makeatest.core.metadata.processor.MetadataProcessor;
 
 public class FileExistsAnnotationProcessor implements MetadataProcessor {
@@ -14,21 +14,21 @@ public class FileExistsAnnotationProcessor implements MetadataProcessor {
 	}
 	
 	@Override
-	public void after() throws Exception {
+	public void after() throws MakeATestAssertionError {
 		File f = new File(filePath);
 		if (!f.exists()) {
-			throw new FileNotFoundException();
+			throw new MakeATestAssertionError("Arquivo não existe.");
 		}
 	}
 
 	@Override
-	public void both() throws Exception {
+	public void both() throws MakeATestAssertionError {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void before() throws Exception {
+	public void before() throws MakeATestAssertionError {
 		// TODO Auto-generated method stub
 		
 	}

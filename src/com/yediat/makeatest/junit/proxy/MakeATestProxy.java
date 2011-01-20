@@ -40,10 +40,15 @@ public class MakeATestProxy implements MethodInterceptor {
 	 */
 	@Override
 	public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
+		Object objectForInvoke = null;
 		MakeATestController makeATest = new MakeATestController();
 		makeATest.process(method, MakeATestEnum.PROCESS_BEFORE);
 		makeATest.process(method, MakeATestEnum.PROCESS_BOTH);
-		Object objectForInvoke =  method.invoke(this.object, args);
+		try {
+			objectForInvoke =  method.invoke(this.object, args);
+		} catch (Exception e) {
+			throw e.getCause();
+		}
 		makeATest.process(method, MakeATestEnum.PROCESS_BOTH);
 		makeATest.process(method, MakeATestEnum.PROCESS_AFTER);
 		return objectForInvoke;

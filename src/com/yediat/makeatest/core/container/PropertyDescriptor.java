@@ -1,5 +1,6 @@
 package com.yediat.makeatest.core.container;
 
+import com.yediat.makeatest.core.MakeATestAssertionError;
 import com.yediat.makeatest.core.metadata.processor.MetadataProcessor;
 
 /**
@@ -17,11 +18,11 @@ public class PropertyDescriptor {
 		if (processor == null) {
 			processor = new MetadataProcessor() {
 				@Override
-				public void both() throws Exception {}
+				public void both() throws MakeATestAssertionError {}
 				@Override
-				public void before() throws Exception {}
+				public void before() throws MakeATestAssertionError {}
 				@Override
-				public void after() throws Exception {}
+				public void after() throws MakeATestAssertionError {}
 			};
 		}
 		return processor;

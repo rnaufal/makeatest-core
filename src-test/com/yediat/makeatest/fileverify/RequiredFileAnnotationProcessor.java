@@ -3,6 +3,7 @@ package com.yediat.makeatest.fileverify;
 import java.io.File;
 import java.io.IOException;
 
+import com.yediat.makeatest.core.MakeATestAssertionError;
 import com.yediat.makeatest.core.metadata.processor.MetadataProcessor;
 
 /**
@@ -23,24 +24,23 @@ public class RequiredFileAnnotationProcessor implements MetadataProcessor {
 	}
 
 	@Override
-	public void before() throws Exception {
+	public void before() throws MakeATestAssertionError {
 		File f = new File(this.filePath);
 		try {
 			f.createNewFile();
 		} catch (IOException e) {
-			throw e;
+			throw new MakeATestAssertionError(e.getMessage());
 		}
-
 	}
 
 	@Override
-	public void both() throws Exception {
+	public void both() throws MakeATestAssertionError {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void after() throws Exception {
+	public void after() throws MakeATestAssertionError {
 		// TODO Auto-generated method stub
 		
 	}

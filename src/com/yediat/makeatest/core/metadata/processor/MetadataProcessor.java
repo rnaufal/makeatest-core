@@ -1,5 +1,7 @@
 package com.yediat.makeatest.core.metadata.processor;
 
+import com.yediat.makeatest.core.MakeATestAssertionError;
+
 /**
  * Interface a ser utilizada na implementação do "processor" da anotação. 
  * 
@@ -7,7 +9,7 @@ package com.yediat.makeatest.core.metadata.processor;
  *
  */
 public interface MetadataProcessor {
-	public void both() throws Exception;
-	public void before() throws Exception;
-	public void after() throws Exception;
+	public void both() throws MakeATestAssertionError;
+	public void before() throws MakeATestAssertionError;
+	public void after() throws MakeATestAssertionError;
 }
