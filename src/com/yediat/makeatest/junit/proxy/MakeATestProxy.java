@@ -6,7 +6,7 @@ import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
 
-import com.yediat.makeatest.core.MakeATest;
+import com.yediat.makeatest.core.MakeATestController;
 import com.yediat.makeatest.core.MakeATestEnum;
 
 /**
@@ -40,7 +40,7 @@ public class MakeATestProxy implements MethodInterceptor {
 	 */
 	@Override
 	public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
-		MakeATest makeATest = new MakeATest();
+		MakeATestController makeATest = new MakeATestController();
 		makeATest.process(method, MakeATestEnum.PROCESS_BEFORE);
 		makeATest.process(method, MakeATestEnum.PROCESS_BOTH);
 		Object objectForInvoke =  method.invoke(this.object, args);
