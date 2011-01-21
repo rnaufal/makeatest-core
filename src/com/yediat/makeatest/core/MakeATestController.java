@@ -4,6 +4,7 @@ import java.lang.reflect.Method;
 import java.util.List;
 
 import com.yediat.makeatest.core.container.PropertyDescriptor;
+import com.yediat.makeatest.core.metadata.processor.MetadataProcessor;
 import com.yediat.makeatest.core.repository.Repository;
 
 /**
@@ -22,29 +23,15 @@ public class MakeATestController {
 	public void process(Method method, MakeATestEnum makeATestEnum) throws Throwable {
 		this.repository.getMetadata(method);
 		List<PropertyDescriptor> props = this.repository.getMetadata(method).getProperties(method);
-		
-		if (props != null) {
-			switch (makeATestEnum) {
-			case PROCESS_BEFORE:
-				for (PropertyDescriptor propertyDescriptor : props) {
-					propertyDescriptor.getProcessor().before();
+
+		if(props != null) {
+			for (PropertyDescriptor propertyDescriptor : props) {
+				MetadataProcessor metadataProcessor = propertyDescriptor.getProcessor(); 
+				if(metadataProcessor.getType().equals(makeATestEnum)){
+					metadataProcessor.process();
 				}
-				break;
-			case PROCESS_AFTER:
-				for (PropertyDescriptor propertyDescriptor : props) {
-					propertyDescriptor.getProcessor().after();
-				}
-				break;
-			case PROCESS_BOTH:
-				for (PropertyDescriptor propertyDescriptor : props) {
-					propertyDescriptor.getProcessor().both();
-				}
-				break;
-			default:
-				break;
-			}			
-		}
-		
+			}
+		}		
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.yediat.makeatest.fileverify;
 
+import com.yediat.makeatest.core.MakeATestEnum;
 import com.yediat.makeatest.core.container.PropertyDescriptor;
 import com.yediat.makeatest.core.metadata.reading.MakeATestReaderInterface;
 
@@ -18,6 +19,7 @@ public class RequiredFileAnnotationReader implements MakeATestReaderInterface<Re
 	public void readAnnotation(RequiredFileAnnotation annotation, PropertyDescriptor descriptor) {
 		String path = annotation.filePath();		
 		RequiredFileAnnotationProcessor processor = new RequiredFileAnnotationProcessor(path);
+		processor.setType(MakeATestEnum.PROCESS_BEFORE);
 		descriptor.setProcessor(processor);
 	}
 

@@ -15,7 +15,7 @@ import com.yediat.makeatest.core.metadata.processor.MetadataProcessor;
  * 
  */
 
-public class RequiredFileAnnotationProcessor implements MetadataProcessor {
+public class RequiredFileAnnotationProcessor extends MetadataProcessor {
 
 	private String filePath;
 
@@ -24,25 +24,13 @@ public class RequiredFileAnnotationProcessor implements MetadataProcessor {
 	}
 
 	@Override
-	public void before() throws MakeATestAssertionError {
+	public void process() throws MakeATestAssertionError {
 		File f = new File(this.filePath);
 		try {
 			f.createNewFile();
 		} catch (IOException e) {
 			throw new MakeATestAssertionError(e.getMessage());
 		}
-	}
-
-	@Override
-	public void both() throws MakeATestAssertionError {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void after() throws MakeATestAssertionError {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

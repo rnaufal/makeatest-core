@@ -5,7 +5,7 @@ import java.io.File;
 import com.yediat.makeatest.core.MakeATestAssertionError;
 import com.yediat.makeatest.core.metadata.processor.MetadataProcessor;
 
-public class FileNotExistsAnnotationProcessor implements MetadataProcessor {
+public class FileNotExistsAnnotationProcessor extends MetadataProcessor {
 
 	private String filePath;
 	
@@ -14,23 +14,11 @@ public class FileNotExistsAnnotationProcessor implements MetadataProcessor {
 	}
 	
 	@Override
-	public void after() throws MakeATestAssertionError {
+	public void process() throws MakeATestAssertionError {
 		File f = new File(filePath);
 		if (f.exists()) {
 			throw new MakeATestAssertionError("File exists in " + filePath);
 		}
-	}
-
-	@Override
-	public void both() throws MakeATestAssertionError {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void before() throws MakeATestAssertionError {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
