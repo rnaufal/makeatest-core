@@ -10,5 +10,9 @@ public class MakeATestAssertionError extends AssertionError {
 	public MakeATestAssertionError(String message) {
 		super(message);
 	}
+	
+	public MakeATestAssertionError(Exception e) {
+		super(e);
+	}
 
 }
