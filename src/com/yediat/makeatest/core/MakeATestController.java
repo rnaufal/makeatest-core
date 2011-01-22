@@ -3,9 +3,9 @@ package com.yediat.makeatest.core;
 import java.lang.reflect.Method;
 import java.util.List;
 
+import com.yediat.makeatest.core.container.MetadataReader;
 import com.yediat.makeatest.core.container.PropertyDescriptor;
 import com.yediat.makeatest.core.metadata.processor.MetadataProcessor;
-import com.yediat.makeatest.core.repository.Repository;
 
 /**
  * Class princiapl de entrada no core.
@@ -14,15 +14,15 @@ import com.yediat.makeatest.core.repository.Repository;
  */
 public class MakeATestController {
 
-	private Repository repository;
+	private MetadataReader metadataReader;
 
 	public MakeATestController() {
-		this.repository = Repository.getInstance();
+		this.metadataReader = new MetadataReader();
 	}
 
 	public void process(Method method, MakeATestEnum makeATestEnum) throws Throwable {
-		this.repository.getMetadata(method);
-		List<PropertyDescriptor> props = this.repository.getMetadata(method).getProperties(method);
+		this.metadataReader.createContainer(method);
+		List<PropertyDescriptor> props = this.metadataReader.getContainer().getProperties(method);
 
 		if(props != null) {
 			for (PropertyDescriptor propertyDescriptor : props) {
