@@ -27,7 +27,7 @@ public class MakeATestController {
 		if(props != null) {
 			for (PropertyDescriptor propertyDescriptor : props) {
 				MetadataProcessor metadataProcessor = propertyDescriptor.getProcessor(); 
-				if(metadataProcessor.getType().equals(makeATestEnum)){
+				if(propertyDescriptor.getType().equals(makeATestEnum)){
 					metadataProcessor.process();
 				}
 			}

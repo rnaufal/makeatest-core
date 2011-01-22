@@ -1,6 +1,7 @@
 package com.yediat.makeatest.core.container;
 
 import com.yediat.makeatest.core.MakeATestAssertionError;
+import com.yediat.makeatest.core.MakeATestEnum;
 import com.yediat.makeatest.core.metadata.processor.MetadataProcessor;
 
 /**
@@ -13,6 +14,7 @@ import com.yediat.makeatest.core.metadata.processor.MetadataProcessor;
 public class PropertyDescriptor {
 
 	private MetadataProcessor processor;
+	private MakeATestEnum type;
 
 	public MetadataProcessor getProcessor() {
 		if (processor == null) {
@@ -26,6 +28,14 @@ public class PropertyDescriptor {
 	
 	public void setProcessor(MetadataProcessor processor) {
 		this.processor = processor;
+	}
+
+	public MakeATestEnum getType() {
+		return type;
+	}
+
+	public void setType(MakeATestEnum type) {
+		this.type = type;
 	}
 
 }
