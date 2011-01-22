@@ -6,7 +6,6 @@ import java.lang.reflect.Method;
 import com.yediat.makeatest.core.MakeATestEnum;
 import com.yediat.makeatest.core.metadata.processor.After;
 import com.yediat.makeatest.core.metadata.processor.Before;
-import com.yediat.makeatest.core.metadata.processor.Both;
 import com.yediat.makeatest.core.metadata.reading.MakeATestReader;
 import com.yediat.makeatest.core.metadata.reading.MakeATestReaderInterface;
 
@@ -61,11 +60,13 @@ public class MetadataReader {
 	
 	private void setTypeProcessor(Annotation annotation, PropertyDescriptor propertyDescriptor) {
 		if(annotation.annotationType().isAnnotationPresent(After.class)){
-			propertyDescriptor.setType(MakeATestEnum.PROCESS_AFTER);
+			if(annotation.annotationType().isAnnotationPresent(Before.class)) {
+				propertyDescriptor.setType(MakeATestEnum.PROCESS_BOTH);
+			} else {
+				propertyDescriptor.setType(MakeATestEnum.PROCESS_AFTER);
+			}
 		} else if(annotation.annotationType().isAnnotationPresent(Before.class)) {
 			propertyDescriptor.setType(MakeATestEnum.PROCESS_BEFORE);
-		} else if(annotation.annotationType().isAnnotationPresent(Both.class)) {
-			propertyDescriptor.setType(MakeATestEnum.PROCESS_BOTH);
 		} else {
 			propertyDescriptor.setType(MakeATestEnum.PROCESS_AFTER);
 		}
