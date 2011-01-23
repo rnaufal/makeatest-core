@@ -6,7 +6,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Anotação para ser utilizada em anotações criadas pelo Make a Test
+ * Anotação para ser utilizada em anotações criadas pelo Make a Test.
+ * Essa anotação indica qual a classe que será responsável pela leitura (reader) da anotação.
+ * 
  * @author marcusfloriano
  *
  */
