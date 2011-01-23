@@ -21,7 +21,6 @@ public class MakeATestProxy implements MethodInterceptor {
 	
 	/**
 	 * Construtor responsável por receber o objeto que representa a instância da classe de testes
-	 * e criar uma instância do MetadataReader.
 	 * 
 	 * @param object
 	 */
@@ -43,7 +42,7 @@ public class MakeATestProxy implements MethodInterceptor {
 		Object objectForInvoke = null;
 		MakeATestController makeATest = new MakeATestController();
 		makeATest.process(method, MakeATestEnum.PROCESS_BEFORE);
-		makeATest.process(method, MakeATestEnum.PROCESS_BOTH);
+		makeATest.process(method, MakeATestEnum.PROCESS_BOTH);//TODO Refatorar para tentar usar o AFTER e BEFORE apenas(remover BOTH) 
 		try {
 			objectForInvoke =  method.invoke(this.object, args);
 		} catch (Exception e) {
@@ -56,7 +55,7 @@ public class MakeATestProxy implements MethodInterceptor {
 
 	@SuppressWarnings("unchecked")
 	/**
-	 * Método responsável em criar um proxy a partir de um objeto possíbilidando interceptar todas as chamadas para esse objeto
+	 * Método responsável em criar um proxy a partir de um objeto possíbilitando interceptar todas as chamadas para esse objeto
 	 * @param object Objeto passado para ser criado o proxy e interceptar todas as chamadas para esse objeto
 	 */
 	public static <E> E getProxy(E object) {
