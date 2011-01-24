@@ -18,7 +18,8 @@ import com.yediat.makeatest.core.MakeATestEnum;
 public class MakeATestProxy implements MethodInterceptor {
 
 	private Object object;
-	
+	private Class<? extends Object> klass;
+	private MakeATestController makeATestController;
 	/**
 	 * Construtor responsável por receber o objeto que representa a instância da classe de testes
 	 * 
@@ -26,6 +27,8 @@ public class MakeATestProxy implements MethodInterceptor {
 	 */
 	private MakeATestProxy(Object object) {
 		this.object = object;
+		this.klass = object.getClass();
+		this.makeATestController = new MakeATestController(this.klass);
 	}
 
 	/**
@@ -39,17 +42,24 @@ public class MakeATestProxy implements MethodInterceptor {
 	 */
 	@Override
 	public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
+
 		Object objectForInvoke = null;
-		MakeATestController makeATest = new MakeATestController();
-		makeATest.process(method, MakeATestEnum.PROCESS_BEFORE);
-		makeATest.process(method, MakeATestEnum.PROCESS_BOTH);//TODO Refatorar para tentar usar o AFTER e BEFORE apenas(remover BOTH) 
-		try {
+		
+		if(this.makeATestController.contains(method)){
+			this.makeATestController.process(method, MakeATestEnum.PROCESS_BEFORE);
+			this.makeATestController.process(method, MakeATestEnum.PROCESS_BOTH);//TODO Refatorar para tentar usar o AFTER e BEFORE apenas(remover BOTH) 
+			try {
+				objectForInvoke =  method.invoke(this.object, args);
+			} catch (Exception e) {
+				throw e.getCause();
+			}
+			this.makeATestController.process(method, MakeATestEnum.PROCESS_BOTH);
+			this.makeATestController.process(method, MakeATestEnum.PROCESS_AFTER);
+			return objectForInvoke;			
+		} else {
 			objectForInvoke =  method.invoke(this.object, args);
-		} catch (Exception e) {
-			throw e.getCause();
 		}
-		makeATest.process(method, MakeATestEnum.PROCESS_BOTH);
-		makeATest.process(method, MakeATestEnum.PROCESS_AFTER);
+		
 		return objectForInvoke;
 	}
 

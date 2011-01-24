@@ -16,12 +16,15 @@ public class MakeATestController {
 
 	private MetadataReader metadataReader;
 
-	public MakeATestController() {
-		this.metadataReader = new MetadataReader();
+	public MakeATestController(Class<?> klass) {
+		this.metadataReader = new MetadataReader(klass);
+	}
+	
+	public boolean contains(Method method) throws Throwable {
+		return this.metadataReader.contains(method);
 	}
 
 	public void process(Method method, MakeATestEnum makeATestEnum) throws Throwable {
-		this.metadataReader.createContainer(method);
 		List<PropertyDescriptor> props = this.metadataReader.getContainer().getProperties(method);
 
 		if(props != null) {

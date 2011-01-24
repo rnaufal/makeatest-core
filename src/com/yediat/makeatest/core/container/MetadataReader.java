@@ -19,24 +19,32 @@ import com.yediat.makeatest.core.metadata.reading.MakeATestReaderInterface;
  *
  */
 public class MetadataReader {
+	
 	private MetadataContainer container = null;
-
-	public MetadataContainer createContainer(Method method) {
-		//System.out.println("Criando container: " + method.getName());
-		// create
+	
+	public MetadataReader(Class<?> klass) {
 		this.container = new MetadataContainer();
-		// populate
-		readMethodAnnotation(method);
-		return this.container;
+		this.readAnnotations(klass);
 	}
-
+	
 	public MetadataContainer getContainer() {
 		return this.container;
+	}
+	
+	public boolean contains(Method method) {
+		return this.container.contains(method);
+	}
+	
+	private void readAnnotations(Class<?> klass) {
+		Method [] methods = klass.getMethods();
+		for (Method method : methods) {
+			readMethodAnnotation(method);
+		}
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void readMethodAnnotation(Method method) /*throws Throwable*/{
-		Annotation[] annotations = method.getDeclaredAnnotations();
+		Annotation[] annotations = method.getAnnotations();
 
 		//Implementação da parte de Delegate Metadata Reader 
 		for (Annotation annotation : annotations) {

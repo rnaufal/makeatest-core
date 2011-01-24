@@ -20,6 +20,10 @@ public class MetadataContainer {
 	public MetadataContainer() {
 		this.properties = new HashMap<Method, List<PropertyDescriptor>>();
 	}
+	
+	public boolean contains(Method method) {
+		return properties.containsKey(method);
+	}
 
 	public void put(Method method, PropertyDescriptor propertyDescriptor) {
 		if (!this.properties.containsKey(method)) {
