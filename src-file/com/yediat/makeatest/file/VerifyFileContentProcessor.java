@@ -48,6 +48,7 @@ public class VerifyFileContentProcessor implements MetadataProcessor {
 				try {
 					br.close();
 				} catch (IOException e) {
+					throw new MakeATestAssertionError(e);
 				}
 			}
 		}
