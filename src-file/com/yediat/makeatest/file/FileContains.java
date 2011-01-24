@@ -8,13 +8,12 @@ import java.lang.annotation.Target;
 
 import com.yediat.makeatest.core.metadata.processor.After;
 import com.yediat.makeatest.core.metadata.reading.MakeATestReader;
-import com.yediat.makeatest.fileverify.FileExistsAnnotationReader;
 
 @Target({ METHOD })
 @Retention(RetentionPolicy.RUNTIME)
-@MakeATestReader(FileExistsAnnotationReader.class)
+@MakeATestReader(FileContainsReader.class)
 @After
 public @interface FileContains {
 	String name();
-	String text();
+	String content();
 }
