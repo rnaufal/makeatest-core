@@ -1,9 +1,5 @@
 package com.yediat.makeatest.test.file;
 
-import java.io.File;
-
-import junit.framework.Assert;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -22,9 +18,8 @@ public class SuiteFileTest {
 	@CreateFile(name = MY_FILE, content = "prop1=value1")
 	@FileContains(name = MY_FILE, content = "prop1=value1")
 	@FileNotContains(name = MY_FILE, content = "prop1=value2")
-	//@DeleteFile(name = MY_FILE)
+	@DeleteFile(name = MY_FILE)
 	public void createFile() {
-		//File f = new File(MY_FILE);
-		//Assert.assertEquals(f.exists(), false);
+
 	}
 }
