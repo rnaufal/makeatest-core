@@ -6,19 +6,20 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import com.yediat.makeatest.core.MakeATestAssertionError;
-import com.yediat.makeatest.fileverify.FileExistsAnnotation;
+import com.yediat.makeatest.fileverify.FileExistsExceptionAnnotation;
 import com.yediat.makeatest.junit.MakeATestRunner;
 
 
 @RunWith(MakeATestRunner.class)
-public class FileExistsExceptionAnnotation {
-	
+public class FileExistsAssertErrorTest {
+
 	private static final String FILE_EXISTS_ANNOTATION = "./fileExistsAnnotation.txt";
 	
-	@Test(expected = MakeATestAssertionError.class)
-	@FileExistsAnnotation(filePath=FILE_EXISTS_ANNOTATION)
-	public void createFileAndExpectedMakeATestAssertionError() {
+	@Test(expected=MakeATestAssertionError.class)
+	@FileExistsExceptionAnnotation(filePath=FILE_EXISTS_ANNOTATION,failType="none")
+	public void assertErrorInVerifyFileExists() {
 		@SuppressWarnings("unused")
 		File file = new File(FILE_EXISTS_ANNOTATION);
 	}
+	
 }

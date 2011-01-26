@@ -16,10 +16,10 @@ public class MakeATestController {
 
 	private MetadataReader metadataReader;
 
-	public MakeATestController(Class<?> klass) {
+	public MakeATestController(Class<?> klass) throws MakeATestInitializationException {
 		this.metadataReader = new MetadataReader(klass);
 	}
-	
+		
 	public boolean contains(Method method) throws Throwable {
 		return this.metadataReader.contains(method);
 	}
@@ -31,7 +31,12 @@ public class MakeATestController {
 			for (PropertyDescriptor propertyDescriptor : props) {
 				MetadataProcessor metadataProcessor = propertyDescriptor.getProcessor(); 
 				if(propertyDescriptor.getType().equals(makeATestEnum)){
-					metadataProcessor.process();
+					try {
+						metadataProcessor.process();
+					} catch (Exception e) {
+						throw new MakeATestException("Exception in execute processor",e);
+					}
+					
 				}
 			}
 		}		

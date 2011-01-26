@@ -12,7 +12,7 @@ import com.yediat.makeatest.junit.proxy.MakeATestProxy;
 public class MakeATestRunner extends BlockJUnit4ClassRunner {
 	
 	/**
-	 * Contrutor qye recebe uma classe e faz uma chamada para o contrutor do BlockJUnit4ClassRunner
+	 * Contrutor que recebe uma classe e faz uma chamada para o contrutor do BlockJUnit4ClassRunner
 	 * 
 	 * @param klass
 	 * @throws InitializationError

@@ -1,0 +1,18 @@
+package com.yediat.makeatest.fileverify;
+
+import com.yediat.makeatest.core.container.PropertyDescriptor;
+import com.yediat.makeatest.core.metadata.reading.MakeATestReaderInterface;
+
+public class FileExistsExceptionAnnotationReader implements MakeATestReaderInterface<FileExistsExceptionAnnotation> {
+
+	@Override
+	public void readAnnotation(FileExistsExceptionAnnotation annotation, PropertyDescriptor descriptor) {
+		if(annotation.failType().equals("reader")){
+			new Integer("a");
+		}
+		String path = annotation.filePath();				
+		FileExistsExceptionAnnotationProcessor processor = new FileExistsExceptionAnnotationProcessor(path,annotation.failType());
+		descriptor.setProcessor(processor);
+	}
+
+}

@@ -4,6 +4,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
 import com.yediat.makeatest.core.MakeATestEnum;
+import com.yediat.makeatest.core.MakeATestInitializationException;
 import com.yediat.makeatest.core.metadata.processor.After;
 import com.yediat.makeatest.core.metadata.processor.Before;
 import com.yediat.makeatest.core.metadata.reading.MakeATestReader;
@@ -22,7 +23,7 @@ public class MetadataReader {
 	
 	private MetadataContainer container = null;
 	
-	public MetadataReader(Class<?> klass) {
+	public MetadataReader(Class<?> klass) throws MakeATestInitializationException {
 		this.container = new MetadataContainer();
 		this.readAnnotations(klass);
 	}
@@ -35,34 +36,30 @@ public class MetadataReader {
 		return this.container.contains(method);
 	}
 	
-	private void readAnnotations(Class<?> klass) {
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private void readAnnotations(Class<?> klass) throws MakeATestInitializationException {
 		Method [] methods = klass.getMethods();
 		for (Method method : methods) {
-			readMethodAnnotation(method);
-		}
-	}
+			Annotation[] annotations = method.getAnnotations();
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private void readMethodAnnotation(Method method) /*throws Throwable*/{
-		Annotation[] annotations = method.getAnnotations();
-
-		//Implementação da parte de Delegate Metadata Reader 
-		for (Annotation annotation : annotations) {
-			if(annotation.annotationType().isAnnotationPresent(MakeATestReader.class)){
-				MakeATestReader reader = (MakeATestReader) annotation.annotationType().getAnnotation(MakeATestReader.class);
-				
-				Class<? extends MakeATestReaderInterface> readerClass = reader.value();
-				try {
-					MakeATestReaderInterface annotationReader = readerClass.newInstance();
-					PropertyDescriptor propertyDescriptor = new PropertyDescriptor();
-					annotationReader.readAnnotation(annotation, propertyDescriptor);
-					setTypeProcessor(annotation, propertyDescriptor);
-					this.container.put(method, propertyDescriptor);
-				} catch (Exception e) {
-					throw new RuntimeException("cannot instanciate reader", e);
+			//Implementação da parte de Delegate Metadata Reader 
+			for (Annotation annotation : annotations) {
+				if(annotation.annotationType().isAnnotationPresent(MakeATestReader.class)){
+					MakeATestReader reader = (MakeATestReader) annotation.annotationType().getAnnotation(MakeATestReader.class);
+					Class<? extends MakeATestReaderInterface> readerClass = reader.value();
+					try {
+						MakeATestReaderInterface annotationReader = readerClass.newInstance();
+						PropertyDescriptor propertyDescriptor = new PropertyDescriptor();
+						annotationReader.readAnnotation(annotation, propertyDescriptor);
+						setTypeProcessor(annotation, propertyDescriptor);
+						this.container.put(method, propertyDescriptor);
+					} catch (Exception e) {
+						MakeATestInitializationException makeATestException = new MakeATestInitializationException("Connot initicalize readar: " + readerClass.getName(), e);
+						makeATestException.setStackTrace(e.getStackTrace());
+						throw makeATestException;
+					}
 				}
 			}
-			
 		}
 	}
 	

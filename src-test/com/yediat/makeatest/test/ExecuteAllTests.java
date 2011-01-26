@@ -5,8 +5,10 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses( { 	FileExistsAnnotationTest.class,
+						FileExistsAssertErrorTest.class,
+						FileExistsExceptionInProcessorTest.class,
+						FileExistsExceptionInReaderTest.class,
 						FileNotExistsAnnotationTest.class,
-						RequiredFileAnnotationTest.class,
-						FileExistsExceptionAnnotation.class
+						RequiredFileAnnotationTest.class
 })
 public class ExecuteAllTests {}

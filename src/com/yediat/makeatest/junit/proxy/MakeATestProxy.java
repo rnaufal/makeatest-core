@@ -8,6 +8,7 @@ import net.sf.cglib.proxy.MethodProxy;
 
 import com.yediat.makeatest.core.MakeATestController;
 import com.yediat.makeatest.core.MakeATestEnum;
+import com.yediat.makeatest.core.MakeATestInitializationException;
 
 /**
  * Essa classe implementa o MethodInterceptor e cria um proxy para um objeto. Dessa forma é possível interceptar todas as chamadas feita para o objeto real.
@@ -25,10 +26,9 @@ public class MakeATestProxy implements MethodInterceptor {
 	 * 
 	 * @param object
 	 */
-	private MakeATestProxy(Object object) {
+	private MakeATestProxy(Object object) throws MakeATestInitializationException {
 		this.object = object;
-		this.klass = object.getClass();
-		this.makeATestController = new MakeATestController(this.klass);
+		this.klass = object.getClass();	
 	}
 
 	/**
@@ -43,6 +43,10 @@ public class MakeATestProxy implements MethodInterceptor {
 	@Override
 	public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
 
+		if(this.makeATestController == null){
+			this.makeATestController = new MakeATestController(this.klass);
+		}
+		
 		Object objectForInvoke = null;
 		
 		if(this.makeATestController.contains(method)){
@@ -68,15 +72,15 @@ public class MakeATestProxy implements MethodInterceptor {
 	 * Método responsável em criar um proxy a partir de um objeto possíbilitando interceptar todas as chamadas para esse objeto
 	 * @param object Objeto passado para ser criado o proxy e interceptar todas as chamadas para esse objeto
 	 */
-	public static <E> E getProxy(E object) {
+	public static <E> E getProxy(E object) throws Exception {
 		try {
 			MakeATestProxy proxy = new MakeATestProxy(object);
 			Enhancer e = new Enhancer();
 			e.setSuperclass(object.getClass());
 			e.setCallback(proxy);
 			return (E) e.create();
-		} catch (Throwable e) {
-			throw new Error(e.getMessage());
+		} catch (Exception e) {
+			throw e;
 		}
 	}
 
