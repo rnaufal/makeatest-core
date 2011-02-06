@@ -3,7 +3,7 @@ package com.yediat.makeatest.junit;
 import org.junit.runners.BlockJUnit4ClassRunner;
 import org.junit.runners.model.InitializationError;
 
-import com.yediat.makeatest.junit.proxy.MakeATestProxy;
+import com.yediat.makeatest.core.MakeATestController;
 
 
 /**
@@ -27,7 +27,8 @@ public class MakeATestRunner extends BlockJUnit4ClassRunner {
 	 */
 	@Override
 	protected Object createTest() throws Exception {
-		return MakeATestProxy.getProxy(getTestClass().getOnlyConstructor().newInstance());
+		MakeATestController makeATestController = new MakeATestController(getTestClass().getOnlyConstructor().newInstance());
+		return makeATestController.getObjectInstance();
 	}
 
 }

@@ -11,16 +11,27 @@ import com.yediat.makeatest.core.metadata.processor.MetadataProcessor;
  * @author deborachama
  * 
  */
-public class PropertyDescriptor {
+public class AnnotationProperties {
 
 	private MetadataProcessor processor;
 	private MakeATestEnum type;
+	private Object annotated;
+
+	public Object getAnnotated() {
+		return annotated;
+	}
+
+	public void setAnnotated(Object annotated) {
+		this.annotated = annotated;
+	}
 
 	public MetadataProcessor getProcessor() {
 		if (processor == null) {
 			processor = new MetadataProcessor() {
 				@Override
-				public void process() throws MakeATestAssertionError { }
+				public void process(Object instance) throws MakeATestAssertionError {
+					throw new MakeATestAssertionError("Processor not implemented.");
+				}
 			};
 		}
 		return processor;

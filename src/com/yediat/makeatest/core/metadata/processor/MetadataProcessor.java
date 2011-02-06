@@ -9,5 +9,5 @@ import com.yediat.makeatest.core.MakeATestAssertionError;
  *
  */
 public interface MetadataProcessor {
-	public abstract void process() throws MakeATestAssertionError;
+	public abstract void process(Object instance) throws MakeATestAssertionError;
 }

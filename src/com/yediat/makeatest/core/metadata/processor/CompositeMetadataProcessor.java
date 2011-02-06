@@ -9,10 +9,10 @@ public class CompositeMetadataProcessor implements MetadataProcessor {
 	private List<MetadataProcessor> processors;
 
 	@Override
-	public void process() throws MakeATestAssertionError {
+	public void process(Object instance) throws MakeATestAssertionError {
 		for(MetadataProcessor mp : processors){
 			System.out.println("mp.process: " + mp);
-			mp.process();
+			mp.process(instance);
 		}
 	}
 

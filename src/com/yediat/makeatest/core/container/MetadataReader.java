@@ -1,6 +1,7 @@
 package com.yediat.makeatest.core.container;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 import com.yediat.makeatest.core.MakeATestEnum;
@@ -36,25 +37,29 @@ public class MetadataReader {
 		return this.container.contains(method);
 	}
 	
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void readAnnotations(Class<?> klass) throws MakeATestInitializationException {
-		Method [] methods = klass.getMethods();
-		for (Method method : methods) {
-			Annotation[] annotations = method.getAnnotations();
-
-			//Implementação da parte de Delegate Metadata Reader 
+		readFields(klass);
+		readMethods(klass);
+	}
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private void readFields(Class<?> klass) throws MakeATestInitializationException {
+		Field [] fields = klass.getDeclaredFields();
+		for (Field field : fields) {
+			Annotation [] annotations = field.getAnnotations();
 			for (Annotation annotation : annotations) {
 				if(annotation.annotationType().isAnnotationPresent(MakeATestReader.class)){
 					MakeATestReader reader = (MakeATestReader) annotation.annotationType().getAnnotation(MakeATestReader.class);
 					Class<? extends MakeATestReaderInterface> readerClass = reader.value();
 					try {
 						MakeATestReaderInterface annotationReader = readerClass.newInstance();
-						PropertyDescriptor propertyDescriptor = new PropertyDescriptor();
-						annotationReader.readAnnotation(annotation, propertyDescriptor);
-						setTypeProcessor(annotation, propertyDescriptor);
-						this.container.put(method, propertyDescriptor);
+						AnnotationProperties annotationProperties = new AnnotationProperties();
+						annotationProperties.setAnnotated(field);
+						annotationReader.readAnnotation(annotation, annotationProperties);
+						setTypeProcessor(annotation, annotationProperties);
+						this.container.put(field, annotationProperties);
 					} catch (Exception e) {
-						MakeATestInitializationException makeATestException = new MakeATestInitializationException("Connot initicalize readar: " + readerClass.getName(), e);
+						MakeATestInitializationException makeATestException = new MakeATestInitializationException("Connot initialize reader: " + readerClass.getName(), e);
 						makeATestException.setStackTrace(e.getStackTrace());
 						throw makeATestException;
 					}
@@ -63,7 +68,33 @@ public class MetadataReader {
 		}
 	}
 	
-	private void setTypeProcessor(Annotation annotation, PropertyDescriptor propertyDescriptor) {
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private void readMethods(Class<?> klass) throws MakeATestInitializationException {
+		Method [] methods = klass.getMethods();
+		for (Method method : methods) {
+			Annotation[] annotations = method.getAnnotations();
+			for (Annotation annotation : annotations) {
+				if(annotation.annotationType().isAnnotationPresent(MakeATestReader.class)){
+					MakeATestReader reader = (MakeATestReader) annotation.annotationType().getAnnotation(MakeATestReader.class);
+					Class<? extends MakeATestReaderInterface> readerClass = reader.value();
+					try {
+						MakeATestReaderInterface annotationReader = readerClass.newInstance();
+						AnnotationProperties propertyDescriptor = new AnnotationProperties();
+						annotationReader.readAnnotation(annotation, propertyDescriptor);
+						setTypeProcessor(annotation, propertyDescriptor);
+						this.container.put(method, propertyDescriptor);
+					} catch (Exception e) {
+						MakeATestInitializationException makeATestException = new MakeATestInitializationException("Connot initialize reader: " + readerClass.getName(), e);
+						makeATestException.setStackTrace(e.getStackTrace());
+						throw makeATestException;
+					}
+				}
+			}
+		}		
+	}
+	
+	
+	private void setTypeProcessor(Annotation annotation, AnnotationProperties propertyDescriptor) {
 		if(annotation.annotationType().isAnnotationPresent(After.class)){
 			if(annotation.annotationType().isAnnotationPresent(Before.class)) {
 				propertyDescriptor.setType(MakeATestEnum.PROCESS_BOTH);

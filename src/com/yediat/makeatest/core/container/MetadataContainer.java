@@ -7,39 +7,36 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Utilizado para armazenar objetos do tipo {@link PropertyDescriptor}. 
+ * Utilizado para armazenar objetos do tipo {@link AnnotationProperties}. 
  * @author deborachama
  *
  */
 public class MetadataContainer {
-	/*
-	 * A chave é o metodo de teste. Pode ter mais de uma anotacao por metodo, entao ele tem varios PropertyDescriptor
-	 */
-	private Map<Method, List<PropertyDescriptor>> properties;
+	private Map<Object, List<AnnotationProperties>> properties;
 
 	public MetadataContainer() {
-		this.properties = new HashMap<Method, List<PropertyDescriptor>>();
+		this.properties = new HashMap<Object, List<AnnotationProperties>>();
 	}
 	
 	public boolean contains(Method method) {
 		return properties.containsKey(method);
 	}
 
-	public void put(Method method, PropertyDescriptor propertyDescriptor) {
-		if (!this.properties.containsKey(method)) {
-			List<PropertyDescriptor> props = new ArrayList<PropertyDescriptor>();
+	public void put(Object object, AnnotationProperties propertyDescriptor) {
+		if (!this.properties.containsKey(object)) {
+			List<AnnotationProperties> props = new ArrayList<AnnotationProperties>();
 			props.add(propertyDescriptor);
-			this.properties.put(method, props);
+			this.properties.put(object, props);
 		} else {
-			this.properties.get(method).add(propertyDescriptor);
+			this.properties.get(object).add(propertyDescriptor);
 		}
 	}
 
-	public Map<Method, List<PropertyDescriptor>> getProperties() {
+	public Map<Object, List<AnnotationProperties>> getProperties() {
 		return this.properties;
 	}
 	
-	public List<PropertyDescriptor> getProperties(Method method) {
-		return this.properties.get(method);
+	public List<AnnotationProperties> getProperties(Object object) {
+		return this.properties.get(object);
 	}
 }
