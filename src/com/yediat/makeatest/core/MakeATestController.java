@@ -7,9 +7,10 @@ import java.util.Map;
 
 import net.sf.cglib.proxy.MethodProxy;
 
-import com.yediat.makeatest.core.container.MetadataReader;
 import com.yediat.makeatest.core.container.AnnotationProperties;
+import com.yediat.makeatest.core.container.MetadataReader;
 import com.yediat.makeatest.core.metadata.processor.MetadataProcessor;
+import com.yediat.makeatest.core.metadata.reading.MakeATestScopeEnum;
 
 /**
  * Class princiapl de entrada no core.
@@ -28,12 +29,12 @@ public class MakeATestController {
 	}	
 	
 	private void execute() throws MakeATestException {
-		Map<Object,List<AnnotationProperties>> properties = this.metadataReader.getContainer().getProperties();
+		Map<Object,List<AnnotationProperties>> properties = this.metadataReader.getContainer().getProperties(MakeATestScopeEnum.LOAD);
 		
 		Iterator<Object> iterator = properties.keySet().iterator();
 		while(iterator.hasNext()){
 			Object object = iterator.next();
-			List<AnnotationProperties> props = this.metadataReader.getContainer().getProperties(object);
+			List<AnnotationProperties> props = properties.get(object);
 			if(props != null) {
 				for (AnnotationProperties propertyDescriptor : props) {
 					MetadataProcessor metadataProcessor = propertyDescriptor.getProcessor(); 
@@ -87,21 +88,21 @@ public class MakeATestController {
 	
 
 	public void process(Method method, MakeATestEnum makeATestEnum) throws Throwable {
-		List<AnnotationProperties> props = this.metadataReader.getContainer().getProperties(method);
-
-		if(props != null) {
-			for (AnnotationProperties propertyDescriptor : props) {
-				MetadataProcessor metadataProcessor = propertyDescriptor.getProcessor(); 
-				if(propertyDescriptor.getType().equals(makeATestEnum)){
-					try {
-						metadataProcessor.process(this.instance);
-					} catch (Exception e) {
-						throw new MakeATestException("Exception in execute processor",e);
-					}
-					
-				}
-			}
-		}		
+//		List<AnnotationProperties> props = this.metadataReader.getContainer().getProperties(method);
+//
+//		if(props != null) {
+//			for (AnnotationProperties propertyDescriptor : props) {
+//				MetadataProcessor metadataProcessor = propertyDescriptor.getProcessor(); 
+//				if(propertyDescriptor.getType().equals(makeATestEnum)){
+//					try {
+//						metadataProcessor.process(this.instance);
+//					} catch (Exception e) {
+//						throw new MakeATestException("Exception in execute processor",e);
+//					}
+//					
+//				}
+//			}
+//		}		
 	}
 
 }
