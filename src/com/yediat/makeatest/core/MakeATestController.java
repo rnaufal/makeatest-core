@@ -1,5 +1,6 @@
 package com.yediat.makeatest.core;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.Iterator;
 import java.util.List;
@@ -11,6 +12,7 @@ import com.yediat.makeatest.core.container.AnnotationProperties;
 import com.yediat.makeatest.core.container.MetadataReader;
 import com.yediat.makeatest.core.metadata.processor.MetadataProcessor;
 import com.yediat.makeatest.core.metadata.reading.MakeATestExecutionEnum;
+import com.yediat.makeatest.core.metadata.reading.MakeATestReader;
 import com.yediat.makeatest.core.metadata.reading.MakeATestScopeEnum;
 
 /**
@@ -94,8 +96,31 @@ public class MakeATestController {
 		return invoked;
 	}
 	
+	/**
+	 * Método que é chamado pelo intercept do Proxy de cada método executado da instancia com proxy.
+	 * Esse método verifica se o método executado contêm uma anotação com MakeATestReader e delega o processamento para o método execute dessa classe.
+	 * Caso não seja apenas executo o invoke e retorna o objeto invocado.
+	 * 
+	 * @param instance
+	 * @param method
+	 * @param args
+	 * @param proxy
+	 * @return
+	 * @throws Throwable
+	 */
 	public Object intercept(Object instance, Method method, Object[] args, MethodProxy proxy) throws Throwable {
-		return this.execute(instance, method, args, proxy);
+		boolean methodExecute = false;
+		Annotation [] annotations = method.getAnnotations();
+		for (Annotation annotation : annotations) {
+			if(annotation.annotationType().isAnnotationPresent(MakeATestReader.class)){
+				methodExecute = true;
+			}
+		}
+		if(methodExecute){
+			return this.execute(instance, method, args, proxy);
+		} else {
+			return method.invoke(instance, args);
+		}
 	}
 	
 }
