@@ -60,7 +60,7 @@ public class MakeATestController {
 		}
 	}
 
-	public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
+	public Object intercept(Object instance, Method method, Object[] args, MethodProxy proxy) throws Throwable {
 //		if(this.makeATestController == null){
 //		this.makeATestController = new MakeATestController(this.klass);
 //	}
@@ -83,7 +83,7 @@ public class MakeATestController {
 //	}
 //	
 //	return objectForInvoke;
-		return method.invoke(obj, args);
+		return method.invoke(instance, args);
 	}
 	
 

@@ -28,7 +28,7 @@ public class MakeATestRunner extends BlockJUnit4ClassRunner {
 	@Override
 	protected Object createTest() throws Exception {
 		MakeATestController makeATestController = new MakeATestController(getTestClass().getOnlyConstructor().newInstance());
-		return makeATestController.getObjectInstance();
+		return makeATestController.getObjectInstanceProxy();
 	}
 
 }

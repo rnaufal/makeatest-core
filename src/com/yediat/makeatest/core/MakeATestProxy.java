@@ -15,6 +15,7 @@ import net.sf.cglib.proxy.MethodProxy;
  */
 public class MakeATestProxy implements MethodInterceptor {
 
+	private Object instance;
 	private MakeATestController makeATestController;
 	
 	/**
@@ -22,8 +23,9 @@ public class MakeATestProxy implements MethodInterceptor {
 	 * 
 	 * @param object
 	 */
-	private MakeATestProxy(Object object, MakeATestController makeATestController) throws MakeATestInitializationException {
+	private MakeATestProxy(Object instance, MakeATestController makeATestController) throws MakeATestInitializationException {
 		this.makeATestController = makeATestController;
+		this.instance = instance;
 	}
 
 	/**
@@ -37,8 +39,7 @@ public class MakeATestProxy implements MethodInterceptor {
 	 */
 	@Override
 	public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
-		//return this.makeATestController.intercept(obj, method, args, proxy);
-		return method.invoke(obj, args);
+		return this.makeATestController.intercept(this.instance, method, args, proxy);
 	}
 
 	@SuppressWarnings("unchecked")
