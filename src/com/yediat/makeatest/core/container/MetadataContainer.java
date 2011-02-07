@@ -34,6 +34,9 @@ public class MetadataContainer {
 	}
 	
 	public Map<Object, List<AnnotationProperties>> getProperties(MakeATestScopeEnum makeATestScopeEnum) {
+		if(!this.container.containsKey(makeATestScopeEnum)){
+			return null;
+		}
 		return this.container.get(makeATestScopeEnum);
 	}
 	

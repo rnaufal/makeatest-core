@@ -24,7 +24,7 @@ public class RequiredFileAnnotationProcessor implements MetadataProcessor {
 	}
 
 	@Override
-	public void process() throws MakeATestAssertionError {
+	public void process(Object instance) throws MakeATestAssertionError {
 		File f = new File(this.filePath);
 		try {
 			f.createNewFile();

@@ -10,6 +10,7 @@ import net.sf.cglib.proxy.MethodProxy;
 import com.yediat.makeatest.core.container.AnnotationProperties;
 import com.yediat.makeatest.core.container.MetadataReader;
 import com.yediat.makeatest.core.metadata.processor.MetadataProcessor;
+import com.yediat.makeatest.core.metadata.reading.MakeATestExecutionEnum;
 import com.yediat.makeatest.core.metadata.reading.MakeATestScopeEnum;
 
 /**
@@ -25,28 +26,8 @@ public class MakeATestController {
 	public MakeATestController(Object instance) throws MakeATestInitializationException, MakeATestException {
 		this.instance = instance;
 		this.metadataReader = new MetadataReader(this.instance.getClass());
-		this.execute();
+		this.load();
 	}	
-	
-	private void execute() throws MakeATestException {
-		Map<Object,List<AnnotationProperties>> properties = this.metadataReader.getContainer().getProperties(MakeATestScopeEnum.LOAD);
-		
-		Iterator<Object> iterator = properties.keySet().iterator();
-		while(iterator.hasNext()){
-			Object object = iterator.next();
-			List<AnnotationProperties> props = properties.get(object);
-			if(props != null) {
-				for (AnnotationProperties propertyDescriptor : props) {
-					MetadataProcessor metadataProcessor = propertyDescriptor.getProcessor(); 
-					try {
-						metadataProcessor.process(this.instance);
-					} catch (Exception e) {
-						throw new MakeATestException("Exception in execute processor",e);
-					}
-				}
-			}		
-		}		
-	}
 
 	public Object getObjectInstance() {
 		return this.instance;
@@ -60,49 +41,61 @@ public class MakeATestController {
 		}
 	}
 
-	public Object intercept(Object instance, Method method, Object[] args, MethodProxy proxy) throws Throwable {
-//		if(this.makeATestController == null){
-//		this.makeATestController = new MakeATestController(this.klass);
-//	}
-//	
-//	Object objectForInvoke = null;
-//	
-//	if(this.makeATestController.contains(method)){
-//		this.makeATestController.process(method, MakeATestEnum.PROCESS_BEFORE);
-//		this.makeATestController.process(method, MakeATestEnum.PROCESS_BOTH);//TODO Refatorar para tentar usar o AFTER e BEFORE apenas(remover BOTH) 
-//		try {
-//			objectForInvoke =  method.invoke(this.object, args);
-//		} catch (Exception e) {
-//			throw e.getCause();
-//		}
-//		this.makeATestController.process(method, MakeATestEnum.PROCESS_BOTH);
-//		this.makeATestController.process(method, MakeATestEnum.PROCESS_AFTER);
-//		return objectForInvoke;			
-//	} else {
-//		objectForInvoke =  method.invoke(this.object, args);
-//	}
-//	
-//	return objectForInvoke;
-		return method.invoke(instance, args);
+	private void load() throws MakeATestException {
+		Map<Object,List<AnnotationProperties>> properties = this.metadataReader.getContainer().getProperties(MakeATestScopeEnum.LOAD);
+		if(properties != null){
+			Iterator<Object> iterator = properties.keySet().iterator();
+			while(iterator.hasNext()){
+				Object object = iterator.next();
+				List<AnnotationProperties> props = properties.get(object);
+				if(props != null) {
+					for (AnnotationProperties propertyDescriptor : props) {
+						MetadataProcessor metadataProcessor = propertyDescriptor.getProcessor(); 
+						try {
+							metadataProcessor.process(this.instance);
+						} catch (Exception e) {
+							throw new MakeATestException("Exception in execute processor",e);
+						}
+					}
+				}		
+			}			
+		}
+	}
+
+	private Object execute(Object instance, Method method, Object[] args, MethodProxy proxy) throws Throwable {
+		Object invoked = null;
+		Map<Object,List<AnnotationProperties>> properties = this.metadataReader.getContainer().getProperties(MakeATestScopeEnum.EXECUTE);
+		if(properties != null && properties.containsKey(method)){
+			List<AnnotationProperties> props = properties.get(method);
+			if(props != null) {
+				for (AnnotationProperties annotationProperties : props) {
+					MetadataProcessor metadataProcessor = annotationProperties.getProcessor(); 
+					
+					if(annotationProperties.getExecution().equals(MakeATestExecutionEnum.BEFORE)) {
+						try {
+							metadataProcessor.process(this.instance);
+							invoked = method.invoke(instance, args);
+						} catch (Exception e) {
+							throw new MakeATestException("Exception in execute processor",e);
+						}
+					} else if(annotationProperties.getExecution().equals(MakeATestExecutionEnum.AFTER)) {
+						try {
+							invoked = method.invoke(instance, args);
+							metadataProcessor.process(this.instance);
+						} catch (Exception e) {
+							throw new MakeATestException("Exception in execute processor",e);
+						}						
+					}
+					
+					
+				}
+			}			
+		}
+		return invoked;
 	}
 	
-
-	public void process(Method method, MakeATestEnum makeATestEnum) throws Throwable {
-//		List<AnnotationProperties> props = this.metadataReader.getContainer().getProperties(method);
-//
-//		if(props != null) {
-//			for (AnnotationProperties propertyDescriptor : props) {
-//				MetadataProcessor metadataProcessor = propertyDescriptor.getProcessor(); 
-//				if(propertyDescriptor.getType().equals(makeATestEnum)){
-//					try {
-//						metadataProcessor.process(this.instance);
-//					} catch (Exception e) {
-//						throw new MakeATestException("Exception in execute processor",e);
-//					}
-//					
-//				}
-//			}
-//		}		
+	public Object intercept(Object instance, Method method, Object[] args, MethodProxy proxy) throws Throwable {
+		return this.execute(instance, method, args, proxy);
 	}
-
+	
 }

@@ -4,14 +4,11 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-import com.yediat.makeatest.core.MakeATestEnum;
 import com.yediat.makeatest.core.MakeATestInitializationException;
-import com.yediat.makeatest.core.metadata.processor.After;
-import com.yediat.makeatest.core.metadata.processor.Before;
+import com.yediat.makeatest.core.metadata.reading.MakeATestExecution;
 import com.yediat.makeatest.core.metadata.reading.MakeATestReader;
 import com.yediat.makeatest.core.metadata.reading.MakeATestReaderInterface;
 import com.yediat.makeatest.core.metadata.reading.MakeATestScope;
-import com.yediat.makeatest.core.metadata.reading.MakeATestScopeEnum;
 
 //TODO Verificar se essa classe precisa ser abstrata ou não. Se formos considerar a leitura de mais de uma 
 // fonte de dados é interessante refatorá-la
@@ -48,19 +45,30 @@ public class MetadataReader {
 			for (Annotation annotation : annotations) {
 				if(annotation.annotationType().isAnnotationPresent(MakeATestReader.class)){
 					
+					MakeATestExecution makeATestExecution = null;
+					if(annotation.annotationType().isAnnotationPresent(MakeATestExecution.class)) {
+						makeATestExecution = (MakeATestExecution) annotation.annotationType().getAnnotation(MakeATestExecution.class);
+					} else {
+						throw new MakeATestInitializationException("The annotation \""+annotation.annotationType().getCanonicalName()+"\" not contain the MakeATestExecution annotation.");
+					}
+					
 					MakeATestScope makeATestScope = null;
 					if(annotation.annotationType().isAnnotationPresent(MakeATestScope.class)) {
 						makeATestScope = (MakeATestScope) annotation.annotationType().getAnnotation(MakeATestScope.class);
+					} else {
+						throw new MakeATestInitializationException("The annotation \""+annotation.annotationType().getCanonicalName()+"\" not contain the MakeATestScope annotation.");
 					}
 					
 					MakeATestReader reader = (MakeATestReader) annotation.annotationType().getAnnotation(MakeATestReader.class);
 					Class<? extends MakeATestReaderInterface> readerClass = reader.value();
 					try {
 						MakeATestReaderInterface annotationReader = readerClass.newInstance();
+						
 						AnnotationProperties annotationProperties = new AnnotationProperties();
 						annotationProperties.setAnnotated(field);
+						annotationProperties.setExecution(makeATestExecution.value());
+						
 						annotationReader.readAnnotation(annotation, annotationProperties);
-						setTypeProcessor(annotation, annotationProperties);
 						this.container.put(makeATestScope.value(), field, annotationProperties);
 					} catch (Exception e) {
 						MakeATestInitializationException makeATestException = new MakeATestInitializationException("Connot initialize reader: " + readerClass.getName(), e);
@@ -79,14 +87,32 @@ public class MetadataReader {
 			Annotation[] annotations = method.getAnnotations();
 			for (Annotation annotation : annotations) {
 				if(annotation.annotationType().isAnnotationPresent(MakeATestReader.class)){
+					
+					MakeATestExecution makeATestExecution = null;
+					if(annotation.annotationType().isAnnotationPresent(MakeATestExecution.class)) {
+						makeATestExecution = (MakeATestExecution) annotation.annotationType().getAnnotation(MakeATestExecution.class);
+					} else {
+						throw new MakeATestInitializationException("The annotation \""+annotation.annotationType().getCanonicalName()+"\" not contain the MakeATestExecution annotation.");
+					}
+					
+					MakeATestScope makeATestScope = null;
+					if(annotation.annotationType().isAnnotationPresent(MakeATestScope.class)) {
+						makeATestScope = (MakeATestScope) annotation.annotationType().getAnnotation(MakeATestScope.class);
+					} else {
+						throw new MakeATestInitializationException("The annotation \""+annotation.annotationType().getCanonicalName()+"\" not contain the MakeATestScope annotation.");
+					}
+					
 					MakeATestReader reader = (MakeATestReader) annotation.annotationType().getAnnotation(MakeATestReader.class);
 					Class<? extends MakeATestReaderInterface> readerClass = reader.value();
 					try {
 						MakeATestReaderInterface annotationReader = readerClass.newInstance();
-						AnnotationProperties propertyDescriptor = new AnnotationProperties();
-						annotationReader.readAnnotation(annotation, propertyDescriptor);
-						setTypeProcessor(annotation, propertyDescriptor);
-						this.container.put(MakeATestScopeEnum.EXECUTE, method, propertyDescriptor);
+						
+						AnnotationProperties annotationProperties = new AnnotationProperties();
+						annotationProperties.setExecution(makeATestExecution.value());
+						annotationProperties.setAnnotated(method);
+						
+						annotationReader.readAnnotation(annotation, annotationProperties);
+						this.container.put(makeATestScope.value(), method, annotationProperties);
 					} catch (Exception e) {
 						MakeATestInitializationException makeATestException = new MakeATestInitializationException("Connot initialize reader: " + readerClass.getName(), e);
 						makeATestException.setStackTrace(e.getStackTrace());
@@ -96,20 +122,4 @@ public class MetadataReader {
 			}
 		}		
 	}
-	
-	
-	private void setTypeProcessor(Annotation annotation, AnnotationProperties propertyDescriptor) {
-		if(annotation.annotationType().isAnnotationPresent(After.class)){
-			if(annotation.annotationType().isAnnotationPresent(Before.class)) {
-				propertyDescriptor.setType(MakeATestEnum.PROCESS_BOTH);
-			} else {
-				propertyDescriptor.setType(MakeATestEnum.PROCESS_AFTER);
-			}
-		} else if(annotation.annotationType().isAnnotationPresent(Before.class)) {
-			propertyDescriptor.setType(MakeATestEnum.PROCESS_BEFORE);
-		} else {
-			propertyDescriptor.setType(MakeATestEnum.PROCESS_AFTER);
-		}
-	}
-
 }

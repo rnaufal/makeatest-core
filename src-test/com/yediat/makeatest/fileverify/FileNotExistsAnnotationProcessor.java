@@ -14,7 +14,7 @@ public class FileNotExistsAnnotationProcessor implements MetadataProcessor {
 	}
 	
 	@Override
-	public void process() throws MakeATestAssertionError {
+	public void process(Object instance) throws MakeATestAssertionError {
 		File f = new File(filePath);
 		if (f.exists()) {
 			throw new MakeATestAssertionError("File exists in " + filePath);

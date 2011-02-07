@@ -16,7 +16,7 @@ public class FileExistsExceptionAnnotationProcessor implements MetadataProcessor
 	}
 
 	@Override
-	public void process() throws MakeATestAssertionError {
+	public void process(Object instance) throws MakeATestAssertionError {
 		if(this.failType.equals("processor")){
 			new Integer("t");
 		}

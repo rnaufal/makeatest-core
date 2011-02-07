@@ -9,6 +9,7 @@ import org.junit.runners.Suite;
 						FileExistsExceptionInProcessorTest.class,
 						FileExistsExceptionInReaderTest.class,
 						FileNotExistsAnnotationTest.class,
-						RequiredFileAnnotationTest.class
+						RequiredFileAnnotationTest.class,
+						ObjectLoadTest.class
 })
 public class ExecuteAllTests {}
