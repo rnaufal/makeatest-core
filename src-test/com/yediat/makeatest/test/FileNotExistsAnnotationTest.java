@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.yediat.makeatest.fileverify.FileNotExistsAnnotation;
+import com.yediat.makeatest.annotations.fileverify.FileNotExistsAnnotation;
 import com.yediat.makeatest.junit.MakeATestRunner;
 
 @RunWith(MakeATestRunner.class)

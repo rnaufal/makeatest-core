@@ -1,4 +1,4 @@
-package com.yediat.makeatest.fileverify;
+package com.yediat.makeatest.annotations.fileverify;
 
 import com.yediat.makeatest.core.container.AnnotationProperties;
 import com.yediat.makeatest.core.metadata.reading.MakeATestReaderInterface;

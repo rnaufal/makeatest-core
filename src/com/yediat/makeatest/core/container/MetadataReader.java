@@ -38,9 +38,26 @@ public class MetadataReader {
 		readMethods(klass);
 	}
 	
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void readClass(Class<?> klass) throws MakeATestInitializationException {
-		Annotation [] annotations = klass.getAnnotations();
+		this.processAnnotations(klass.getAnnotations(), klass);
+	}
+	
+	private void readFields(Class<?> klass) throws MakeATestInitializationException {
+		Field [] fields = klass.getDeclaredFields();
+		for (Field field : fields) {
+			this.processAnnotations(field.getAnnotations(), field);
+		}
+	}
+	
+	private void readMethods(Class<?> klass) throws MakeATestInitializationException {
+		Method [] methods = klass.getMethods();
+		for (Method method : methods) {
+			this.processAnnotations(method.getAnnotations(), method);
+		}		
+	}
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private void processAnnotations(Annotation[] annotations, Object key) throws MakeATestInitializationException {
 		for (Annotation annotation : annotations) {
 			if(annotation.annotationType().isAnnotationPresent(MakeATestReader.class)){
 				
@@ -64,101 +81,15 @@ public class MetadataReader {
 					MakeATestReaderInterface annotationReader = readerClass.newInstance();
 					
 					AnnotationProperties annotationProperties = new AnnotationProperties();
-					annotationProperties.setAnnotated(klass);
 					annotationProperties.setExecution(makeATestExecution.value());
+					annotationProperties.setAnnotated(key);
 					
 					annotationReader.readAnnotation(annotation, annotationProperties);
-					this.container.put(makeATestScope.value(), klass, annotationProperties);
+					this.container.put(makeATestScope.value(), key, annotationProperties);
 				} catch (Exception e) {
 					MakeATestInitializationException makeATestException = new MakeATestInitializationException("Connot initialize reader: " + readerClass.getName(), e);
 					makeATestException.setStackTrace(e.getStackTrace());
 					throw makeATestException;
-				}
-			}
-		}
-	}
-	
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private void readFields(Class<?> klass) throws MakeATestInitializationException {
-		Field [] fields = klass.getDeclaredFields();
-		for (Field field : fields) {
-			Annotation [] annotations = field.getAnnotations();
-			for (Annotation annotation : annotations) {
-				if(annotation.annotationType().isAnnotationPresent(MakeATestReader.class)){
-					
-					MakeATestExecution makeATestExecution = null;
-					if(annotation.annotationType().isAnnotationPresent(MakeATestExecution.class)) {
-						makeATestExecution = (MakeATestExecution) annotation.annotationType().getAnnotation(MakeATestExecution.class);
-					} else {
-						throw new MakeATestInitializationException("The annotation \""+annotation.annotationType().getCanonicalName()+"\" not contain the MakeATestExecution annotation.");
-					}
-					
-					MakeATestScope makeATestScope = null;
-					if(annotation.annotationType().isAnnotationPresent(MakeATestScope.class)) {
-						makeATestScope = (MakeATestScope) annotation.annotationType().getAnnotation(MakeATestScope.class);
-					} else {
-						throw new MakeATestInitializationException("The annotation \""+annotation.annotationType().getCanonicalName()+"\" not contain the MakeATestScope annotation.");
-					}
-					
-					MakeATestReader reader = (MakeATestReader) annotation.annotationType().getAnnotation(MakeATestReader.class);
-					Class<? extends MakeATestReaderInterface> readerClass = reader.value();
-					try {
-						MakeATestReaderInterface annotationReader = readerClass.newInstance();
-						
-						AnnotationProperties annotationProperties = new AnnotationProperties();
-						annotationProperties.setAnnotated(field);
-						annotationProperties.setExecution(makeATestExecution.value());
-						
-						annotationReader.readAnnotation(annotation, annotationProperties);
-						this.container.put(makeATestScope.value(), field, annotationProperties);
-					} catch (Exception e) {
-						MakeATestInitializationException makeATestException = new MakeATestInitializationException("Connot initialize reader: " + readerClass.getName(), e);
-						makeATestException.setStackTrace(e.getStackTrace());
-						throw makeATestException;
-					}
-				}
-			}
-		}
-	}
-	
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private void readMethods(Class<?> klass) throws MakeATestInitializationException {
-		Method [] methods = klass.getMethods();
-		for (Method method : methods) {
-			Annotation[] annotations = method.getAnnotations();
-			for (Annotation annotation : annotations) {
-				if(annotation.annotationType().isAnnotationPresent(MakeATestReader.class)){
-					
-					MakeATestExecution makeATestExecution = null;
-					if(annotation.annotationType().isAnnotationPresent(MakeATestExecution.class)) {
-						makeATestExecution = (MakeATestExecution) annotation.annotationType().getAnnotation(MakeATestExecution.class);
-					} else {
-						throw new MakeATestInitializationException("The annotation \""+annotation.annotationType().getCanonicalName()+"\" not contain the MakeATestExecution annotation.");
-					}
-					
-					MakeATestScope makeATestScope = null;
-					if(annotation.annotationType().isAnnotationPresent(MakeATestScope.class)) {
-						makeATestScope = (MakeATestScope) annotation.annotationType().getAnnotation(MakeATestScope.class);
-					} else {
-						throw new MakeATestInitializationException("The annotation \""+annotation.annotationType().getCanonicalName()+"\" not contain the MakeATestScope annotation.");
-					}
-					
-					MakeATestReader reader = (MakeATestReader) annotation.annotationType().getAnnotation(MakeATestReader.class);
-					Class<? extends MakeATestReaderInterface> readerClass = reader.value();
-					try {
-						MakeATestReaderInterface annotationReader = readerClass.newInstance();
-						
-						AnnotationProperties annotationProperties = new AnnotationProperties();
-						annotationProperties.setExecution(makeATestExecution.value());
-						annotationProperties.setAnnotated(method);
-						
-						annotationReader.readAnnotation(annotation, annotationProperties);
-						this.container.put(makeATestScope.value(), method, annotationProperties);
-					} catch (Exception e) {
-						MakeATestInitializationException makeATestException = new MakeATestInitializationException("Connot initialize reader: " + readerClass.getName(), e);
-						makeATestException.setStackTrace(e.getStackTrace());
-						throw makeATestException;
-					}
 				}
 			}
 		}		

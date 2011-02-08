@@ -1,6 +1,7 @@
-package com.yediat.makeatest.systempropertyload;
+package com.yediat.makeatest.annotations.testexception;
 
-import java.lang.annotation.ElementType;
+import static java.lang.annotation.ElementType.METHOD;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
@@ -11,12 +12,18 @@ import com.yediat.makeatest.core.metadata.reading.MakeATestReader;
 import com.yediat.makeatest.core.metadata.reading.MakeATestScope;
 import com.yediat.makeatest.core.metadata.reading.MakeATestScopeEnum;
 
-@Target({ElementType.TYPE})
+/**
+ * Anotação para o Make a Test verificar se o arquivo existe no local indicado
+ * @author Marcus Floriano
+ *
+ */
+
+@Target({METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-@MakeATestReader(SystemPropertyLoadReader.class)
-@MakeATestExecution(MakeATestExecutionEnum.BEFORE)
-@MakeATestScope(MakeATestScopeEnum.LOAD)
-public @interface SystemPropertyLoad {
-	String key();
-	String value();
+@MakeATestReader(FileExistsExceptionAnnotationReader.class)
+@MakeATestExecution(MakeATestExecutionEnum.AFTER)
+@MakeATestScope(MakeATestScopeEnum.EXECUTE)
+public @interface FileExistsExceptionAnnotation {
+	String filePath();
+	String failType();
 }

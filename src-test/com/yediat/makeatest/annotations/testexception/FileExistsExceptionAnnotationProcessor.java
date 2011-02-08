@@ -1,4 +1,4 @@
-package com.yediat.makeatest.fileverify;
+package com.yediat.makeatest.annotations.testexception;
 
 import java.io.File;
 

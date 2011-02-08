@@ -5,7 +5,7 @@ import junit.framework.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.yediat.makeatest.fileverify.ObjectLoad;
+import com.yediat.makeatest.annotations.objectload.ObjectLoad;
 import com.yediat.makeatest.junit.MakeATestRunner;
 
 

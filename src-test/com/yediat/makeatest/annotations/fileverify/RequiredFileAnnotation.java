@@ -1,6 +1,7 @@
-package com.yediat.makeatest.fileverify;
+package com.yediat.makeatest.annotations.fileverify;
 
-import java.lang.annotation.ElementType;
+import static java.lang.annotation.ElementType.METHOD;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
@@ -11,11 +12,18 @@ import com.yediat.makeatest.core.metadata.reading.MakeATestReader;
 import com.yediat.makeatest.core.metadata.reading.MakeATestScope;
 import com.yediat.makeatest.core.metadata.reading.MakeATestScopeEnum;
 
-@Target({ElementType.FIELD})
+/**
+ * Anotação para o Make a Test que indica o path de um arquivo requerido
+ * que deve existir nesse local ANTES da execução do teste.
+ * @author Debora Chama
+ *
+ */
+
+@Target({METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-@MakeATestReader(ObjectLoadReader.class)
-@MakeATestScope(MakeATestScopeEnum.LOAD)
+@MakeATestReader(RequiredFileAnnotationReader.class)
+@MakeATestScope(MakeATestScopeEnum.EXECUTE)
 @MakeATestExecution(MakeATestExecutionEnum.BEFORE)
-public @interface ObjectLoad {
-	String value();
+public @interface RequiredFileAnnotation {
+	String filePath();
 }

@@ -2,7 +2,7 @@ package com.yediat.makeatest;
 
 import java.io.File;
 
-import com.yediat.makeatest.fileverify.FileExistsExceptionAnnotation;
+import com.yediat.makeatest.annotations.testexception.FileExistsExceptionAnnotation;
 
 public class ExceptionInReader {
 	

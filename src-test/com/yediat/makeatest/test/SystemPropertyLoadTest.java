@@ -6,8 +6,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import com.yediat.makeatest.annotations.systemproperty.SystemPropertyLoad;
 import com.yediat.makeatest.junit.MakeATestRunner;
-import com.yediat.makeatest.systempropertyload.SystemPropertyLoad;
 
 @RunWith(MakeATestRunner.class)
 @SystemPropertyLoad(key="file.props",value="./system.properties")

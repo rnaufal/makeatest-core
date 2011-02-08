@@ -1,7 +1,6 @@
-package com.yediat.makeatest.fileverify;
+package com.yediat.makeatest.annotations.systemproperty;
 
-import static java.lang.annotation.ElementType.METHOD;
-
+import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
@@ -12,17 +11,12 @@ import com.yediat.makeatest.core.metadata.reading.MakeATestReader;
 import com.yediat.makeatest.core.metadata.reading.MakeATestScope;
 import com.yediat.makeatest.core.metadata.reading.MakeATestScopeEnum;
 
-/**
- * Anotação para o Make a Test verificar se o arquivo existe no local indicado
- * @author Marcus Floriano
- *
- */
-
-@Target({METHOD})
+@Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-@MakeATestReader(FileExistsAnnotationReader.class)
-@MakeATestExecution(MakeATestExecutionEnum.AFTER)
-@MakeATestScope(MakeATestScopeEnum.EXECUTE)
-public @interface FileExistsAnnotation {
-	String filePath();
+@MakeATestReader(SystemPropertyLoadReader.class)
+@MakeATestExecution(MakeATestExecutionEnum.BEFORE)
+@MakeATestScope(MakeATestScopeEnum.LOAD)
+public @interface SystemPropertyLoad {
+	String key();
+	String value();
 }

@@ -11,6 +11,7 @@ import org.junit.runners.Suite;
 						FileNotExistsAnnotationTest.class,
 						RequiredFileAnnotationTest.class,
 						ObjectLoadTest.class,
-						SystemPropertyLoadTest.class
+						SystemPropertyLoadTest.class,
+						WithoutProcessorTest.class
 })
 public class ExecuteAllTests {}

@@ -1,4 +1,4 @@
-package com.yediat.makeatest.systempropertyload;
+package com.yediat.makeatest.annotations.systemproperty;
 
 import com.yediat.makeatest.core.container.AnnotationProperties;
 import com.yediat.makeatest.core.metadata.reading.MakeATestReaderInterface;

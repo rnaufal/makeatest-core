@@ -1,4 +1,4 @@
-package com.yediat.makeatest.systempropertyload;
+package com.yediat.makeatest.annotations.systemproperty;
 
 import com.yediat.makeatest.core.MakeATestAssertionError;
 import com.yediat.makeatest.core.metadata.processor.MetadataProcessor;

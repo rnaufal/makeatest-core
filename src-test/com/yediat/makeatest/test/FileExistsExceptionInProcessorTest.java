@@ -5,8 +5,8 @@ import java.io.File;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import com.yediat.makeatest.annotations.testexception.FileExistsExceptionAnnotation;
 import com.yediat.makeatest.core.MakeATestException;
-import com.yediat.makeatest.fileverify.FileExistsExceptionAnnotation;
 import com.yediat.makeatest.junit.MakeATestRunner;
 
 @RunWith(MakeATestRunner.class)
