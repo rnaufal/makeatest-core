@@ -1,6 +1,7 @@
 package com.yediat.makeatest.core;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Iterator;
 import java.util.List;
@@ -64,7 +65,7 @@ public class MakeATestController {
 		}
 	}
 
-	private Object execute(Object instance, Method method, Object[] args, MethodProxy proxy) throws Throwable {
+	private Object execute(Object object, Method method, Object[] args, MethodProxy proxy) throws Throwable {
 		Object invoked = null;
 		Map<Object,List<AnnotationProperties>> properties = this.metadataReader.getContainer().getProperties(MakeATestScopeEnum.EXECUTE);
 		if(properties != null && properties.containsKey(method)){
@@ -76,21 +77,30 @@ public class MakeATestController {
 					if(annotationProperties.getExecution().equals(MakeATestExecutionEnum.BEFORE)) {
 						try {
 							metadataProcessor.process(this.instance);
-							invoked = method.invoke(instance, args);
+							invoked = method.invoke(object, args);
+						} catch (InvocationTargetException e) {
+							throw new MakeATestAssertionError(e.getCause());
 						} catch (Exception e) {
 							throw new MakeATestException("Exception in execute processor",e);
 						}
 					} else if(annotationProperties.getExecution().equals(MakeATestExecutionEnum.AFTER)) {
 						try {
-							invoked = method.invoke(instance, args);
+							invoked = method.invoke(object, args);
 							metadataProcessor.process(this.instance);
+						} catch (InvocationTargetException e) {
+							throw new MakeATestAssertionError(e.getCause());
 						} catch (Exception e) {
 							throw new MakeATestException("Exception in execute processor",e);
 						}						
 					}
-					
-					
 				}
+			}			
+		}
+		if(invoked == null){
+			try {
+				invoked = method.invoke(object, args);
+			} catch (InvocationTargetException e) {
+				throw new MakeATestAssertionError(e.getCause());
 			}			
 		}
 		return invoked;
@@ -119,7 +129,11 @@ public class MakeATestController {
 		if(methodExecute){
 			return this.execute(instance, method, args, proxy);
 		} else {
-			return method.invoke(instance, args);
+			try {
+				return method.invoke(instance, args);
+			} catch (InvocationTargetException e) {
+				throw new MakeATestAssertionError(e.getCause());
+			}
 		}
 	}
 	

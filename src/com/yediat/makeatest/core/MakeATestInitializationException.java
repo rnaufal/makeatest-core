@@ -9,10 +9,6 @@ public class MakeATestInitializationException extends Exception {
 		super(message);
 	}
 	
-	public MakeATestInitializationException(String message, Throwable throwable) {
-		super(message, throwable);
-	}
-	
 	public MakeATestInitializationException(String message, Exception e) {
 		super(message, e);
 	}
