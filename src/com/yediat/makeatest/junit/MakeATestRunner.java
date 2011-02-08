@@ -4,6 +4,7 @@ import org.junit.runners.BlockJUnit4ClassRunner;
 import org.junit.runners.model.InitializationError;
 
 import com.yediat.makeatest.core.MakeATestController;
+import com.yediat.makeatest.core.MakeATestInitializationException;
 
 
 /**
@@ -11,14 +12,22 @@ import com.yediat.makeatest.core.MakeATestController;
  */
 public class MakeATestRunner extends BlockJUnit4ClassRunner {
 	
+	private MakeATestController makeATestController;
+	
 	/**
 	 * Contrutor que recebe uma classe e faz uma chamada para o contrutor do BlockJUnit4ClassRunner
 	 * 
 	 * @param klass
 	 * @throws InitializationError
+	 * @throws MakeATestInitializationException 
 	 */
-	public MakeATestRunner(Class<?> klass) throws InitializationError {
+	public MakeATestRunner(Class<?> klass) throws InitializationError, MakeATestInitializationException {
 		super(klass);
+		try {
+			this.makeATestController = new MakeATestController(getTestClass().getOnlyConstructor().newInstance());
+		} catch (Exception e) {
+			throw new MakeATestInitializationException(e.getMessage(),e);
+		}
 	}
 	
 	/**
@@ -27,7 +36,6 @@ public class MakeATestRunner extends BlockJUnit4ClassRunner {
 	 */
 	@Override
 	protected Object createTest() throws Exception {
-		MakeATestController makeATestController = new MakeATestController(getTestClass().getOnlyConstructor().newInstance());
 		return makeATestController.getObjectInstanceProxy();
 	}
 

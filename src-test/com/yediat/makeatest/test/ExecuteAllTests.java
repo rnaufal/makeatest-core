@@ -10,6 +10,7 @@ import org.junit.runners.Suite;
 						FileExistsExceptionInReaderTest.class,
 						FileNotExistsAnnotationTest.class,
 						RequiredFileAnnotationTest.class,
-						ObjectLoadTest.class
+						ObjectLoadTest.class,
+						SystemPropertyLoadTest.class
 })
 public class ExecuteAllTests {}
