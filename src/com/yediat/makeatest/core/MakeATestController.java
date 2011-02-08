@@ -79,7 +79,7 @@ public class MakeATestController {
 							metadataProcessor.process(this.instance);
 							invoked = method.invoke(object, args);
 						} catch (InvocationTargetException e) {
-							throw new MakeATestAssertionError(e.getCause());
+							throw e.getCause();
 						} catch (Exception e) {
 							throw new MakeATestException("Exception in execute processor",e);
 						}
@@ -88,7 +88,7 @@ public class MakeATestController {
 							invoked = method.invoke(object, args);
 							metadataProcessor.process(this.instance);
 						} catch (InvocationTargetException e) {
-							throw new MakeATestAssertionError(e.getCause());
+							throw e.getCause();
 						} catch (Exception e) {
 							throw new MakeATestException("Exception in execute processor",e);
 						}						
@@ -100,7 +100,7 @@ public class MakeATestController {
 			try {
 				invoked = method.invoke(object, args);
 			} catch (InvocationTargetException e) {
-				throw new MakeATestAssertionError(e.getCause());
+				throw e.getCause();
 			}			
 		}
 		return invoked;
@@ -132,7 +132,7 @@ public class MakeATestController {
 			try {
 				return method.invoke(instance, args);
 			} catch (InvocationTargetException e) {
-				throw new MakeATestAssertionError(e.getCause());
+				throw e.getCause();
 			}
 		}
 	}

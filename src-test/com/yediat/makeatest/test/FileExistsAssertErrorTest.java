@@ -34,7 +34,7 @@ public class FileExistsAssertErrorTest {
 		File file = new File(FILE_EXISTS_ANNOTATION);
 	}
 	
-	@Test(expected=MakeATestAssertionError.class)
+	@Test(expected=AssertionError.class)
 	@SystemPropertyLoad(key="key1",value="value1")
 	public void shouldExpectMakeATestAssertionError() {
 		assertEquals("value1", System.getProperty("key2"));
