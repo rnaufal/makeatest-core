@@ -2,7 +2,7 @@ package com.yediat.makeatest.test;
 
 import org.junit.Test;
 
-import com.yediat.makeatest.ExceptionInReader;
+import com.yediat.makeatest.annotations.testexception.ExceptionInReader;
 import com.yediat.makeatest.core.MakeATestController;
 import com.yediat.makeatest.core.MakeATestException;
 import com.yediat.makeatest.core.MakeATestInitializationException;

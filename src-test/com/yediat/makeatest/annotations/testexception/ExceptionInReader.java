@@ -1,8 +1,7 @@
-package com.yediat.makeatest;
+package com.yediat.makeatest.annotations.testexception;
 
 import java.io.File;
 
-import com.yediat.makeatest.annotations.testexception.FileExistsExceptionAnnotation;
 
 public class ExceptionInReader {
 	

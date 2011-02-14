@@ -2,7 +2,7 @@ package com.yediat.makeatest.core.container;
 
 import com.yediat.makeatest.core.MakeATestAssertionError;
 import com.yediat.makeatest.core.metadata.processor.MetadataProcessor;
-import com.yediat.makeatest.core.metadata.reading.MakeATestExecutionEnum;
+import com.yediat.makeatest.core.metadata.reading.MakeATestActionEnum;
 
 /**
  * Utilizado para armazenas a anotação que foi recuperada com o método a ser
@@ -14,7 +14,7 @@ import com.yediat.makeatest.core.metadata.reading.MakeATestExecutionEnum;
 public class AnnotationProperties {
 
 	private MetadataProcessor processor;
-	private MakeATestExecutionEnum execution;
+	private MakeATestActionEnum [] actions;
 	private Object annotated;
 
 	public Object getAnnotated() {
@@ -41,12 +41,12 @@ public class AnnotationProperties {
 		this.processor = processor;
 	}
 
-	public MakeATestExecutionEnum getExecution() {
-		return execution;
+	public MakeATestActionEnum [] getActions() {
+		return actions;
 	}
 
-	public void setExecution(MakeATestExecutionEnum execution) {
-		this.execution = execution;
+	public void setActions(MakeATestActionEnum [] actions) {
+		this.actions = actions;
 	}
 
 }

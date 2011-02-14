@@ -3,6 +3,7 @@ package com.yediat.makeatest.core;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -12,7 +13,7 @@ import net.sf.cglib.proxy.MethodProxy;
 import com.yediat.makeatest.core.container.AnnotationProperties;
 import com.yediat.makeatest.core.container.MetadataReader;
 import com.yediat.makeatest.core.metadata.processor.MetadataProcessor;
-import com.yediat.makeatest.core.metadata.reading.MakeATestExecutionEnum;
+import com.yediat.makeatest.core.metadata.reading.MakeATestActionEnum;
 import com.yediat.makeatest.core.metadata.reading.MakeATestReader;
 import com.yediat.makeatest.core.metadata.reading.MakeATestScopeEnum;
 
@@ -66,6 +67,7 @@ public class MakeATestController {
 	}
 
 	private Object execute(Object object, Method method, Object[] args, MethodProxy proxy) throws Throwable {
+		boolean isExecuted = false;
 		Object invoked = null;
 		Map<Object,List<AnnotationProperties>> properties = this.metadataReader.getContainer().getProperties(MakeATestScopeEnum.EXECUTE);
 		if(properties != null && properties.containsKey(method)){
@@ -73,20 +75,38 @@ public class MakeATestController {
 			if(props != null) {
 				for (AnnotationProperties annotationProperties : props) {
 					MetadataProcessor metadataProcessor = annotationProperties.getProcessor(); 
+
+					HashSet<MakeATestActionEnum> enums = new HashSet<MakeATestActionEnum>();
+					for(MakeATestActionEnum makeATestActionEnum : annotationProperties.getActions()){
+						enums.add(makeATestActionEnum);
+					}
 					
-					if(annotationProperties.getExecution().equals(MakeATestExecutionEnum.BEFORE)) {
+					if(enums.contains(MakeATestActionEnum.BEFORE) && enums.contains(MakeATestActionEnum.AFTER)) {
 						try {
 							metadataProcessor.process(this.instance);
 							invoked = method.invoke(object, args);
+							metadataProcessor.process(this.instance);
+							isExecuted = true;
+						} catch (InvocationTargetException e) {
+							throw e.getCause();
+						} catch (Exception e) {
+							throw new MakeATestException("Exception in execute processor",e);
+						}						
+					} else if(enums.contains(MakeATestActionEnum.BEFORE)) {
+						try {
+							metadataProcessor.process(this.instance);
+							invoked = method.invoke(object, args);
+							isExecuted = true;
 						} catch (InvocationTargetException e) {
 							throw e.getCause();
 						} catch (Exception e) {
 							throw new MakeATestException("Exception in execute processor",e);
 						}
-					} else if(annotationProperties.getExecution().equals(MakeATestExecutionEnum.AFTER)) {
+					} else if(enums.contains(MakeATestActionEnum.AFTER)) {
 						try {
 							invoked = method.invoke(object, args);
 							metadataProcessor.process(this.instance);
+							isExecuted = true;
 						} catch (InvocationTargetException e) {
 							throw e.getCause();
 						} catch (Exception e) {
@@ -94,9 +114,12 @@ public class MakeATestController {
 						}						
 					}
 				}
-			}			
+			}
+			if(!isExecuted){
+				throw new MakeATestException("Verify the implementation of annotation, reader and processor.");
+			}
 		}
-		if(invoked == null){
+		if(!isExecuted){
 			try {
 				invoked = method.invoke(object, args);
 			} catch (InvocationTargetException e) {

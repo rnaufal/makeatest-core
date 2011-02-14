@@ -7,5 +7,9 @@ public class MakeATestException extends Exception {
 	public MakeATestException(String message, Exception e) {
 		super(message, e);
 	}
+	
+	public MakeATestException(String message) {
+		super(message);
+	}
 
 }

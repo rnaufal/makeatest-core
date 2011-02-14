@@ -18,4 +18,6 @@ import java.lang.annotation.Target;
 public @interface MakeATestReader {	
 	@SuppressWarnings("rawtypes")
 	Class<? extends MakeATestReaderInterface> value();
+	MakeATestActionEnum [] actions();
+	MakeATestScopeEnum scope();
 }

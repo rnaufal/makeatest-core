@@ -1,6 +1,6 @@
 package com.yediat.makeatest.core.metadata.reading;
 
-public enum MakeATestExecutionEnum {
+public enum MakeATestActionEnum {
 	BEFORE,
 	AFTER
 }

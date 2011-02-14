@@ -28,6 +28,7 @@ public class FileExistsAssertErrorTest {
 	}
 	
 	@Test(expected=MakeATestAssertionError.class)
+	//@Test
 	@FileExistsExceptionAnnotation(filePath=FILE_EXISTS_ANNOTATION,failType="none")
 	public void assertErrorInVerifyFileExists() {
 		@SuppressWarnings("unused")
