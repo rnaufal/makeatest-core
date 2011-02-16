@@ -1,0 +1,11 @@
+Make A Test
+Metadata-based Test Framework to Verify External Effects of the Target Classes
+
+Work with JUnit4 in Eclipse
+-------------------------------------------------
+
++ Instalation
+
+Add in classpath in eclipse project the jar ...
++ Example
+

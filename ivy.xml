@@ -28,5 +28,6 @@
 		<dependency org="junit" name="junit" rev="4.8.1"></dependency>
 		<dependency rev="2.2" name="cglib" org="cglib"></dependency>
 		<dependency org="org.mockito" name="mockito-all" rev="1.8.5"/>
+		<dependency org="org.aspectj" name="aspectjrt" rev="1.6.10"/>
 	</dependencies>
 </ivy-module>
