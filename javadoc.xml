@@ -12,7 +12,7 @@
         	noindex="false" 
         	nonavbar="false" 
         	notree="false" 
-        	packagenames="br.com.zebys.makeatest.*" 
+        	packagenames="com.yediat.makeatest.core.*" 
         	source="1.6" 
         	sourcepath="src" 
         	splitindex="true" 
