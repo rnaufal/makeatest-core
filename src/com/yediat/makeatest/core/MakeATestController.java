@@ -83,32 +83,34 @@ public class MakeATestController {
 					
 					if(enums.contains(MakeATestProxyBehavior.BEFORE) && enums.contains(MakeATestProxyBehavior.AFTER)) {
 						try {
+							metadataProcessor.setProxyBehavior(MakeATestProxyBehavior.BEFORE);
 							metadataProcessor.process(this.instance);
 							invoked = method.invoke(object, args);
+							metadataProcessor.setProxyBehavior(MakeATestProxyBehavior.AFTER);
 							metadataProcessor.process(this.instance);
 							isExecuted = true;
-						} catch (InvocationTargetException e) {
-							throw e.getCause();
 						} catch (Exception e) {
-							throw new MakeATestException("Exception in execute processor",e);
+							MakeATestException makeATestException = new MakeATestException("Exception in processor class: " + e);
+							makeATestException.setStackTrace(e.getStackTrace());
+							throw makeATestException;
 						}						
 					} else if(enums.contains(MakeATestProxyBehavior.BEFORE)) {
 						try {
+							metadataProcessor.setProxyBehavior(MakeATestProxyBehavior.BEFORE);
 							metadataProcessor.process(this.instance);
 							invoked = method.invoke(object, args);
 							isExecuted = true;
-						} catch (InvocationTargetException e) {
-							throw e.getCause();
 						} catch (Exception e) {
-							throw new MakeATestException("Exception in execute processor",e);
+							MakeATestException makeATestException = new MakeATestException("Exception in processor class: " + e);
+							makeATestException.setStackTrace(e.getStackTrace());
+							throw makeATestException;
 						}
 					} else if(enums.contains(MakeATestProxyBehavior.AFTER)) {
 						try {
 							invoked = method.invoke(object, args);
+							metadataProcessor.setProxyBehavior(MakeATestProxyBehavior.AFTER);
 							metadataProcessor.process(this.instance);
 							isExecuted = true;
-						} catch (InvocationTargetException e) {
-							throw e.getCause();
 						} catch (Exception e) {
 							MakeATestException makeATestException = new MakeATestException("Exception in processor class: " + e);
 							makeATestException.setStackTrace(e.getStackTrace());

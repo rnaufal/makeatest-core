@@ -3,7 +3,7 @@ package com.yediat.makeatest.annotations.systemproperty;
 import com.yediat.makeatest.core.MakeATestAssertionError;
 import com.yediat.makeatest.core.metadata.processor.MetadataProcessor;
 
-public class SystemPropertyLoadProcessor implements MetadataProcessor {
+public class SystemPropertyLoadProcessor extends MetadataProcessor {
 
 	private String key;
 	private String value;

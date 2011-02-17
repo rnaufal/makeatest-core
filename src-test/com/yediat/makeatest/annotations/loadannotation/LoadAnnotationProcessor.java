@@ -6,7 +6,7 @@ import com.yediat.makeatest.annotations.FailType;
 import com.yediat.makeatest.core.MakeATestAssertionError;
 import com.yediat.makeatest.core.metadata.processor.MetadataProcessor;
 
-public class LoadAnnotationProcessor implements MetadataProcessor {
+public class LoadAnnotationProcessor extends MetadataProcessor {
 
 	private Field annotated;
 	private String value;

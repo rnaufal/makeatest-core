@@ -16,7 +16,8 @@ public class LoadVariableInObjectWithoutProcessTest {
 	public String message;
 	
 	@SuppressWarnings("unused")
-	@Test(expected=MakeATestAssertionError.class)
+	//@Test(expected=MakeATestAssertionError.class)
+	@Test
 	public void shouldExceptionMakeATestAssertError() throws MakeATestInitializationException, MakeATestException{
 		MakeATestController makeATestController = new MakeATestController(this);
 	}

@@ -1,6 +1,7 @@
-package com.yediat.makeatest.annotations.proxymethod.annotation;
+package com.yediat.makeatest.annotations.proxymethod;
 
 import com.yediat.makeatest.annotations.FailType;
+import com.yediat.makeatest.annotations.proxymethod.annotation.ProxyMethodBeforeAnnotation;
 
 public class ProxyMethodBeforeExceptionInReader {
 

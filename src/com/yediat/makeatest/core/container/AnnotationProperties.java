@@ -45,7 +45,7 @@ public class AnnotationProperties {
 		return actions;
 	}
 
-	public void setActions(MakeATestProxyBehavior [] actions) {
+	public void setProxyBehabior(MakeATestProxyBehavior [] actions) {
 		this.actions = actions;
 	}
 

@@ -5,7 +5,7 @@ import java.io.File;
 import com.yediat.makeatest.core.MakeATestAssertionError;
 import com.yediat.makeatest.core.metadata.processor.MetadataProcessor;
 
-public class FileExistsAnnotationProcessor implements MetadataProcessor {
+public class FileExistsAnnotationProcessor extends MetadataProcessor {
 
 	private String filePath;
 	

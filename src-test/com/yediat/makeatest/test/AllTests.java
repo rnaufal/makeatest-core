@@ -11,6 +11,7 @@ import org.junit.runners.Suite;
 	LoadWithExceptionInReaderTest.class,
 	ProxyMethodBeforeTest.class,
 	ProxyMethodAfterTest.class,
+	ProxyMethodBeforeAfterTest.class,
 	ProxyMethodClassCastExceptionInReaderTest.class
 })
 public class AllTests {}

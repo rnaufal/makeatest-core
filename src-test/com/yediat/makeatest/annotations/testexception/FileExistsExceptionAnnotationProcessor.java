@@ -6,7 +6,7 @@ import com.yediat.makeatest.annotations.FailType;
 import com.yediat.makeatest.core.MakeATestAssertionError;
 import com.yediat.makeatest.core.metadata.processor.MetadataProcessor;
 
-public class FileExistsExceptionAnnotationProcessor implements MetadataProcessor {
+public class FileExistsExceptionAnnotationProcessor extends MetadataProcessor {
 
 	private String filePath;
 	private FailType failType;

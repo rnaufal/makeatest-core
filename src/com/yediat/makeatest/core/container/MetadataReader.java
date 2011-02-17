@@ -62,7 +62,7 @@ public class MetadataReader {
 								
 				MakeATestReader reader = (MakeATestReader) annotation.annotationType().getAnnotation(MakeATestReader.class);
 				
-				MakeATestProxyBehavior [] actions = reader.proxyBehavior();
+				MakeATestProxyBehavior [] proxyBehavior = reader.proxyBehavior();
 				MakeATestScope scope = reader.scope();
 				
 				AnnotationProperties annotationProperties = new AnnotationProperties();
@@ -71,7 +71,7 @@ public class MetadataReader {
 				try {
 					MakeATestReaderInterface annotationReader = readerClass.newInstance();
 					
-					annotationProperties.setActions(actions);
+					annotationProperties.setProxyBehabior(proxyBehavior);
 					annotationProperties.setAnnotated(key);
 					
 					annotationReader.readAnnotation(annotation, annotationProperties);

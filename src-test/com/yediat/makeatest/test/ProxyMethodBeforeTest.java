@@ -4,8 +4,8 @@ package com.yediat.makeatest.test;
 import org.junit.Test;
 
 import com.yediat.makeatest.annotations.proxymethod.ProxyMethodBefore;
-import com.yediat.makeatest.annotations.proxymethod.annotation.ProxyMethodBeforeExceptionInProcessor;
-import com.yediat.makeatest.annotations.proxymethod.annotation.ProxyMethodBeforeExceptionInReader;
+import com.yediat.makeatest.annotations.proxymethod.ProxyMethodBeforeExceptionInProcessor;
+import com.yediat.makeatest.annotations.proxymethod.ProxyMethodBeforeExceptionInReader;
 import com.yediat.makeatest.core.MakeATestController;
 import com.yediat.makeatest.core.MakeATestException;
 import com.yediat.makeatest.core.MakeATestInitializationException;

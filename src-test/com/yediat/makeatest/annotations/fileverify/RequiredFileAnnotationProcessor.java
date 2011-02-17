@@ -15,7 +15,7 @@ import com.yediat.makeatest.core.metadata.processor.MetadataProcessor;
  * 
  */
 
-public class RequiredFileAnnotationProcessor implements MetadataProcessor {
+public class RequiredFileAnnotationProcessor extends MetadataProcessor {
 
 	private String filePath;
 

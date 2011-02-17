@@ -6,7 +6,7 @@ import com.yediat.makeatest.annotations.FailType;
 import com.yediat.makeatest.core.MakeATestAssertionError;
 import com.yediat.makeatest.core.metadata.processor.MetadataProcessor;
 
-public class ProxyMethodAnnotationProcessor implements MetadataProcessor {
+public class ProxyMethodAnnotationProcessor extends MetadataProcessor {
 
 	private FailType failType;
 	private String variable;
