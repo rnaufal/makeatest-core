@@ -6,9 +6,9 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import com.yediat.makeatest.core.metadata.reading.MakeATestActionEnum;
+import com.yediat.makeatest.core.metadata.reading.MakeATestProxyBehavior;
 import com.yediat.makeatest.core.metadata.reading.MakeATestReader;
-import com.yediat.makeatest.core.metadata.reading.MakeATestScopeEnum;
+import com.yediat.makeatest.core.metadata.reading.MakeATestScope;
 
 /**
  * Anotação para o Make a Test que indica o path de um arquivo requerido
@@ -19,7 +19,7 @@ import com.yediat.makeatest.core.metadata.reading.MakeATestScopeEnum;
 
 @Target({METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-@MakeATestReader(value=RequiredFileAnnotationReader.class,actions={MakeATestActionEnum.BEFORE},scope=MakeATestScopeEnum.EXECUTE)
+@MakeATestReader(reader=RequiredFileAnnotationReader.class,proxyBehavior={MakeATestProxyBehavior.BEFORE},scope=MakeATestScope.PROXYMETHOD)
 public @interface RequiredFileAnnotation {
 	String filePath();
 }

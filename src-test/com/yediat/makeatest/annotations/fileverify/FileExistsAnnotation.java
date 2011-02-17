@@ -6,9 +6,9 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import com.yediat.makeatest.core.metadata.reading.MakeATestActionEnum;
+import com.yediat.makeatest.core.metadata.reading.MakeATestProxyBehavior;
 import com.yediat.makeatest.core.metadata.reading.MakeATestReader;
-import com.yediat.makeatest.core.metadata.reading.MakeATestScopeEnum;
+import com.yediat.makeatest.core.metadata.reading.MakeATestScope;
 
 /**
  * Anotação para o Make a Test verificar se o arquivo existe no local indicado
@@ -18,7 +18,7 @@ import com.yediat.makeatest.core.metadata.reading.MakeATestScopeEnum;
 
 @Target({METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-@MakeATestReader(value=FileExistsAnnotationReader.class,actions={MakeATestActionEnum.AFTER},scope=MakeATestScopeEnum.EXECUTE)
+@MakeATestReader(reader=FileExistsAnnotationReader.class,proxyBehavior={MakeATestProxyBehavior.AFTER},scope=MakeATestScope.PROXYMETHOD)
 public @interface FileExistsAnnotation {
 	String filePath();
 }

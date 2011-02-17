@@ -6,13 +6,13 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import com.yediat.makeatest.core.metadata.reading.MakeATestActionEnum;
+import com.yediat.makeatest.core.metadata.reading.MakeATestProxyBehavior;
 import com.yediat.makeatest.core.metadata.reading.MakeATestReader;
-import com.yediat.makeatest.core.metadata.reading.MakeATestScopeEnum;
+import com.yediat.makeatest.core.metadata.reading.MakeATestScope;
 
 @Target({METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-@MakeATestReader(value=WithoutProcessorReader.class,actions={MakeATestActionEnum.AFTER},scope=MakeATestScopeEnum.EXECUTE)
+@MakeATestReader(reader=WithoutProcessorReader.class,proxyBehavior={MakeATestProxyBehavior.AFTER},scope=MakeATestScope.PROXYMETHOD)
 public @interface WithoutProcessor {
 
 }

@@ -3,12 +3,14 @@ package com.yediat.makeatest.core.container;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.yediat.makeatest.core.MakeATestInitializationException;
-import com.yediat.makeatest.core.metadata.reading.MakeATestActionEnum;
+import com.yediat.makeatest.core.metadata.reading.MakeATestProxyBehavior;
 import com.yediat.makeatest.core.metadata.reading.MakeATestReader;
 import com.yediat.makeatest.core.metadata.reading.MakeATestReaderInterface;
-import com.yediat.makeatest.core.metadata.reading.MakeATestScopeEnum;
+import com.yediat.makeatest.core.metadata.reading.MakeATestScope;
 
 /**
  * Responsável pela leitura dos metadados (anotações) dos métodos e também pela criação do container das anotações
@@ -60,21 +62,29 @@ public class MetadataReader {
 								
 				MakeATestReader reader = (MakeATestReader) annotation.annotationType().getAnnotation(MakeATestReader.class);
 				
-				MakeATestActionEnum [] actions = reader.actions();
-				MakeATestScopeEnum scope = reader.scope();
+				MakeATestProxyBehavior [] actions = reader.proxyBehavior();
+				MakeATestScope scope = reader.scope();
 				
-				Class<? extends MakeATestReaderInterface> readerClass = reader.value();
+				AnnotationProperties annotationProperties = new AnnotationProperties();
+				
+				Class<? extends MakeATestReaderInterface> readerClass = reader.reader();
 				try {
 					MakeATestReaderInterface annotationReader = readerClass.newInstance();
 					
-					AnnotationProperties annotationProperties = new AnnotationProperties();
 					annotationProperties.setActions(actions);
 					annotationProperties.setAnnotated(key);
 					
 					annotationReader.readAnnotation(annotation, annotationProperties);
 					this.container.put(scope, key, annotationProperties);
+				} catch(ClassCastException ce) {
+					String type = reader.reader().getGenericInterfaces()[0].toString();
+					Matcher m = Pattern.compile(".*<.*\\.(.*)>.*").matcher(type);
+					m.matches();
+					MakeATestInitializationException makeATestException = new MakeATestInitializationException("Class Cast Exception in call method readAnnotation(...) in reader class: \n Cast Error: \"(" + m.group(1) + ") " + annotation.annotationType().getSimpleName() + "\" \n Reader Class: " + readerClass.getName(), ce);
+					makeATestException.setStackTrace(ce.getStackTrace());
+					throw makeATestException;					
 				} catch (Exception e) {
-					MakeATestInitializationException makeATestException = new MakeATestInitializationException("Connot initialize reader: " + readerClass.getName(), e);
+					MakeATestInitializationException makeATestException = new MakeATestInitializationException("Cannot initialize reader: " + readerClass.getName(), e);
 					makeATestException.setStackTrace(e.getStackTrace());
 					throw makeATestException;
 				}

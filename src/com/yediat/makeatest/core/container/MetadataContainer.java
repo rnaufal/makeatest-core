@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.yediat.makeatest.core.metadata.reading.MakeATestScopeEnum;
+import com.yediat.makeatest.core.metadata.reading.MakeATestScope;
 
 /**
  * Utilizado para armazenar objetos do tipo {@link AnnotationProperties}.
@@ -15,13 +15,13 @@ import com.yediat.makeatest.core.metadata.reading.MakeATestScopeEnum;
  */
 public class MetadataContainer {
 
-	private Map<MakeATestScopeEnum, Map<Object, List<AnnotationProperties>>> container;
+	private Map<MakeATestScope, Map<Object, List<AnnotationProperties>>> container;
 
 	public MetadataContainer() {
-		this.container = new HashMap<MakeATestScopeEnum, Map<Object, List<AnnotationProperties>>>();
+		this.container = new HashMap<MakeATestScope, Map<Object, List<AnnotationProperties>>>();
 	}
 
-	public void put(MakeATestScopeEnum makeATestScopeEnum, Object object, AnnotationProperties annotationProperties) {
+	public void put(MakeATestScope makeATestScopeEnum, Object object, AnnotationProperties annotationProperties) {
 
 		if (!this.container.containsKey(makeATestScopeEnum)) {
 			List<AnnotationProperties> props = new ArrayList<AnnotationProperties>();
@@ -37,7 +37,7 @@ public class MetadataContainer {
 
 	}
 
-	public Map<Object, List<AnnotationProperties>> getProperties(MakeATestScopeEnum makeATestScopeEnum) {
+	public Map<Object, List<AnnotationProperties>> getProperties(MakeATestScope makeATestScopeEnum) {
 		if (!this.container.containsKey(makeATestScopeEnum)) {
 			return null;
 		}
