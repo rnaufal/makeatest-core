@@ -1,5 +1,7 @@
 package com.yediat.makeatest.core.container;
 
+import java.lang.annotation.Annotation;
+
 import com.yediat.makeatest.core.MakeATestAssertionError;
 import com.yediat.makeatest.core.metadata.processor.MetadataProcessor;
 import com.yediat.makeatest.core.metadata.reading.MakeATestProxyBehavior;
@@ -12,6 +14,15 @@ import com.yediat.makeatest.core.metadata.reading.MakeATestProxyBehavior;
  * 
  */
 public class AnnotationProperties {
+
+	private Annotation annotation;
+	public Annotation getAnnotation() {
+		return annotation;
+	}
+
+	public void setAnnotation(Annotation annotation) {
+		this.annotation = annotation;
+	}
 
 	private MetadataProcessor processor;
 	private MakeATestProxyBehavior [] actions;
@@ -30,7 +41,7 @@ public class AnnotationProperties {
 			processor = new MetadataProcessor() {
 				@Override
 				public void process(Object instance) throws MakeATestAssertionError {
-					throw new MakeATestAssertionError("Processor not implemented.");
+					throw new MakeATestAssertionError("Processor not implemented for annotaion: \n" + annotation.annotationType().getName());
 				}
 			};
 		}

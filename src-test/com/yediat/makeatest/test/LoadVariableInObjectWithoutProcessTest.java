@@ -1,6 +1,8 @@
 package com.yediat.makeatest.test;
 
 
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 
 import com.yediat.makeatest.annotations.FailType;
@@ -16,10 +18,13 @@ public class LoadVariableInObjectWithoutProcessTest {
 	public String message;
 	
 	@SuppressWarnings("unused")
-	//@Test(expected=MakeATestAssertionError.class)
 	@Test
-	public void shouldExceptionMakeATestAssertError() throws MakeATestInitializationException, MakeATestException{
-		MakeATestController makeATestController = new MakeATestController(this);
+	public void shouldExceptionMakeATestAssertError() throws MakeATestInitializationException, MakeATestException {
+		try {
+			MakeATestController makeATestController = new MakeATestController(this);
+		} catch (MakeATestAssertionError e) {
+			String message = e.getMessage().replaceAll("\\n", "");
+			assertTrue(message.matches(".*Processor not implemented for annotaion:.*com.yediat.makeatest.annotations.loadannotation.LoadAnnotation.*"));
+		}
 	}
-
 }

@@ -73,6 +73,7 @@ public class MetadataReader {
 					
 					annotationProperties.setProxyBehabior(proxyBehavior);
 					annotationProperties.setAnnotated(key);
+					annotationProperties.setAnnotation(annotation);
 					
 					annotationReader.readAnnotation(annotation, annotationProperties);
 					this.container.put(scope, key, annotationProperties);
