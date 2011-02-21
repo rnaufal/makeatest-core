@@ -1,5 +1,7 @@
 <project name="makeatest-core" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
 	
+	<target name="releasing" depends="clean,resolve,compile,jar"></target>
+	
     <property name="src.dir"     value="src"/>
     <property name="build.dir"   value="build"/>
 	<property name="dist.dir"    value="dist"/>
@@ -23,7 +25,7 @@
 		<ivy:retrieve pattern="${libs.dir}/[type]/[artifact]-[revision].[ext]" sync="true" type="jar"/>	
 	</target>
 	
-    <target name="jar" depends="clean,resolve,compile">
+    <target name="jar">
     	<mkdir dir="${dist.dir}"/>
     	<exec outputproperty="version" executable="/usr/local/git/bin/git" dir=".">
     		<arg value="describe"/>
@@ -33,12 +35,13 @@
         </jar>
     </target>
 	
-    <target name="javadoc">
+    <target name="javadoc" depends="resolve">
         <javadoc 
         	access="private" 
         	additionalparam="-J-Dfile.encoding=UTF-8 -charset UTF-8" 
         	author="true" 
         	classpath="." 
+        	classpathref="classpath"
         	destdir="doc/java" 
         	nodeprecated="false" 
         	nodeprecatedlist="false" 
