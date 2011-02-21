@@ -24,3 +24,9 @@ doc/**/*.lof
 *.lock
 *.vpp~*
 *.vpprefdata/.autoSaveProject*
+
+#Metrics
+*.cys
+
+#Build
+build

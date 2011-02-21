@@ -1,0 +1,36 @@
+<project name="makeatest-core" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
+	
+    <property name="src.dir"     value="src"/>
+    <property name="build.dir"   value="build"/>
+	<property name="dist.dir"    value="dist"/>
+    <property name="classes.dir" value="${build.dir}/classes"/>
+	<property name="libs.dir"    value="${build.dir}/libs/jar"/>
+	
+	<path id="classpath">
+		<fileset dir="${libs.dir}" includes="**/*.jar"/>
+	</path>
+	
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+    </target>
+	
+    <target name="compile">
+        <mkdir dir="${classes.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="classpath"/>
+    </target>
+
+	<target name="resolve">
+		<ivy:retrieve pattern="${libs.dir}/[type]/[artifact]-[revision].[ext]" sync="true" type="jar"/>	
+	</target>
+	
+    <target name="jar" depends="clean,resolve,compile">
+    	<mkdir dir="${dist.dir}"/>
+    	<exec outputproperty="version" executable="/usr/local/git/bin/git" dir=".">
+    		<arg value="describe"/>
+    		<arg value="--tag"/>
+    	</exec>
+        <jar destfile="${dist.dir}/${ant.project.name}-${version}.jar" basedir="${classes.dir}">
+        </jar>
+    </target>
+	
+</project>
