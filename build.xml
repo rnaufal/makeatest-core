@@ -31,8 +31,32 @@
     		<arg value="describe"/>
     		<arg value="--tag"/>
     	</exec>
-        <jar destfile="${dist.dir}/${ant.project.name}-${version}.jar" basedir="${classes.dir}">
-        </jar>
+        <jar destfile="${dist.dir}/${ant.project.name}-${version}.jar" basedir="${classes.dir}"/>
+    	<exec executable="/usr/local/git/bin/git" dir=".">
+    		<arg value="tag"/>
+    		<arg value="-d"/>
+    		<arg value="${version}"/>
+    	</exec>
+    	<exec executable="/usr/local/git/bin/git" dir=".">
+    		<arg value="add"/>
+    		<arg value="."/>
+    	</exec>    	
+    	<exec executable="/usr/local/git/bin/git" dir=".">
+    		<arg value="commit"/>
+    		<arg value="-am"/>
+    		<arg value="release the new version ${version}"/>
+    	</exec>    	
+    	<exec executable="/usr/local/git/bin/git" dir=".">
+    		<arg value="tag"/>
+    		<arg value="${version}"/>
+    	</exec>    	
+    	<exec executable="/usr/local/git/bin/git" dir=".">
+    		<arg value="push"/>
+    	</exec>    	
+    	<exec executable="/usr/local/git/bin/git" dir=".">
+    		<arg value="push"/>
+    		<arg value="--tags"/>
+    	</exec>    	
     </target>
 	
     <target name="javadoc" depends="resolve">
