@@ -10,7 +10,6 @@ import com.yediat.makeatest.core.MakeATestController;
 import com.yediat.makeatest.core.MakeATestException;
 import com.yediat.makeatest.core.MakeATestInitializationException;
 
-
 public class LoadVariableInObjectTest {
 
 	@LoadAnnotation(value="Set this message in variable message",withProcessor=true,failType=FailType.NONE)

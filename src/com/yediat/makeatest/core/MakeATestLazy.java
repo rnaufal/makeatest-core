@@ -25,6 +25,7 @@ public class MakeATestLazy {
 	private MetadataReader metadataReader;
 	
 	public void aspect(ProceedingJoinPoint jp) throws Throwable {
+		if(logger.isDebugEnabled()){logger.debug("ProceedingJoinPoint: " + jp);}
 		this.instance = jp.getTarget();
 		this.metadataReader = new MetadataReader(this.instance.getClass());
 		this.load();
@@ -32,6 +33,7 @@ public class MakeATestLazy {
 	}
 		
 	public void load() throws MakeATestException {
+		if(logger.isDebugEnabled()){logger.debug("load()");}
 		Map<Object,List<AnnotationProperties>> properties = this.metadataReader.getContainer().getProperties(MakeATestScope.LOAD);
 		if(properties != null){
 			Iterator<Object> iterator = properties.keySet().iterator();
@@ -53,6 +55,7 @@ public class MakeATestLazy {
 	}
 	
 	public void process(ProceedingJoinPoint jp) throws Throwable {
+		if(logger.isDebugEnabled()){logger.debug("ProceedingJoinPoint: " + jp);}
 		Method method = getJoinpointMethod(jp);
 		boolean isExecuted = false; 
 		Map<Object,List<AnnotationProperties>> properties = this.metadataReader.getContainer().getProperties(MakeATestScope.PROXYMETHOD);

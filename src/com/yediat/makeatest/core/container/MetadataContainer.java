@@ -23,6 +23,7 @@ public class MetadataContainer {
 	private Map<MakeATestScope, Map<Object, List<AnnotationProperties>>> container;
 
 	public MetadataContainer() {
+		if(logger.isDebugEnabled()){logger.debug("Create container.");}
 		this.container = new HashMap<MakeATestScope, Map<Object, List<AnnotationProperties>>>();
 	}
 
