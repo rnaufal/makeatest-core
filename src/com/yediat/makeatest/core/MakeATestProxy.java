@@ -2,6 +2,9 @@ package com.yediat.makeatest.core;
 
 import java.lang.reflect.Method;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
@@ -15,6 +18,7 @@ import net.sf.cglib.proxy.MethodProxy;
  */
 public class MakeATestProxy implements MethodInterceptor {
 
+	final Logger logger = LoggerFactory.getLogger(MakeATestProxy.class);
 	private Object instance;
 	private MakeATestController makeATestController;
 	
@@ -24,6 +28,7 @@ public class MakeATestProxy implements MethodInterceptor {
 	 * @param object
 	 */
 	private MakeATestProxy(Object instance, MakeATestController makeATestController) throws MakeATestInitializationException {
+		if(logger.isDebugEnabled()){logger.debug("Parameters: " + instance + ", " + makeATestController);}
 		this.makeATestController = makeATestController;
 		this.instance = instance;
 	}
@@ -39,6 +44,7 @@ public class MakeATestProxy implements MethodInterceptor {
 	 */
 	@Override
 	public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
+		if(logger.isDebugEnabled()){logger.debug("Intercept method: " + method);}
 		return this.makeATestController.intercept(this.instance, method, args, proxy);
 	}
 

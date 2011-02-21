@@ -6,6 +6,9 @@ import java.lang.reflect.Method;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.yediat.makeatest.core.MakeATestInitializationException;
 import com.yediat.makeatest.core.metadata.reading.MakeATestProxyBehavior;
 import com.yediat.makeatest.core.metadata.reading.MakeATestReader;
@@ -20,9 +23,12 @@ import com.yediat.makeatest.core.metadata.reading.MakeATestScope;
  */
 public class MetadataReader {
 	
+	final Logger logger = LoggerFactory.getLogger(MetadataReader.class);
+	
 	private MetadataContainer container = null;
 	
 	public MetadataReader(Class<?> klass) throws MakeATestInitializationException {
+		if(logger.isDebugEnabled()){logger.debug("Parameter klass is " + klass.getName());}
 		this.container = new MetadataContainer();
 		this.stetament(klass);
 	}
@@ -32,16 +38,19 @@ public class MetadataReader {
 	}
 	
 	private void stetament(Class<?> klass) throws MakeATestInitializationException {
+		if(logger.isDebugEnabled()){logger.debug("Parameter klass is " + klass.getName());}
 		stetamentClass(klass);
 		stetamentFields(klass);
 		stetamentMethods(klass);
 	}
 	
 	private void stetamentClass(Class<?> klass) throws MakeATestInitializationException {
+		if(logger.isDebugEnabled()){logger.debug("Parameter klass is " + klass.getName());}
 		this.processAnnotations(klass.getAnnotations(), klass);
 	}
 	
 	private void stetamentFields(Class<?> klass) throws MakeATestInitializationException {
+		if(logger.isDebugEnabled()){logger.debug("Parameter klass is " + klass.getName());}
 		Field [] fields = klass.getDeclaredFields();
 		for (Field field : fields) {
 			this.processAnnotations(field.getAnnotations(), field);
@@ -49,6 +58,7 @@ public class MetadataReader {
 	}
 	
 	private void stetamentMethods(Class<?> klass) throws MakeATestInitializationException {
+		if(logger.isDebugEnabled()){logger.debug("Parameter klass is " + klass.getName());}
 		Method [] methods = klass.getMethods();
 		for (Method method : methods) {
 			this.processAnnotations(method.getAnnotations(), method);
@@ -57,6 +67,12 @@ public class MetadataReader {
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void processAnnotations(Annotation[] annotations, Object key) throws MakeATestInitializationException {
+		StringBuffer log = new StringBuffer("annotation: ");
+		for (Annotation annotation : annotations) {
+			log.append(annotation.toString()+" ");
+		}
+		if(logger.isDebugEnabled()){logger.debug(log + ", key: " + key);}
+		
 		for (Annotation annotation : annotations) {
 			if(annotation.annotationType().isAnnotationPresent(MakeATestReader.class)){
 								

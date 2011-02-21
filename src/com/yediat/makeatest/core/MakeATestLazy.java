@@ -9,6 +9,8 @@ import java.util.Map;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.yediat.makeatest.core.container.AnnotationProperties;
 import com.yediat.makeatest.core.container.MetadataReader;
@@ -17,7 +19,8 @@ import com.yediat.makeatest.core.metadata.reading.MakeATestProxyBehavior;
 import com.yediat.makeatest.core.metadata.reading.MakeATestScope;
 
 public class MakeATestLazy {
-
+	
+	final Logger logger = LoggerFactory.getLogger(MakeATestLazy.class);
 	private Object instance;
 	private MetadataReader metadataReader;
 	

@@ -8,6 +8,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import net.sf.cglib.proxy.MethodProxy;
 
 import com.yediat.makeatest.core.container.AnnotationProperties;
@@ -24,10 +27,13 @@ import com.yediat.makeatest.core.metadata.reading.MakeATestScope;
  */
 public class MakeATestController {
 
+	final Logger logger = LoggerFactory.getLogger(MakeATestController.class);
+			
 	private Object instance;
 	private MetadataReader metadataReader;
 	
 	public MakeATestController(Object instance) throws MakeATestInitializationException, MakeATestException {
+		if(logger.isDebugEnabled()){logger.debug("Parameter instance is " + instance.toString());}
 		this.instance = instance;
 		this.metadataReader = new MetadataReader(this.instance.getClass());
 		this.load();
@@ -46,6 +52,7 @@ public class MakeATestController {
 	}
 
 	private void load() throws MakeATestException {
+		if(logger.isDebugEnabled()){logger.debug("Load process");}
 		Map<Object,List<AnnotationProperties>> properties = this.metadataReader.getContainer().getProperties(MakeATestScope.LOAD);
 		if(properties != null){
 			Iterator<Object> iterator = properties.keySet().iterator();
@@ -67,6 +74,7 @@ public class MakeATestController {
 	}
 
 	private Object execute(Object object, Method method, Object[] args, MethodProxy proxy) throws Throwable {
+		if(logger.isDebugEnabled()){logger.debug("Execute process");}
 		boolean isExecuted = false;
 		Object invoked = null;
 		Map<Object,List<AnnotationProperties>> properties = this.metadataReader.getContainer().getProperties(MakeATestScope.PROXYMETHOD);
@@ -146,6 +154,7 @@ public class MakeATestController {
 	 * @throws Throwable
 	 */
 	public Object intercept(Object instance, Method method, Object[] args, MethodProxy proxy) throws Throwable {
+		if(logger.isDebugEnabled()){logger.debug("Intercept method");}
 		boolean methodExecute = false;
 		Annotation [] annotations = method.getAnnotations();
 		for (Annotation annotation : annotations) {

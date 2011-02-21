@@ -20,14 +20,14 @@
 <ivy-module version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
     <info
-        organisation="com.yediat"
-        module="makeatest"
+        organisation="com.yediat.makeatest"
+        module="core"
         status="milestone">
 	</info>
 	<dependencies>
-		<dependency org="junit" name="junit" rev="4.8.1"></dependency>
-		<dependency rev="2.2" name="cglib" org="cglib"></dependency>
-		<dependency org="org.mockito" name="mockito-all" rev="1.8.5"/>
+		<dependency org="junit" name="junit" rev="4.8.1"/>
+		<dependency rev="2.2" name="cglib" org="cglib"/>
 		<dependency org="org.aspectj" name="aspectjrt" rev="1.6.10"/>
+		<dependency org="org.slf4j" name="slf4j-log4j12" rev="1.6.1"/>
 	</dependencies>
 </ivy-module>

@@ -2,6 +2,9 @@ package com.yediat.makeatest.core.container;
 
 import java.lang.annotation.Annotation;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.yediat.makeatest.core.MakeATestAssertionError;
 import com.yediat.makeatest.core.metadata.processor.MetadataProcessor;
 import com.yediat.makeatest.core.metadata.reading.MakeATestProxyBehavior;
@@ -15,6 +18,8 @@ import com.yediat.makeatest.core.metadata.reading.MakeATestProxyBehavior;
  */
 public class AnnotationProperties {
 
+	final Logger logger = LoggerFactory.getLogger(AnnotationProperties.class);
+	
 	private Annotation annotation;
 	public Annotation getAnnotation() {
 		return annotation;

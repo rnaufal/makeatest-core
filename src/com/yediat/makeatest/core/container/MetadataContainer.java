@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.yediat.makeatest.core.metadata.reading.MakeATestScope;
 
 /**
@@ -15,6 +18,8 @@ import com.yediat.makeatest.core.metadata.reading.MakeATestScope;
  */
 public class MetadataContainer {
 
+	final Logger logger = LoggerFactory.getLogger(MetadataContainer.class);
+	
 	private Map<MakeATestScope, Map<Object, List<AnnotationProperties>>> container;
 
 	public MetadataContainer() {
