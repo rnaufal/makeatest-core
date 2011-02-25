@@ -78,10 +78,12 @@ public class MakeATestController {
 		boolean isExecuted = false;
 		Object invoked = null;
 		Map<Object,List<AnnotationProperties>> properties = this.metadataReader.getContainer().getProperties(MakeATestScope.PROXYMETHOD);
+		if(logger.isDebugEnabled()){logger.debug("Properties size: " + properties.size());}
 		if(properties != null && properties.containsKey(method)){
 			List<AnnotationProperties> props = properties.get(method);
 			if(props != null) {
 				for (AnnotationProperties annotationProperties : props) {
+					if(logger.isDebugEnabled()){logger.debug("Process the annotation: " + annotationProperties.getAnnotation());}
 					MetadataProcessor metadataProcessor = annotationProperties.getProcessor(); 
 
 					HashSet<MakeATestProxyBehavior> enums = new HashSet<MakeATestProxyBehavior>();

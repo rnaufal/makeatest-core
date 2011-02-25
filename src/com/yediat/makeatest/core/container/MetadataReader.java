@@ -92,12 +92,12 @@ public class MetadataReader {
 		/**
 		 * Logger debugger
 		 */
-		StringBuffer log = new StringBuffer("annotation: ");
+		StringBuffer log = new StringBuffer("Reade the annotaions: \n");
 		for (Annotation annotation : annotations) {
-			log.append(annotation.toString() + " ");
+			log.append(annotation.toString() + " \n");
 		}
 		if (logger.isDebugEnabled()) {
-			logger.debug(log + ", key: " + key);
+			logger.debug(log + "key: " + key);
 		}
 
 		for (Annotation annotation : annotations) {

@@ -12,6 +12,7 @@ import org.junit.runners.Suite;
 	ProxyMethodBeforeTest.class,
 	ProxyMethodAfterTest.class,
 	ProxyMethodBeforeAfterTest.class,
-	ProxyMethodClassCastExceptionInReaderTest.class
+	ProxyMethodClassCastExceptionInReaderTest.class,
+	ProxyMethodWithTwoAnnotationTest.class
 })
 public class AllTests {}
