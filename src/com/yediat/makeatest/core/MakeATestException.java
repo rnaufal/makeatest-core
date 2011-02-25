@@ -12,4 +12,8 @@ public class MakeATestException extends Exception {
 		super(message);
 	}
 
+	public MakeATestException(String message, Throwable cause) {
+		super(message, cause);
+	}
+
 }
