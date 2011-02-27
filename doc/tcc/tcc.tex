@@ -40,7 +40,7 @@ Como configurar e verificar comportamentos por metadados em testes de unidade?
 
 \section{Forças}
 - Testes que necessitam de cenários para sua execução podem ser mais difíceis de se criar.
-- Testes que precisem verificar muitos efeitos externos também podem ser mais difíceis de ser criar. 
+- Testes que precisam verificar muitos efeitos externos também podem ser mais difíceis de ser criar. 
 - Desenvolvedor deseja configurar cenários de testes de forma mais prática, podendo utilizar de metadados para configurar cenários, como por exemplo inicializar servidor, carregar valores em variáveis, etc.
 - Utilizar anotações para verificar comportamento de testes.
 
@@ -65,19 +65,23 @@ Alguns frameworks de teste no mercado usam essa abordagem de anotar métodos de 
 
 \subsection{JUnit - Expected Exceptions}
 O Excepted Exceptions do JUnit tem como objetivo verifica se o código testado lançou ou não uma exceção esperada.
-O exemplo abaixo indica que por estarmos tentando acessar uma posição fora dos limites do array, uma exceção do tipo "IndexOutOfBoundsException" deve ser lançada, e estamos esperando por ela.
+O exemplo abaixo indica que por estarmos tentando acessar uma posição fora dos limites do array, uma exceção do tipo ``IndexOutOfBoundsException'' deve ser lançada, e estamos esperando por ela.
+\begin{verbatim}
 @Test(expected= IndexOutOfBoundsException.class) public void empty() { 
     new ArrayList<Object>().get(0); 
 }
+\end{verbatim}
 
 \subsection{Spring Framework - Common annotations}
 O Spring Framework prove um conjunto de anotações que podem ser usadas nos testes. De forma semelhando ao Expected Exceptions do JUnit, tem uma anotação denominada @ExpectedException. 
 Essa anotação indica que é esperado o método anotado com a mesma lance uma exceção durante sua excecução. Se for lançada a exceção do tipo esperado durante a excecução o teste passa, caso não lance o teste falha.
 Exemplo de uso:
+\begin{verbatim}
 @ExpectedException(IndexOutOfBoundsException.class)
 public void empty() {
    new ArrayList<Object>().get(0);
 }
+\end{verbatim}
 
 \subsection{JQuati}
 
