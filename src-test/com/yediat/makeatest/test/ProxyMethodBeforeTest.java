@@ -30,7 +30,7 @@ public class ProxyMethodBeforeTest {
 	public void shouldValidateExceptionInProcessor() throws MakeATestInitializationException, MakeATestException {
 		MakeATestController makeATestController = new MakeATestController(new ProxyMethodBeforeExceptionInProcessor());
 		ProxyMethodBeforeExceptionInProcessor proxyMethodBeforeExceptionInProcessor = (ProxyMethodBeforeExceptionInProcessor) makeATestController.getObjectInstanceProxy();
-		proxyMethodBeforeExceptionInProcessor.beforeVerifyExceptoinInReader();
+		proxyMethodBeforeExceptionInProcessor.beforeVerifyExceptionInReader();
 	}
 
 }

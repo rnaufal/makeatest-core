@@ -8,7 +8,7 @@ public class ProxyMethodBeforeExceptionInProcessor {
 	public String message = "Init the method";
 	
 	@ProxyMethodBeforeAnnotation(failType = FailType.PROCESSOR, text = "Init the method", variable="message")
-	public void beforeVerifyExceptoinInReader(){
+	public void beforeVerifyExceptionInReader(){
 		this.message = "In to the method";
 	}
 
