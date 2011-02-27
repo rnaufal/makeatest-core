@@ -40,25 +40,24 @@ Na criação dos testes de um sistema, inicializar um cenário com dependências
 Como configurar e verificar comportamentos por metadados em testes de unidade?
 
 \section{Forças}
-- Testes que necessitam de cenários para sua execução podem ser mais difíceis de se criar.
-- Testes que precisam verificar muitos efeitos externos também podem ser mais difíceis de ser criar. 
-- Desenvolvedor deseja configurar cenários de testes de forma mais prática, podendo utilizar de metadados para configurar cenários, como por exemplo inicializar servidor, carregar valores em variáveis, etc.
-- Utilizar anotações para verificar comportamento de testes.
+- Testes que necessitam de cenários para sua execução podem ser mais difíceis de se criar.\\
+- Testes que precisam verificar muitos efeitos externos também podem ser mais difíceis de ser criar. \\
+- Desenvolvedor deseja configurar cenários de testes de forma mais prática, podendo utilizar de metadados para configurar cenários, como por exemplo inicializar servidor, carregar valores em variáveis, etc.\\
+- Utilizar anotações para verificar comportamento de testes.\\
 
 \section{Aplicabilidade}
-- Comportamentos que se repetem em vários projetos podem ser externalizados em anotações e seu uso no método de teste parametrizado em cada projeto. Exemplo, validação de conteúdo de uma tabela em banco de dados, verificação de conteúdo de arquivo texto, entre outros.
-
+- Comportamentos que se repetem em vários projetos podem ser externalizados em anotações e seu uso no método de teste parametrizado em cada projeto. Exemplo, validação de conteúdo de uma tabela em banco de dados, verificação de conteúdo de arquivo texto, entre outros.\\
 
 \section{Solução}
 Durante a criação do teste, o desenvolvedor pode se deparar com inicializações de cenário de teste específicos de um teste ou genéricos da classe de teste como um todo. De acordo com o escopo da inicialização, ele pode utilizar anotação para anotar ou a classe de teste ou o método em si com a anotação de inicialização de cenário. (OBS: Isso ainda não existe????)
 Para verificar comportamentos decorrentes do teste, o método de teste é anotado. Quando a anotação é processada, é verificado se o efeito esperado foi atingido. Após essa verificação, pode-se considerar que o teste falhou ou que foi executado com sucesso. Mais de uma anotação pode existir em cada método, e todas são processadas para garantir que o comportamento desejado foi atingido.
 
 \section{Consequências}
-(+)Utilizar anotações torna a configuração mais próxima do código.
-(+)Solução mais legível e mais fácil de configurar
-(+)Permite reuso quando o comportamento verificado pela anotação for genérico e puder ser utilizado em mais de projeto (estado de servidor, estado de banco de dados, etc)
-(-)Uso de anotação está ligado a necessidade de recompilar código se parâmetros mudam, ao contrário de quando se utiliza arquivo externo.
-(-)Mais difícil de depurar quando ocorrerem problemas, uma vez que há comportamento encapsulado em anotações. (????? será????)
+(+)Utilizar anotações torna a configuração mais próxima do código.\\
+(+)Solução mais legível e mais fácil de configurar\\
+(+)Permite reuso quando o comportamento verificado pela anotação for genérico e puder ser utilizado em mais de projeto (estado de servidor, estado de banco de dados, etc)\\
+(-)Uso de anotação está ligado a necessidade de recompilar código se parâmetros mudam, ao contrário de quando se utiliza arquivo externo.\\
+(-)Mais difícil de depurar quando ocorrerem problemas, uma vez que há comportamento encapsulado em anotações. (????? será????)\\
 
 
 \section{Usos Conhecidos}
