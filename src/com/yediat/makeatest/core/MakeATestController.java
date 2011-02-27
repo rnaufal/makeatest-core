@@ -191,13 +191,17 @@ public class MakeATestController {
 	 * @throws MakeATestException, MakeATestAssertionError 
 	 */
 	private void throwInvocationTargetException(Object object, InvocationTargetException ite) throws MakeATestException, MakeATestAssertionError {
-		if(ite.getCause().getClass().getSuperclass() != null && ite.getCause().getClass().getSuperclass().equals(AssertionFailedError.class)){
+		if(logger.isDebugEnabled()){logger.debug("Class " + ite.getCause().getClass());}
+		if(logger.isDebugEnabled()){logger.debug("Super Class " + ite.getCause().getClass().getSuperclass());}
+		if(ite.getCause().getClass().getSuperclass() != null && 
+				ite.getCause().getClass().getSuperclass().equals(AssertionFailedError.class) || 
+				ite.getCause().getClass().getSuperclass().equals(AssertionError.class)){
 			MakeATestAssertionError assertionError = new MakeATestAssertionError(object.getClass().getSimpleName()+" fail " + ite.getCause().getMessage());
 			assertionError.setStackTrace(ite.getCause().getStackTrace());
 			throw assertionError;		
 		} else {
-			MakeATestException makeATestException = new MakeATestException("Exception in invocation object: " + ite);
-			makeATestException.setStackTrace(ite.getStackTrace());
+			MakeATestException makeATestException = new MakeATestException("Exception when invocation object " + object.getClass().getSimpleName() + ", the exception: " + ite.getCause().getMessage());
+			makeATestException.setStackTrace(ite.getCause().getStackTrace());
 			throw makeATestException;
 		}
 	}
