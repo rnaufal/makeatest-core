@@ -5,6 +5,7 @@ import junit.framework.Assert;
 import org.junit.Test;
 
 import com.yediat.makeatest.annotations.proxymethod.ProxyMethodInvokeErrorWithAssert;
+import com.yediat.makeatest.core.MakeATestAssertionError;
 import com.yediat.makeatest.core.MakeATestController;
 import com.yediat.makeatest.core.MakeATestException;
 import com.yediat.makeatest.core.MakeATestInitializationException;
@@ -17,7 +18,7 @@ public class ProxyMethodInvokeErrorWithAssertTest {
 		ProxyMethodInvokeErrorWithAssert invoke = (ProxyMethodInvokeErrorWithAssert) controller.getObjectInstanceProxy();
 		try {
 			invoke.invokeErroWithAssert();
-		} catch (Exception e) {
+		} catch (MakeATestAssertionError e) {
 			Assert.assertEquals("ProxyMethodInvokeErrorWithAssert fail null expected:<invoke [error]> but was:<invoke [fail]>", e.getMessage());
 		}
 	}
