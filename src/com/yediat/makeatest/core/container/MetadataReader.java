@@ -35,23 +35,23 @@ public class MetadataReader {
 			logger.debug("Parameter klass is " + klass.getName());
 		}
 		this.container = new MetadataContainer();
-		this.stetament(klass);
+		this.statement(klass);
 	}
 
 	public MetadataContainer getContainer() {
 		return this.container;
 	}
 
-	private void stetament(Class<?> klass) throws MakeATestInitializationException {
+	private void statement(Class<?> klass) throws MakeATestInitializationException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("Parameter klass is " + klass.getName());
 		}
-		stetamentClass(klass);
-		stetamentFields(klass);
-		stetamentMethods(klass);
+		statementClass(klass);
+		statementFields(klass);
+		statementMethods(klass);
 	}
 
-	private void stetamentClass(Class<?> klass) throws MakeATestInitializationException {
+	private void statementClass(Class<?> klass) throws MakeATestInitializationException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("Parameter klass is " + klass.getName());
 		}
@@ -61,7 +61,7 @@ public class MetadataReader {
 		}
 	}
 
-	private void stetamentFields(Class<?> klass) throws MakeATestInitializationException {
+	private void statementFields(Class<?> klass) throws MakeATestInitializationException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("Parameter klass is " + klass.getName());
 		}
@@ -74,7 +74,7 @@ public class MetadataReader {
 		}
 	}
 
-	private void stetamentMethods(Class<?> klass) throws MakeATestInitializationException {
+	private void statementMethods(Class<?> klass) throws MakeATestInitializationException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("Parameter klass is " + klass.getName());
 		}
