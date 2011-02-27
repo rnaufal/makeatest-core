@@ -100,7 +100,7 @@ public class MakeATestController {
 							metadataProcessor.process(this.instance);
 							isExecuted = true;
 						} catch (InvocationTargetException ite) {
-							MakeATestException makeATestException = new MakeATestException("Exception in processor class: " + ite.getCause().getMessage());
+							MakeATestException makeATestException = new MakeATestException(object.getClass().getSimpleName()+" fail " + ite.getCause().getMessage());
 							makeATestException.setStackTrace(ite.getCause().getStackTrace());
 							throw makeATestException;
 						} catch (Exception e) {
@@ -115,7 +115,7 @@ public class MakeATestController {
 							invoked = method.invoke(object, args);
 							isExecuted = true;
 						} catch (InvocationTargetException ite) {
-							MakeATestException makeATestException = new MakeATestException("Exception in processor class: " + ite.getCause().getMessage());
+							MakeATestException makeATestException = new MakeATestException(object.getClass().getSimpleName()+" fail " + ite.getCause().getMessage());
 							makeATestException.setStackTrace(ite.getCause().getStackTrace());
 							throw makeATestException;
 						} catch (Exception e) {
@@ -130,7 +130,7 @@ public class MakeATestController {
 							metadataProcessor.process(this.instance);
 							isExecuted = true;
 						} catch (InvocationTargetException ite) {
-							MakeATestException makeATestException = new MakeATestException("Exception in processor class: " + ite.getCause().getMessage());
+							MakeATestException makeATestException = new MakeATestException(object.getClass().getSimpleName()+" fail " + ite.getCause().getMessage());
 							makeATestException.setStackTrace(ite.getCause().getStackTrace());
 							throw makeATestException;
 						} catch (Exception e) {

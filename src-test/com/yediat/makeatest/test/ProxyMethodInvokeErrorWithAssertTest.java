@@ -18,7 +18,7 @@ public class ProxyMethodInvokeErrorWithAssertTest {
 		try {
 			invoke.invokeErroWithAssert();
 		} catch (Exception e) {
-			Assert.assertEquals("Exception in processor class: null expected:<invoke [error]> but was:<invoke [fail]>", e.getMessage());
+			Assert.assertEquals("ProxyMethodInvokeErrorWithAssert fail null expected:<invoke [error]> but was:<invoke [fail]>", e.getMessage());
 		}
 	}
 }
