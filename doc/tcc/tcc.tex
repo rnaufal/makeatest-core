@@ -1,0 +1,42 @@
+\documentclass[12pt,a4paper,oneside]{book}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazilian]{babel}
+\usepackage[alf]{abntcite}
+\usepackage{url}
+
+\ifx\pdftexversion\undefined
+\usepackage[dvips]{graphicx}
+\else
+\usepackage[pdftex]{graphicx}
+\usepackage[pdftex,table]{xcolor}
+\DeclareGraphicsRule{*}{mps}{*}{}
+\fi
+
+\begin{document}
+
+\title{How to Structure a LaTeX Document}
+\author{Andrew Roberts}
+\date{December 2004}
+\maketitle
+
+
+\chapter{Introdução}
+
+\chapter{Conceitos Teóricos}
+
+\chapter{Problemas}
+
+
+\chapter{Padrão}
+
+Padrão para solução do problema(mostrar que o isolamento da inicialização /verificacao do teste, que sao coisas de efeito externo e nao pertencem a classe são feitas  usando anotação. )
+
+\chapter{Framework para facilitar aplicação do padrão}
+
+\chapter{Estudos de caso}
+
+
+
+\end{document}
