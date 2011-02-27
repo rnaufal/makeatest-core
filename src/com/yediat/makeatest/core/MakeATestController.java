@@ -8,6 +8,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import junit.framework.AssertionFailedError;
+
 import net.sf.cglib.proxy.MethodProxy;
 
 import org.slf4j.Logger;
@@ -189,7 +191,7 @@ public class MakeATestController {
 	 * @throws MakeATestException, MakeATestAssertionError 
 	 */
 	private void throwInvocationTargetException(Object object, InvocationTargetException ite) throws MakeATestException, MakeATestAssertionError {
-		if(ite.getCause().getClass().getSuperclass() != null && ite.getCause().getClass().getSuperclass().getSimpleName().equals("AssertionFailedError")){
+		if(ite.getCause().getClass().getSuperclass() != null && ite.getCause().getClass().getSuperclass().equals(AssertionFailedError.class)){
 			MakeATestAssertionError assertionError = new MakeATestAssertionError(object.getClass().getSimpleName()+" fail " + ite.getCause().getMessage());
 			assertionError.setStackTrace(ite.getCause().getStackTrace());
 			throw assertionError;		
