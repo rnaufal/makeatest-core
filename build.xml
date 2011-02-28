@@ -60,13 +60,14 @@
     </target>
 	
     <target name="javadoc" depends="resolve">
+    	<mkdir dir="javadoc"/>
         <javadoc 
         	access="private" 
         	additionalparam="-J-Dfile.encoding=UTF-8 -charset UTF-8" 
         	author="true" 
         	classpath="." 
         	classpathref="classpath"
-        	destdir="doc/java" 
+        	destdir="javadoc" 
         	nodeprecated="false" 
         	nodeprecatedlist="false" 
         	noindex="false" 

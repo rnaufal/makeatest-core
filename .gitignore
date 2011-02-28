@@ -4,18 +4,7 @@
 #Arquivos compilados do Jav
 bin/*
 
-#Arquivos do LATEX
-doc/**/*.log
-doc/**/*.pdf
-doc/**/*.synctex.gz
-doc/**/*.aux
-doc/**/*.bbl
-doc/**/*.blg
-doc/**/*.idx
-doc/**/*.toc
-doc/**/*.ilg
-doc/**/*.ind
-doc/**/*.lof
+javadoc
 
 #Arquivos de merge
 *.orig
