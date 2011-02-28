@@ -39,7 +39,7 @@ Padrão para solução do problema(mostrar que o isolamento da inicialização /
 
 
 \section{Contexto}
-Na criação dos testes de um sistema, inicializar um cenário com dependências externas e verificar os efeitos externos de um teste é muito trabalho. São exemplos de efeitos externos verificar estado do banco de dados, iniciar um servidor de aplicação, validar existência de recursos como arquivos, entre outros. É desejável que seja possível que o desenvolvedor crie seu teste de forma mais amigável, podendo tanto configurar seu cenário como realizar as verificações dos efeitos, de forma a tornar mais legível e amigável a criação do teste.
+Na criação dos testes de um sistema, inicializar um cenário com dependências externas e verificar os efeitos externos de um teste é em geral muito trabalhoso. Verificar o estado do banco de dados, iniciar um servidor de aplicação, validar existência de recursos como arquivos, entre outros são exemplos de efeitos externos. É desejável que seja possível que o desenvolvedor crie seu teste de forma mais amigável, podendo tanto configurar seu cenário como realizar as verificações dos efeitos, por meio de metadados, de forma a tornar mais legível e amigável a criação do teste.
 
 \section{Problema}
 Como configurar e verificar comportamentos por metadados em testes de unidade?
@@ -51,10 +51,12 @@ Como configurar e verificar comportamentos por metadados em testes de unidade?
 - Utilizar anotações para verificar comportamento de testes.\\
 
 \section{Aplicabilidade}
+-Testes que precisam de um servidor de aplicação inicializado no momento da execução do teste.\\
+-Testes que precisam verificar se determinando comportamento externo foi obtido na execução do teste como por exemplo a criação de um arquivo em algum lugar definido.\\
 - Comportamentos que se repetem em vários projetos podem ser externalizados em anotações e seu uso no método de teste parametrizado em cada projeto. Exemplo, validação de conteúdo de uma tabela em banco de dados, verificação de conteúdo de arquivo texto, entre outros.\\
 
 \section{Solução}
-Durante a criação do teste, o desenvolvedor pode se deparar com inicializações de cenário de teste específicos de um teste ou genéricos da classe de teste como um todo. De acordo com o escopo da inicialização, ele pode utilizar anotação para anotar ou a classe de teste ou o método em si com a anotação de inicialização de cenário. (OBS: Isso ainda não existe????)
+Durante a criação do teste, o desenvolvedor pode se deparar com inicializações de cenário de teste específicos de um teste ou genéricos da classe de teste como um todo. De acordo com o escopo da inicialização, ele pode utilizar anotação para anotar ou a classe de teste ou o método em si com a anotação de inicialização de cenário. (OBS: Isso ainda não existe????)\\
 Para verificar comportamentos decorrentes do teste, o método de teste é anotado. Quando a anotação é processada, é verificado se o efeito esperado foi atingido. Após essa verificação, pode-se considerar que o teste falhou ou que foi executado com sucesso. Mais de uma anotação pode existir em cada método, e todas são processadas para garantir que o comportamento desejado foi atingido.
 
 \section{Consequências}
@@ -78,8 +80,8 @@ O exemplo abaixo indica que por estarmos tentando acessar uma posição fora dos
 \end{verbatim}
 
 \subsection{Spring Framework - Common annotations}
-O Spring Framework prove um conjunto de anotações que podem ser usadas nos testes. De forma semelhando ao Expected Exceptions do JUnit, tem uma anotação denominada @ExpectedException. 
-Essa anotação indica que é esperado o método anotado com a mesma lance uma exceção durante sua excecução. Se for lançada a exceção do tipo esperado durante a excecução o teste passa, caso não lance o teste falha.
+O Spring Framework prove um conjunto de anotações que podem ser usadas nos testes. De forma semelhando ao Expected Exceptions do JUnit, tem uma anotação denominada @ExpectedException. \\
+Essa anotação indica que é esperado o método anotado com a mesma lance uma exceção durante sua excecução. Se for lançada a exceção do tipo esperado durante a excecução o teste passa, caso não lance o teste falha.\\
 Exemplo de uso:
 \begin{verbatim}
 @ExpectedException(IndexOutOfBoundsException.class)
@@ -89,7 +91,7 @@ public void empty() {
 \end{verbatim}
 
 \subsection{JQuati}
-
+O JQuati é uma Ferramenta para Teste de Precisão de Conjunto de Junção. (??) Possui as anotações MustExecute e MustNotExecute que são atribuídas aos casos de teste e armazenam uma lista de adendos que devem e não devem, respectivamente, ser executados.
 
 
 
