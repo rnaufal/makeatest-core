@@ -14,26 +14,40 @@ Pacotes
 
 O Make A Test está dividido em pacotes:
 
-- [makeatest-core](http://github.com:marcusfloriano/makeatest-core.git) -- `git@github.com:marcusfloriano/makeatest-core.git`
+- [makeatest-core](http://github.com/marcusfloriano/makeatest-core.git) -- `git@github.com:marcusfloriano/makeatest-core.git`
 
 Contem toda a lógica necessária para a execução do framework
 
-- [makeatest-junit](http://github.com:marcusfloriano/makeatest-junit.git) -- `git@github.com:marcusfloriano/makeatest-junit.git`
+- [makeatest-junit](http://github.com/marcusfloriano/makeatest-junit.git) -- `git@github.com:marcusfloriano/makeatest-junit.git`
 
 Integração com o JUnit 4 utilizando a funcionalidade Runners, é adicionado no teste de unidade o Runner abaixo:
 
     @RunWith(MakeATestRunner.class)
 
-- [makeatest-dbunit](http://github.com:marcusfloriano/makeatest-dbunit.git) -- `git@github.com:marcusfloriano/makeatest-dbunit.git`
+- [makeatest-dbunit](http://github.com/marcusfloriano/makeatest-dbunit.git) -- `git@github.com:marcusfloriano/makeatest-dbunit.git`
 
 Contem as anotações para carregar e validar o estado de um SGBD, é um adaptador do DBUnit para o MakeATest.
 
-Como desenvolver a verificação utilizando o Make A Test
--------------------------------------------------------
+Utilizando a ferramenta
+-----------------------
+
+Para exemplificar considere a necessidade de verificar se um determinado arquivo de propriedade foi criado corretamente.
+
+Assim em um determinado teste de unidade temos:
+
+	@Test
+	public void verifyFileProperty() {
+		Properties properties = new Properties();
+		properties.setProperty("company_name", "Make A Test");
+		properties.store(new FileOutputStream("filename.properties"), null);
+	}
+	
+Agora é necessário que seja validado se o resultado do arquivo gerado contêm a propriedade "company_name" igual a "Make a Test", e essa validação deve ser feita apenas com a adição de uma anotação como por exemplo:
+
+	@ValidatePropertieFile(property="company_name", value="Make a Test")
 
 ### Anotação
 
-Primeiro é necessário a criação da anotação.
 
 
 
