@@ -21,10 +21,6 @@ public class ProxyMethodWithTwoAnnotationTest {
 		ProxyMethodWithTwoAnnotation proxyMethod = (ProxyMethodWithTwoAnnotation) makeATestController.getObjectInstanceProxy();
 		try {
 			proxyMethod.shouldExecuteTwoAnnotation();
-			/**
-			 * This assert is for fail the test
-			 */
-			Assert.assertTrue(false);
 		} catch (MakeATestAssertionError e) {
 			if(!e.getMessage().equals("The text <After Execution>. not equals with <Afterrr Execution>.")){
 				Assert.assertTrue(false);
