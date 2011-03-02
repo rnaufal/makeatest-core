@@ -1,5 +1,5 @@
 Make A Test
---------------------------------------------------------------------
+===========
 
 O Make A Test é uma ferramenta com o objetivo de ajudar o desenvolvedor a verificar efeitos externos causados por um testes de unidade.
 
@@ -8,7 +8,7 @@ Considere que efeito externo é o resultado de uma execução de código, sendo 
 O Make A Test permite o desenvolvedor criar essas verificações de efeitos externos e adicionar nos testes de unidade atravéz de anotações, dessa forma garante que o teste de unidade continue simples e de fácil entendimento.
 
 Pacotes
---------------------------------------------------------------------
+-------
 
 O Make A Test está dividido em pacotes:
 
