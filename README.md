@@ -34,14 +34,23 @@ Instalação
 Adicione no Classpath os pacotes jars:
 
 - makeatest-core
- - https://github.com/marcusfloriano/makeatest-core/blob/master/dist/makeatest-core-X.X.X.jar
+ - [https://github.com/marcusfloriano/makeatest-core/blob/master/dist/makeatest-core-X.X.X.jar](https://github.com/marcusfloriano/makeatest-core/blob/master/dist/)
 - makeatest-junit
- - https://github.com/marcusfloriano/makeatest-junit/blob/master/dist/makeatest-junit-X.X.X.jar
+ - [https://github.com/marcusfloriano/makeatest-junit/blob/master/dist/makeatest-junit-X.X.X.jar](https://github.com/marcusfloriano/makeatest-junit/blob/master/dist/)
 
-Uso
----
+Nos testes adicione o Runner como no exemplo abaixo.
 
-Exemplo 
+	@RunWith(MakeATestRunner.class)
+	public class VerifyPropertiesTest {
+		...
+	}
+
+E basta utilizar as anotações disponíveis ou desenvolver sua própria anotação.
+
+Desenvolvendo uma anotação
+--------------------------
+
+### Exemplo de uso
 
 Para exemplificar o uso da ferramenta considere a necessidade de verificar se um determinado arquivo de propriedade foi criado corretamente a partir da classe `Properies`.
 
@@ -58,10 +67,20 @@ Agora é necessário que seja validado se o resultado do arquivo gerado contêm 
 
 	@ValidatePropertyFile(property="company_name", value="Make a Test")
 
-Essa anotação 
+### Criando a anotação
 
-### Anotação
+Inicialmente considere que a anotação está sendo criada para ser adicionada somente em método. Em outro tópico mais a frente indicará como desenvolver anotações para outros lugares na classe.
 
+Assim temos o código da anotação que representa o trecho anterior.
+
+	@Target({ ElementType.METHOD })
+	@Retention(RetentionPolicy.RUNTIME)
+	public @interface ValidatePropertyFile {
+		String property();
+		String value();
+	}
+
+### Criando o Make a Test Reader
 
 
 
