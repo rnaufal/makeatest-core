@@ -12,19 +12,26 @@ Pacotes
 
 O Make A Test está dividido em pacotes:
 
-- makeatest-core
-git@github.com:marcusfloriano/makeatest-core.git
+- [makeatest-core](http://github.com:marcusfloriano/makeatest-core.git) -- `git@github.com:marcusfloriano/makeatest-core.git`
 
 Contêm toda a lógica necessária para a execução do framework
 
-- makeatest-junit
-git@github.com:marcusfloriano/makeatest-junit.git
+- [makeatest-junit](http://github.com:marcusfloriano/makeatest-junit.git) -- `git@github.com:marcusfloriano/makeatest-junit.git`
 
-É a integração com o Runner do JUnit 4, é utilizando na classe de teste com o @RunWith(MakeATestRunner.class)
+Integração com o JUnit 4 utilizando a funcionalidade Runners, é adicionado no teste de unidade o Runner abaixo:
 
-- makeatest-dbunit
-git@github.com:marcusfloriano/makeatest-dbunit.git
-Esse pacote contêm as anotações para carregar e validar o estado do banco, é um adaptador do DBUnit para o MakeATest
+    @RunWith(MakeATestRunner.class)
+
+- [makeatest-dbunit](http://github.com:marcusfloriano/makeatest-dbunit.git) -- `git@github.com:marcusfloriano/makeatest-dbunit.git`
+
+Contêm as anotações para carregar e validar o estado de um SGBD, é um adaptador do DBUnit para o MakeATest.
+
+Como desenvolver a verificação utilizando o Make A Test
+-------------------------------------------------------
+
+### Anotação
+
+Primeiro é necessário a criação da anotação.
 
 
 
