@@ -28,12 +28,24 @@ Integração com o JUnit 4 utilizando a funcionalidade Runners, é adicionado no
 
 Contem as anotações para carregar e validar o estado de um SGBD, é um adaptador do DBUnit para o MakeATest.
 
-Utilizando a ferramenta
------------------------
+Instalação
+----------
 
-Para exemplificar considere a necessidade de verificar se um determinado arquivo de propriedade foi criado corretamente.
+Adicione no Classpath os pacotes jars:
 
-Assim em um determinado teste de unidade temos:
+- makeatest-core
+ - https://github.com/marcusfloriano/makeatest-core/blob/master/dist/makeatest-core-X.X.X.jar
+- makeatest-junit
+ - https://github.com/marcusfloriano/makeatest-junit/blob/master/dist/makeatest-junit-X.X.X.jar
+
+Uso
+---
+
+Exemplo 
+
+Para exemplificar o uso da ferramenta considere a necessidade de verificar se um determinado arquivo de propriedade foi criado corretamente a partir da classe `Properies`.
+
+Dessa forma em um determinado teste de unidade temos:
 
 	@Test
 	public void verifyFileProperty() {
@@ -44,7 +56,9 @@ Assim em um determinado teste de unidade temos:
 	
 Agora é necessário que seja validado se o resultado do arquivo gerado contêm a propriedade "company_name" igual a "Make a Test", e essa validação deve ser feita apenas com a adição de uma anotação como por exemplo:
 
-	@ValidatePropertieFile(property="company_name", value="Make a Test")
+	@ValidatePropertyFile(property="company_name", value="Make a Test")
+
+Essa anotação 
 
 ### Anotação
 
