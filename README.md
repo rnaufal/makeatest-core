@@ -69,9 +69,9 @@ Agora é necessário que seja validado se o resultado do arquivo gerado contem a
 
 ### Criando a anotação
 
-Inicialmente considere que a anotação está sendo criada para ser adicionada somente em método. Em outro tópico mais a frente indicará como desenvolver anotações para outros lugares na classe.
+Inicialmente considere que a anotação criada será adicionada somente em métodos. Em um outro momento será demonstrado como desenvolver anotações para inserir em outros pontos na classe.
 
-Assim temos o código da anotação que representa o trecho anterior.
+Abaixo temos o código da anotação que representa o trecho anterior para anotar métodos.
 
 	@Target({ ElementType.METHOD })
 	@Retention(RetentionPolicy.RUNTIME)
