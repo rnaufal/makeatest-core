@@ -103,7 +103,7 @@ O Reader recupera o valor do property e do value, e neste momento de Reader é p
 
 Observe que caso o property for vazio será lançado uma exceção MakeATestInitializationException, isso é por causa do ciclo de vida do Make a Test, que o reader é a fase de inicialização.
 
-#### Criando o Make a Test Processor
+### Criando o Make a Test Processor
 
 Após a fase do Reader é necessário processar a anotação para isso tem que criar uma classe que estende a classe "MetadataProcessor".
 
@@ -134,19 +134,19 @@ Após a fase do Reader é necessário processar a anotação para isso tem que c
 
 A classe acima representa o "processor" implementado, o método "process" será executado quando o ciclo de vida do Make a Test fazer a chamada para essa método. Note também que as exceções são passadas por MakeaTestException dessa forma é apresentar o erro correto no stack no eclipse.
 
-#### Integrando a anotação, reader e o processor
+### Integrando a anotação, reader e o processor
 
 A integração entre a anotação, reader e o processo para o ciclo do Make a Test é simples, primeiro a classe "ValidatePropertyileProcessor" recebe os dados pelo método construtor, essa classe é iniciada na classe reader e processada pelo Make a Test, segue a classe reader com a alteração de integração.  
 
-public class ValidatePropertyFileReader implements MakeATestReaderInterface<ValidatePropertyFile> {
-	@Override
-	public void readAnnotation(ValidatePropertyFile annotation, AnnotationProperties descriptor) {
-		if(annotation.property().trim().equals("")){
-			throw new MakeATestInitalizationException("Property is empty");
+	public class ValidatePropertyFileReader implements MakeATestReaderInterface<ValidatePropertyFile> {
+		@Override
+		public void readAnnotation(ValidatePropertyFile annotation, AnnotationProperties descriptor) {
+			if(annotation.property().trim().equals("")){
+				throw new MakeATestInitalizationException("Property is empty");
+			}
+			descriptor.setProcessor(new ValidatePropertyFileProcessor(annotation.file,annotation.property,annotation.value));
 		}
-		descriptor.setProcessor(new ValidatePropertyFileProcessor(annotation.file,annotation.property,annotation.value));
 	}
-}
-s
+
 
 
