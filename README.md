@@ -82,6 +82,19 @@ Assim temos o código da anotação que representa o trecho anterior.
 
 ### Criando o Make a Test Reader
 
+O Make a Test processa a anotação em duas fases a primeira o Reader e a segunda o Processor.
+O Reader é responsável pela leitura e tratamento das informações passadas na anotação, vejamos a anotação:
+
+	@ValidatePropertyFile(property="company_name", value="Make a Test")
+	
+O Reader recupera o valor do property e do value, e neste momento de Reader é possível implementar as verificações necessárias. Por exemplo nesse caso podemos afirmar que o property é obrigatório então precisamos implementar uma verificação e caso esse valor seja branco lançar uma exceção, veja o exemplo abaixo.
+
+	public class ValidatePropertyFileReader implements MakeATestReaderInterface<ValidatePropertyFile> {
+		@Override
+		public void readAnnotation(ValidatePropertyFile annotation, AnnotationProperties descriptor) {
+			
+		}
+	}
 
 
 
