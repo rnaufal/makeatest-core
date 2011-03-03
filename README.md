@@ -83,12 +83,12 @@ Abaixo temos o código da anotação que representa o trecho anterior para anota
 
 ### Criando o Make a Test Reader
 
-O Make a Test processa a anotação em duas fases a primeira o Reader e a segunda o Processor.
-O Reader é responsável pela leitura e tratamento das informações passadas na anotação, vejamos a anotação:
+O Make a Test processa a anotação em duas fases, sendo a primeira de leitura (Reader) e a segunda de processamento (Processor).
+O Reader é responsável pela leitura e tratamento das informações passadas na anotação. Vejamos a anotação:
 
 	@ValidatePropertyFile(property="company_name", value="Make a Test")
 
-Para que o Make a Test processe essa anotação é necessário desenvolver a classe de reader implementando o método "readAnnotation" conforme o exemplo abaixo. Essa classe implementa a interface MakeATestReaderInterface<E> sendo que E é a anotação.
+Para que o Make a Test realize a leitura dessa anotação é necessário criar uma classe de Reader para ela. Essa classe implementa a interface MakeATestReaderInterface<E> sendo que E é a anotação. Como consequencia essa classe de reader deve implementar o método "readAnnotation" conforme o exemplo abaixo. 
 
 	public class ValidatePropertyFileReader implements MakeATestReaderInterface<ValidatePropertyFile> {
 		@Override
@@ -99,9 +99,9 @@ Para que o Make a Test processe essa anotação é necessário desenvolver a cla
 		}
 	}
 	
-O Reader recupera o valor do property e do value, e neste momento de Reader é possível implementar as verificações necessárias. Por exemplo nesse caso podemos afirmar que o property é obrigatóri,o então tem a necessidade de implementar uma verificação, e caso esse valor seja branco lançar uma exceção, conforme o exemplo anterior.
+O Reader recupera o valor do property e do value, e neste momento de Reader é possível implementar as verificações necessárias. Nesse caso, por exemplo, podemos afirmar que o property é obrigatório. Há então a necessidade de implementar uma verificação e caso esse valor seja branco é lançada uma exceção, conforme o exemplo anterior.
 
-Observe que caso o property for vazio será lançado uma exceção MakeATestInitializationException, isso é por causa do ciclo de vida do Make a Test, que o reader é a fase de inicialização.
+Observe que caso o property for vazio será lançado uma exceção do tipo MakeATestInitializationException. Isso é devido ao ciclo de vida do Make a Test, no qual o Reader é a fase de inicialização.
 
 ### Criando o Make a Test Processor
 
