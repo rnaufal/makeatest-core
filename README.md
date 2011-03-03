@@ -65,7 +65,7 @@ Dessa forma em um determinado teste de unidade temos:
 	
 Agora é necessário que seja validado se o resultado do arquivo gerado contêm a propriedade "company_name" igual a "Make a Test", e essa validação deve ser feita apenas com a adição de uma anotação como por exemplo:
 
-	@ValidatePropertyFile(property="company_name", value="Make a Test")
+	@ValidatePropertyFile(file="filename.properties", property="company_name", value="Make a Test")
 
 ### Criando a anotação
 
@@ -76,6 +76,7 @@ Assim temos o código da anotação que representa o trecho anterior.
 	@Target({ ElementType.METHOD })
 	@Retention(RetentionPolicy.RUNTIME)
 	public @interface ValidatePropertyFile {
+		String file();
 		String property();
 		String value();
 	}
@@ -102,9 +103,50 @@ O Reader recupera o valor do property e do value, e neste momento de Reader é p
 
 Observe que caso o property for vazio será lançado uma exceção MakeATestInitializationException, isso é por causa do ciclo de vida do Make a Test, que o reader é a fase de inicialização.
 
+#### Criando o Make a Test Processor
 
+Após a fase do Reader é necessário processar a anotação para isso tem que criar uma classe que estende a classe "MetadataProcessor".
 
+	public class ValidatePropertyFileProcessor extends MetadataProcessor {
+		private String property;
+		private String value;
+		private String file;
+		
+		public ValidatePropertyFileProcessor(String file, String property, String value) {
+			this.file = file;
+			this.property = property;
+			this.value = value;
+		}
+		
+		@Override
+		public void process(Object instance) throws MakeATestAssertionError {
+			try {
+				Properties props = new Properties();
+				props.load(new FileInputStream(this.file));
+				Assert.assertEquals(this.value,props.getProperty(this.property));
+			} catch (FileNotFoundException e) {
+				throw new MakeATestException(e.getMessage());
+			} catch (IOException e) {
+				throw new MakeATestException(e.getMessage());
+			}
+		}
+	}
 
+A classe acima representa o "processor" implementado, o método "process" será executado quando o ciclo de vida do Make a Test fazer a chamada para essa método. Note também que as exceções são passadas por MakeaTestException dessa forma é apresentar o erro correto no stack no eclipse.
 
+#### Integrando a anotação, reader e o processor
+
+A integração entre a anotação, reader e o processo para o ciclo do Make a Test é simples, primeiro a classe "ValidatePropertyileProcessor" recebe os dados pelo método construtor, essa classe é iniciada na classe reader e processada pelo Make a Test, segue a classe reader com a alteração de integração.  
+
+public class ValidatePropertyFileReader implements MakeATestReaderInterface<ValidatePropertyFile> {
+	@Override
+	public void readAnnotation(ValidatePropertyFile annotation, AnnotationProperties descriptor) {
+		if(annotation.property().trim().equals("")){
+			throw new MakeATestInitalizationException("Property is empty");
+		}
+		descriptor.setProcessor(new ValidatePropertyFileProcessor(annotation.file,annotation.property,annotation.value));
+	}
+}
+s
 
 
