@@ -52,7 +52,7 @@ Desenvolvendo uma anotação
 
 ### Exemplo de uso
 
-Para exemplificar o uso da ferramenta considere a necessidade de verificar se um determinado arquivo de propriedade foi criado corretamente a partir da classe `Properies`.
+Para exemplificar o uso da ferramenta considere a necessidade de verificar se um determinado arquivo de propriedade foi criado corretamente a partir da classe `Properties`.
 
 Dessa forma em um determinado teste de unidade temos:
 
@@ -63,7 +63,7 @@ Dessa forma em um determinado teste de unidade temos:
 		properties.store(new FileOutputStream("filename.properties"), null);
 	}
 	
-Agora é necessário que seja validado se o resultado do arquivo gerado contêm a propriedade "company_name" igual a "Make a Test", e essa validação deve ser feita apenas com a adição de uma anotação como por exemplo:
+Agora é necessário que seja validado se o resultado do arquivo gerado contem a propriedade "company_name" com valor igual a "Make a Test". Essa validação pode ser feita apenas com a adição de uma anotação, como por exemplo:
 
 	@ValidatePropertyFile(file="filename.properties", property="company_name", value="Make a Test")
 
