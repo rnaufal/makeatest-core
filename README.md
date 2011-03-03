@@ -86,15 +86,23 @@ O Make a Test processa a anotação em duas fases a primeira o Reader e a segund
 O Reader é responsável pela leitura e tratamento das informações passadas na anotação, vejamos a anotação:
 
 	@ValidatePropertyFile(property="company_name", value="Make a Test")
-	
-O Reader recupera o valor do property e do value, e neste momento de Reader é possível implementar as verificações necessárias. Por exemplo nesse caso podemos afirmar que o property é obrigatório então precisamos implementar uma verificação e caso esse valor seja branco lançar uma exceção, veja o exemplo abaixo.
+
+Para que o Make a Test processe essa anotação é necessário desenvolver a classe de reader implementando o método "readAnnotation" conforme o exemplo abaixo. Essa classe implementa a interface MakeATestReaderInterface<E> sendo que E é a anotação.
 
 	public class ValidatePropertyFileReader implements MakeATestReaderInterface<ValidatePropertyFile> {
 		@Override
 		public void readAnnotation(ValidatePropertyFile annotation, AnnotationProperties descriptor) {
-			
+			if(annotation.property().trim().equals("")){
+				throw new MakeATestInitalizationException("Property is empty");
+			}
 		}
 	}
+	
+O Reader recupera o valor do property e do value, e neste momento de Reader é possível implementar as verificações necessárias. Por exemplo nesse caso podemos afirmar que o property é obrigatóri,o então tem a necessidade de implementar uma verificação, e caso esse valor seja branco lançar uma exceção, conforme o exemplo anterior.
+
+Observe que caso o property for vazio será lançado uma exceção MakeATestInitializationException, isso é por causa do ciclo de vida do Make a Test, que o reader é a fase de inicialização.
+
+
 
 
 
