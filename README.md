@@ -167,7 +167,8 @@ Utilizando a anotação do "@MakeATestReader" é possível informar qual a class
 
 ### Testando o funcionamento
 
-Para finalizar é necessário no teste de unidade adicionar duas coisas, o Runner do Make a Test e a anotação de verificação, segue abaixo a classe do teste de unidade com a anotação.
+Após tudo integrado, a anotação de verificação já está pronta para ser utilizada no teste de unidade. O Make a Test porém utiliza um Runner próprio, e antes de executar o caso de teste é preciso adicionar essa informação na classe através da anotação @RunWith.
+Segue abaixo a classe do teste, com a anotação e informação de runner.
 
 	@RunWith(MakeATestRunner.class)
 	public class FileExistsAnnotationTest {
@@ -182,4 +183,4 @@ Para finalizar é necessário no teste de unidade adicionar duas coisas, o Runne
 
 	}
 	
-Dessa forma caso o property for diferente do value após a execução do método é retornado um AssertErro.
+No teste acima, após a execução do método, se o 'property' estiver com um valor diferente do 'value' (ambos passados na anotação) esperado é obtido um AssertError e o teste falha. Caso contrário o teste é executado com sucesso.
