@@ -9,7 +9,7 @@ import com.yediat.makeatest.core.metadata.reading.MakeATestProxyBehavior;
  * @author marcusfloriano
  *
  */
-public abstract class MetadataProcessor {
+public abstract class AnnotationProcessor {
 	
 	protected MakeATestProxyBehavior makeATestProxyBehavior = MakeATestProxyBehavior.NONE;
 	

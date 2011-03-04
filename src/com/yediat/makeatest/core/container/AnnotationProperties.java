@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.yediat.makeatest.core.MakeATestAssertionError;
-import com.yediat.makeatest.core.metadata.processor.MetadataProcessor;
+import com.yediat.makeatest.core.metadata.processor.AnnotationProcessor;
 import com.yediat.makeatest.core.metadata.reading.MakeATestProxyBehavior;
 
 /**
@@ -29,7 +29,7 @@ public class AnnotationProperties {
 		this.annotation = annotation;
 	}
 
-	private MetadataProcessor processor;
+	private AnnotationProcessor processor;
 	private MakeATestProxyBehavior [] actions;
 	private Object annotated;
 
@@ -41,9 +41,9 @@ public class AnnotationProperties {
 		this.annotated = annotated;
 	}
 
-	public MetadataProcessor getProcessor() {
+	public AnnotationProcessor getProcessor() {
 		if (processor == null) {
-			processor = new MetadataProcessor() {
+			processor = new AnnotationProcessor() {
 				@Override
 				public void process(Object instance) throws MakeATestAssertionError {
 					throw new MakeATestAssertionError("Processor not implemented for annotaion: \n" + annotation.annotationType().getName());
@@ -53,7 +53,7 @@ public class AnnotationProperties {
 		return processor;
 	}
 	
-	public void setProcessor(MetadataProcessor processor) {
+	public void setProcessor(AnnotationProcessor processor) {
 		this.processor = processor;
 	}
 

@@ -3,9 +3,9 @@ package com.yediat.makeatest.annotations.fileverify;
 import java.io.File;
 
 import com.yediat.makeatest.core.MakeATestAssertionError;
-import com.yediat.makeatest.core.metadata.processor.MetadataProcessor;
+import com.yediat.makeatest.core.metadata.processor.AnnotationProcessor;
 
-public class FileNotExistsAnnotationProcessor extends MetadataProcessor {
+public class FileNotExistsAnnotationProcessor extends AnnotationProcessor {
 
 	private String filePath;
 	

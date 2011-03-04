@@ -1,9 +1,9 @@
 package com.yediat.makeatest.annotations.systemproperty;
 
 import com.yediat.makeatest.core.MakeATestAssertionError;
-import com.yediat.makeatest.core.metadata.processor.MetadataProcessor;
+import com.yediat.makeatest.core.metadata.processor.AnnotationProcessor;
 
-public class SystemPropertyLoadProcessor extends MetadataProcessor {
+public class SystemPropertyLoadProcessor extends AnnotationProcessor {
 
 	private String key;
 	private String value;
