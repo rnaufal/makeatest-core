@@ -137,17 +137,29 @@ A classe acima representa o "processor" implementado, na qual o método "process
 
 ### Integrando a anotação, reader e o processor
 
-A integração entre a anotação, reader e o processo para o ciclo do Make a Test é simples, primeiro a classe "ValidatePropertyileProcessor" recebe os dados pelo método construtor, essa classe é iniciada na classe reader e processada pelo Make a Test, segue a classe reader com a alteração de integração.  
+A integração entre a anotação, reader e o processo para que ciclo de vida do Make a Test funcione é feita de forma bem simples, primeiro a classe "ValidatePropertyFileProcessor" recebe os dados pelo método construtor, essa classe é iniciada na classe reader e o método processor é chamado pelo Make a Test, segue a classe reader com a integração com o processor.
 
 	public class ValidatePropertyFileReader implements MakeATestReaderInterface<ValidatePropertyFile> {
 		@Override
-		public void readAnnotation(ValidatePropertyFile annotation, AnnotationProperties descriptor) {
+		public void readAnnotation(ValidatePropertyFile annotation, AnnotationProperties properties) {
 			if(annotation.property().trim().equals("")){
 				throw new MakeATestInitalizationException("Property is empty");
 			}
-			descriptor.setProcessor(new ValidatePropertyFileProcessor(annotation.file,annotation.property,annotation.value));
+			**descriptor.setProcessor(new ValidatePropertyFileProcessor(annotation.file,annotation.property,annotation.value));**
 		}
 	}
 
+Note que é criado o objeto do processor e adicionado no "properties.setProcessor(..)" que é recebido pelo readAnnotation, assim o Make a Test recupera do properties e executa o método "process".
+
+Por fim é preciso informar na anotação "@ValidatePropertyFile" uma anotação do make a test para informar qual o Reader dessa anotação, se a execução do processo deve ser antes ou depois da execução do método e se é uma anotação para ser executado em momento de LOAD ou em momento de execução do método (PROXYMETHOD), segue o exemplo da anotação.
+
+	@Target({ ElementType.METHOD })
+	@Retention(RetentionPolicy.RUNTIME)
+	@MakeATestReader(reader=ValidatePropertyFileReader.class,proxyBehavior={MakeATestProxyBehavior.AFTER},scope=MakeATestScope.PROXYMETHOD)
+	public @interface ValidatePropertyFile {
+		String file();
+		String property();
+		String value();
+	}
 
 
