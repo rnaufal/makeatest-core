@@ -63,7 +63,7 @@ Dessa forma em um determinado teste de unidade temos:
 		properties.store(new FileOutputStream("filename.properties"), null);
 	}
 	
-Agora é necessário que seja validado se o resultado do arquivo gerado contem a propriedade "company_name" com valor igual a "Make a Test". Essa validação pode ser feita apenas com a adição de uma anotação, como por exemplo:
+Agora é necessário que seja validado se o resultado do arquivo gerado contem a propriedade `company_name` com valor igual a `Make a Test`. Essa validação pode ser feita apenas com a adição de uma anotação, como por exemplo:
 
 	@ValidatePropertyFile(file="filename.properties", property="company_name", value="Make a Test")
 
@@ -88,7 +88,7 @@ O Reader é responsável pela leitura e tratamento das informações passadas na
 
 	@ValidatePropertyFile(file="filename.properties", property="company_name", value="Make a Test")
 
-Para que o Make a Test realize a leitura dessa anotação é necessário criar uma classe de Reader para ela. Essa classe implementa a interface MakeATestReaderInterface<E> sendo que E é a anotação. Como consequencia essa classe de reader deve implementar o método "readAnnotation" conforme o exemplo abaixo. 
+Para que o Make a Test realize a leitura dessa anotação é necessário criar uma classe de Reader para ela. Essa classe implementa a interface MakeATestReaderInterface<E> sendo que E é a anotação. Como consequencia essa classe de reader deve implementar o método `readAnnotation` conforme o exemplo abaixo. 
 
 	public class ValidatePropertyFileReader implements MakeATestReaderInterface<ValidatePropertyFile> {
 		@Override
@@ -105,7 +105,7 @@ Observe que caso o property for vazio será lançado uma exceção do tipo MakeA
 
 ### Criando o Processor
 
-Após a fase de leitura é necessário processar a anotação. Para a fase de processamento (Processor) é necessário criar uma classe que estende a classe "MetadataProcessor".
+Após a fase de leitura é necessário processar a anotação. Para a fase de processamento (Processor) é necessário criar uma classe que estende a classe `MetadataProcessor`.
 
 	public class ValidatePropertyFileProcessor extends MetadataProcessor {
 		private String property;
@@ -132,14 +132,14 @@ Após a fase de leitura é necessário processar a anotação. Para a fase de pr
 		}
 	}
 
-A classe acima representa o "processor" implementado, na qual o método "process" contem a lógica de processamento da anotação. A chamada para esse método é responsabilidade do Make a Test, que a faz durante seu ciclo de vida. 
+A classe acima representa o `processor` implementado, na qual o método `process` contem a lógica de processamento da anotação. A chamada para esse método é responsabilidade do Make a Test, que a faz durante seu ciclo de vida. 
 
 
 ### Integrando a anotação, reader e o processor
 
 Para que tudo funcione corretamente durante o ciclo de vida do Make A Test, a anotação, o reader e o processor precisam estar integrados. Essa integração é feita de forma bem simples. 
 
-Primeiramente na classe de Reader é criada uma instância de um "ValidatePropertyFileProcessor" (Processor), e os valores necessários para o processamento da anotação são passados durante essa criação. Abaixo exemplo da integração do reader e processor.
+Primeiramente na classe de Reader é criada uma instância de um `ValidatePropertyFileProcessor` (Processor), e os valores necessários para o processamento da anotação são passados durante essa criação. Abaixo exemplo da integração do reader e processor.
 
 	public class ValidatePropertyFileReader implements MakeATestReaderInterface<ValidatePropertyFile> {
 		@Override
@@ -151,10 +151,10 @@ Primeiramente na classe de Reader é criada uma instância de um "ValidateProper
 		}
 	}
 
-Note que o processor criado é adicionado no AnnotationProperties "properties.setProcessor(..)" recebido no readAnnotation. Isso permite ao Make A Test recuperar desse properties esse processor quando for necessário e assim invocar o método "process".
+Note que o processor criado é adicionado no AnnotationProperties "properties.setProcessor(..)" recebido no readAnnotation. Isso permite ao Make A Test recuperar desse properties esse processor quando for necessário e assim invocar o método `process`.
 
-Por fim é necessário relacionar a anotação com um Reader. Isso é feito utilizando inserindo uma anotação denominada @MakeATestReader na anotação criada ("@ValidatePropertyFile"). 
-Utilizando a anotação do "@MakeATestReader" é possível informar qual a classe de Reader dessa anotação, se a execução do processor deve acontecer antes ou depois da execução do método e também se é uma anotação para ser executado em momento de carregamento (LOAD) ou em momento de execução do método (PROXYMETHOD). Segue exemplo de integração da anotação com reader abaixo.
+Por fim é necessário relacionar a anotação com um Reader. Isso é feito utilizando inserindo uma anotação denominada `@MakeATestReader` na anotação criada (`@ValidatePropertyFile`). 
+Utilizando a anotação do `@MakeATestReader` é possível informar qual a classe de Reader dessa anotação, se a execução do `processor` deve acontecer antes ou depois da execução do método e também se é uma anotação para ser executado em momento de carregamento (LOAD) ou em momento de execução do método (PROXYMETHOD). Segue exemplo de integração da anotação com reader abaixo.
 
 	@Target({ ElementType.METHOD })
 	@Retention(RetentionPolicy.RUNTIME)
