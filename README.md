@@ -86,7 +86,7 @@ Abaixo temos o código da anotação que representa o trecho anterior para anota
 O Make a Test processa a anotação em duas fases, sendo a primeira de leitura (Reader) e a segunda de processamento (Processor).
 O Reader é responsável pela leitura e tratamento das informações passadas na anotação. Vejamos a anotação:
 
-	@ValidatePropertyFile(property="company_name", value="Make a Test")
+	@ValidatePropertyFile(file="filename.properties", property="company_name", value="Make a Test")
 
 Para que o Make a Test realize a leitura dessa anotação é necessário criar uma classe de Reader para ela. Essa classe implementa a interface MakeATestReaderInterface<E> sendo que E é a anotação. Como consequencia essa classe de reader deve implementar o método "readAnnotation" conforme o exemplo abaixo. 
 
@@ -162,4 +162,21 @@ Por fim é preciso informar na anotação "@ValidatePropertyFile" uma anotação
 		String value();
 	}
 
+### Testando o funcionamento
 
+Para finalizar é necessário no teste de unidade adicionar duas coisas, o Runner do Make a Test e a anotação de verificação, segue abaixo a classe do teste de unidade com a anotação.
+
+	@RunWith(MakeATestRunner.class)
+	public class FileExistsAnnotationTest {
+
+		@ValidatePropertyFile(file="filename.properties", property="company_name", value="Make a Test")
+		@Test
+		public void verifyFileProperty() {
+			Properties properties = new Properties();
+			properties.setProperty("company_name", "Make A Test");
+			properties.store(new FileOutputStream("filename.properties"), null);
+		}
+
+	}
+	
+Dessa forma caso o property for diferente do value após a execução do método é retornado um AssertErro.
