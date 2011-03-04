@@ -4,10 +4,10 @@ import java.lang.reflect.Field;
 
 import com.yediat.makeatest.annotations.FailType;
 import com.yediat.makeatest.core.MakeATestAssertionError;
-import com.yediat.makeatest.core.metadata.processor.MetadataProcessor;
+import com.yediat.makeatest.core.metadata.processor.AnnotationProcessor;
 import com.yediat.makeatest.core.metadata.reading.MakeATestProxyBehavior;
 
-public class ProxyMethodBeforeAfterAnnotationProcessor extends MetadataProcessor {
+public class ProxyMethodBeforeAfterAnnotationProcessor extends AnnotationProcessor {
 
 	private String variable;
 	private String beforeText;

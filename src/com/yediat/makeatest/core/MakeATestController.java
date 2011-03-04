@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
 
 import com.yediat.makeatest.core.container.AnnotationProperties;
 import com.yediat.makeatest.core.container.MetadataReader;
-import com.yediat.makeatest.core.metadata.processor.MetadataProcessor;
+import com.yediat.makeatest.core.metadata.processor.AnnotationProcessor;
 import com.yediat.makeatest.core.metadata.reading.MakeATestProxyBehavior;
 import com.yediat.makeatest.core.metadata.reading.MakeATestReader;
 import com.yediat.makeatest.core.metadata.reading.MakeATestScope;
@@ -87,7 +87,7 @@ public class MakeATestController {
 				List<AnnotationProperties> props = properties.get(object);
 				if(props != null) {
 					for (AnnotationProperties propertyDescriptor : props) {
-						MetadataProcessor metadataProcessor = propertyDescriptor.getProcessor(); 
+						AnnotationProcessor metadataProcessor = propertyDescriptor.getProcessor(); 
 						try {
 							metadataProcessor.process(this.instance);
 						} catch (Exception e) {
@@ -119,7 +119,7 @@ public class MakeATestController {
 			if(props != null) {
 				for (AnnotationProperties annotationProperties : props) {
 					if(logger.isDebugEnabled()){logger.debug("Process the annotation: " + annotationProperties.getAnnotation());}
-					MetadataProcessor metadataProcessor = annotationProperties.getProcessor(); 
+					AnnotationProcessor metadataProcessor = annotationProperties.getProcessor(); 
 
 					HashSet<MakeATestProxyBehavior> enums = new HashSet<MakeATestProxyBehavior>();
 					for(MakeATestProxyBehavior makeATestActionEnum : annotationProperties.getActions()){

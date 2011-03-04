@@ -4,9 +4,9 @@ import java.io.File;
 
 import com.yediat.makeatest.annotations.FailType;
 import com.yediat.makeatest.core.MakeATestAssertionError;
-import com.yediat.makeatest.core.metadata.processor.MetadataProcessor;
+import com.yediat.makeatest.core.metadata.processor.AnnotationProcessor;
 
-public class FileExistsExceptionAnnotationProcessor extends MetadataProcessor {
+public class FileExistsExceptionAnnotationProcessor extends AnnotationProcessor {
 
 	private String filePath;
 	private FailType failType;

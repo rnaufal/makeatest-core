@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import com.yediat.makeatest.core.MakeATestAssertionError;
-import com.yediat.makeatest.core.metadata.processor.MetadataProcessor;
+import com.yediat.makeatest.core.metadata.processor.AnnotationProcessor;
 
 /**
  * Classe responsável pelo processamento da anotação
@@ -15,7 +15,7 @@ import com.yediat.makeatest.core.metadata.processor.MetadataProcessor;
  * 
  */
 
-public class RequiredFileAnnotationProcessor extends MetadataProcessor {
+public class RequiredFileAnnotationProcessor extends AnnotationProcessor {
 
 	private String filePath;
 

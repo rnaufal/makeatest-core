@@ -4,9 +4,9 @@ import java.lang.reflect.Field;
 
 import com.yediat.makeatest.annotations.FailType;
 import com.yediat.makeatest.core.MakeATestAssertionError;
-import com.yediat.makeatest.core.metadata.processor.MetadataProcessor;
+import com.yediat.makeatest.core.metadata.processor.AnnotationProcessor;
 
-public class ProxyMethodAnnotationProcessor extends MetadataProcessor {
+public class ProxyMethodAnnotationProcessor extends AnnotationProcessor {
 
 	private FailType failType;
 	private String variable;
