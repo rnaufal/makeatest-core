@@ -14,17 +14,17 @@ Pacotes
 
 O Make A Test está dividido em pacotes:
 
-- [makeatest-core](http://github.com/marcusfloriano/makeatest-core.git) -- `git@github.com:marcusfloriano/makeatest-core`
+- [makeatest-core](http://github.com/marcusfloriano/makeatest-core) -- `git@github.com:marcusfloriano/makeatest-core.git`
 
 Contem toda a lógica necessária para a execução do framework
 
-- [makeatest-junit](http://github.com/marcusfloriano/makeatest-junit.git) -- `git@github.com:marcusfloriano/makeatest-junit`
+- [makeatest-junit](http://github.com/marcusfloriano/makeatest-junit) -- `git@github.com:marcusfloriano/makeatest-junit.git`
 
 Integração com o JUnit 4 utilizando a funcionalidade Runners, é adicionado no teste de unidade o Runner abaixo:
 
     @RunWith(MakeATestRunner.class)
 
-- [makeatest-dbunit](http://github.com/marcusfloriano/makeatest-dbunit.git) -- `git@github.com:marcusfloriano/makeatest-dbunit`
+- [makeatest-dbunit](http://github.com/marcusfloriano/makeatest-dbunit) -- `git@github.com:marcusfloriano/makeatest-dbunit.git`
 
 Contem as anotações para carregar e validar o estado de um SGBD, é um adaptador do DBUnit para o MakeATest.
 
