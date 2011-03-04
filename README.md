@@ -81,7 +81,7 @@ Abaixo temos o código da anotação que representa o trecho anterior para anota
 		String value();
 	}
 
-### Criando o Make a Test Reader
+### Criando o Reader
 
 O Make a Test processa a anotação em duas fases, sendo a primeira de leitura (Reader) e a segunda de processamento (Processor).
 O Reader é responsável pela leitura e tratamento das informações passadas na anotação. Vejamos a anotação:
@@ -103,9 +103,9 @@ O Reader recupera o valor do property e do value, e neste momento de Reader é p
 
 Observe que caso o property for vazio será lançado uma exceção do tipo MakeATestInitializationException. Isso é devido ao ciclo de vida do Make a Test, no qual o Reader é a fase de inicialização.
 
-### Criando o Make a Test Processor
+### Criando o Processor
 
-Após a fase do Reader é necessário processar a anotação para isso tem que criar uma classe que estende a classe "MetadataProcessor".
+Após a fase de leitura é necessário processar a anotação. Para a fase de processamento (Processor) é necessário criar uma classe que estende a classe "MetadataProcessor".
 
 	public class ValidatePropertyFileProcessor extends MetadataProcessor {
 		private String property;
@@ -132,7 +132,8 @@ Após a fase do Reader é necessário processar a anotação para isso tem que c
 		}
 	}
 
-A classe acima representa o "processor" implementado, o método "process" será executado quando o ciclo de vida do Make a Test fazer a chamada para essa método. Note também que as exceções são passadas por MakeaTestException dessa forma é apresentar o erro correto no stack no eclipse.
+A classe acima representa o "processor" implementado, na qual o método "process" contem a lógica de processamento da anotação. A chamada para esse método é responsabilidade do Make a Test, que a faz durante seu ciclo de vida. 
+
 
 ### Integrando a anotação, reader e o processor
 
