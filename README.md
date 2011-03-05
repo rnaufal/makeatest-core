@@ -105,9 +105,9 @@ Observe que caso o property for vazio será lançado uma exceção do tipo MakeA
 
 ### Criando o Processor
 
-Após a fase de leitura é necessário processar a anotação. Para a fase de processamento (Processor) é necessário criar uma classe que estende a classe `MetadataProcessor`.
+Após a fase de leitura é necessário processar a anotação. Para a fase de processamento (Processor) é necessário criar uma classe que estende a classe `AnnotationProcessor`.
 
-	public class ValidatePropertyFileProcessor extends MetadataProcessor {
+	public class ValidatePropertyFileProcessor extends AnnotationProcessor {
 		private String property;
 		private String value;
 		private String file;

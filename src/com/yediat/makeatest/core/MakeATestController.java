@@ -87,9 +87,9 @@ public class MakeATestController {
 				List<AnnotationProperties> props = properties.get(object);
 				if(props != null) {
 					for (AnnotationProperties propertyDescriptor : props) {
-						AnnotationProcessor metadataProcessor = propertyDescriptor.getProcessor(); 
+						AnnotationProcessor annotationProcessor = propertyDescriptor.getProcessor(); 
 						try {
-							metadataProcessor.process(this.instance);
+							annotationProcessor.process(this.instance);
 						} catch (Exception e) {
 							throw new MakeATestException("Exception in execute processor",e);
 						}
@@ -119,7 +119,7 @@ public class MakeATestController {
 			if(props != null) {
 				for (AnnotationProperties annotationProperties : props) {
 					if(logger.isDebugEnabled()){logger.debug("Process the annotation: " + annotationProperties.getAnnotation());}
-					AnnotationProcessor metadataProcessor = annotationProperties.getProcessor(); 
+					AnnotationProcessor annotationProcessor = annotationProperties.getProcessor(); 
 
 					HashSet<MakeATestProxyBehavior> enums = new HashSet<MakeATestProxyBehavior>();
 					for(MakeATestProxyBehavior makeATestActionEnum : annotationProperties.getActions()){
@@ -128,11 +128,11 @@ public class MakeATestController {
 					
 					if(enums.contains(MakeATestProxyBehavior.BEFORE) && enums.contains(MakeATestProxyBehavior.AFTER)) {
 						try {
-							metadataProcessor.setProxyBehavior(MakeATestProxyBehavior.BEFORE);
-							metadataProcessor.process(this.instance);
+							annotationProcessor.setProxyBehavior(MakeATestProxyBehavior.BEFORE);
+							annotationProcessor.process(this.instance);
 							invoked = method.invoke(object, args);
-							metadataProcessor.setProxyBehavior(MakeATestProxyBehavior.AFTER);
-							metadataProcessor.process(this.instance);
+							annotationProcessor.setProxyBehavior(MakeATestProxyBehavior.AFTER);
+							annotationProcessor.process(this.instance);
 							isExecuted = true;
 						} catch (InvocationTargetException ite) {
 							throwInvocationTargetException(object, ite);
@@ -143,8 +143,8 @@ public class MakeATestController {
 						}						
 					} else if(enums.contains(MakeATestProxyBehavior.BEFORE)) {
 						try {
-							metadataProcessor.setProxyBehavior(MakeATestProxyBehavior.BEFORE);
-							metadataProcessor.process(this.instance);
+							annotationProcessor.setProxyBehavior(MakeATestProxyBehavior.BEFORE);
+							annotationProcessor.process(this.instance);
 							invoked = method.invoke(object, args);
 							isExecuted = true;
 						} catch (InvocationTargetException ite) {
@@ -157,8 +157,8 @@ public class MakeATestController {
 					} else if(enums.contains(MakeATestProxyBehavior.AFTER)) {
 						try {
 							invoked = method.invoke(object, args);
-							metadataProcessor.setProxyBehavior(MakeATestProxyBehavior.AFTER);
-							metadataProcessor.process(this.instance);
+							annotationProcessor.setProxyBehavior(MakeATestProxyBehavior.AFTER);
+							annotationProcessor.process(this.instance);
 							isExecuted = true;
 						} catch (InvocationTargetException ite) {
 							throwInvocationTargetException(object, ite);
