@@ -18,7 +18,7 @@ import com.yediat.makeatest.core.metadata.reading.MakeATestReaderInterface;
 import com.yediat.makeatest.core.metadata.reading.MakeATestScope;
 
 /**
- * Responsável pela leitura dos metadados (anotações) dos métodos e também pela
+ * Responsável pela leitura dos metadados (anotações) e também pela
  * criação do container das anotações
  * 
  * @author deborachama
