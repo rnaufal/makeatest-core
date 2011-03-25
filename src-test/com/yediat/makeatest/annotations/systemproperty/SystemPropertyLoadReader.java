@@ -6,9 +6,9 @@ import com.yediat.makeatest.core.metadata.reading.MakeATestReaderInterface;
 public class SystemPropertyLoadReader implements MakeATestReaderInterface<SystemPropertyLoad> {
 
 	@Override
-	public void readAnnotation(SystemPropertyLoad annotation, AnnotationProperties descriptor) {
+	public void readAnnotation(SystemPropertyLoad annotation, AnnotationProperties annotationProperties) {
 		SystemPropertyLoadProcessor systemPropertyLoadProcessor = new SystemPropertyLoadProcessor(annotation.key(), annotation.value());
-		descriptor.setProcessor(systemPropertyLoadProcessor);
+		annotationProperties.setProcessor(systemPropertyLoadProcessor);
 	}
 
 }

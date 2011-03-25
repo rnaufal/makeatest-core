@@ -86,8 +86,8 @@ public class MakeATestController {
 				Object object = iterator.next();
 				List<AnnotationProperties> props = properties.get(object);
 				if(props != null) {
-					for (AnnotationProperties propertyDescriptor : props) {
-						AnnotationProcessor annotationProcessor = propertyDescriptor.getProcessor(); 
+					for (AnnotationProperties annotationProperties : props) {
+						AnnotationProcessor annotationProcessor = annotationProperties.getProcessor(); 
 						try {
 							annotationProcessor.process(this.instance);
 						} catch (Exception e) {

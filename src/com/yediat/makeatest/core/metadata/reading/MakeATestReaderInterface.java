@@ -12,5 +12,5 @@ import com.yediat.makeatest.core.container.AnnotationProperties;
  * @param <A> A interface tem que receber um objeto que extende a classe Annotation
  */
 public interface MakeATestReaderInterface<A extends Annotation> {
-	public void readAnnotation(A annotation, AnnotationProperties descriptor);
+	public void readAnnotation(A annotation, AnnotationProperties annotationProperties);
 }

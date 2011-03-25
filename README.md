@@ -92,7 +92,7 @@ Para que o Make a Test realize a leitura dessa anotação é necessário criar u
 
 	public class ValidatePropertyFileReader implements MakeATestReaderInterface<ValidatePropertyFile> {
 		@Override
-		public void readAnnotation(ValidatePropertyFile annotation, AnnotationProperties descriptor) {
+		public void readAnnotation(ValidatePropertyFile annotation, AnnotationProperties annotationProperties) {
 			if(annotation.property().trim().equals("")){
 				throw new MakeATestInitalizationException("Property is empty");
 			}

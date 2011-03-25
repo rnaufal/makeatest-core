@@ -15,10 +15,10 @@ import com.yediat.makeatest.core.metadata.reading.MakeATestReaderInterface;
 public class RequiredFileAnnotationReader implements MakeATestReaderInterface<RequiredFileAnnotation> {
 
 	@Override
-	public void readAnnotation(RequiredFileAnnotation annotation, AnnotationProperties descriptor) {
+	public void readAnnotation(RequiredFileAnnotation annotation, AnnotationProperties annotationProperties) {
 		String path = annotation.filePath();		
 		RequiredFileAnnotationProcessor processor = new RequiredFileAnnotationProcessor(path);
-		descriptor.setProcessor(processor);
+		annotationProperties.setProcessor(processor);
 	}
 
 }
