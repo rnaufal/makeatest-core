@@ -83,7 +83,7 @@ E basta utilizar as anotações disponíveis ou desenvolver sua própria anotaç
 Changelog
 --------------------------
 
-### 0.7.0
+### 0.6.7
 
 - Alteração do MetadataProcessor para AnnotationProcessor
 - Melhoria na informação de falha do Assert.assertTrue, o JUnit devolve uma messagem "null", o MakeATest retorna que houve um falha na asserção na classe que ocorreu.
