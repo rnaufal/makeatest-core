@@ -18,9 +18,9 @@ import com.yediat.makeatest.core.metadata.processor.AnnotationProcessor;
 import com.yediat.makeatest.core.metadata.reading.MakeATestProxyBehavior;
 import com.yediat.makeatest.core.metadata.reading.MakeATestScope;
 
-public class MakeATestLazy {
+public class MakeATestAspectController {
 	
-	final Logger logger = LoggerFactory.getLogger(MakeATestLazy.class);
+	final Logger logger = LoggerFactory.getLogger(MakeATestAspectController.class);
 	private Object instance;
 	private MetadataReader metadataReader;
 	
