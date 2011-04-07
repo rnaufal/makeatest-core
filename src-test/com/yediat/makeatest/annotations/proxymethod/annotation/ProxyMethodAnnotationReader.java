@@ -9,24 +9,24 @@ import com.yediat.makeatest.core.metadata.reading.MakeATestReaderInterface;
 public class ProxyMethodAnnotationReader implements MakeATestReaderInterface<Annotation> {
 
 	@Override
-	public void readAnnotation(Annotation annotation, AnnotationProperties descriptor) {
+	public void readAnnotation(Annotation annotation, AnnotationProperties annotationProperties) {
 		if(annotation instanceof ProxyMethodBeforeAnnotation){
 			ProxyMethodBeforeAnnotation annot = (ProxyMethodBeforeAnnotation) annotation;
 			if(annot.failType().equals(FailType.READER)){
 				new Integer("a");
 			}
 			ProxyMethodAnnotationProcessor proxyAnnotationProcessor = new ProxyMethodAnnotationProcessor(annot.variable(),annot.text(),annot.failType());
-			descriptor.setProcessor(proxyAnnotationProcessor);			
+			annotationProperties.setProcessor(proxyAnnotationProcessor);			
 		} else if(annotation instanceof ProxyMethodAfterAnnotation) {
 			ProxyMethodAfterAnnotation annot = (ProxyMethodAfterAnnotation) annotation;
 			if(annot.failType().equals(FailType.READER)){
 				new Integer("a");
 			}
 			ProxyMethodAnnotationProcessor proxyAnnotationProcessor = new ProxyMethodAnnotationProcessor(annot.variable(),annot.text(),annot.failType());
-			descriptor.setProcessor(proxyAnnotationProcessor);			
+			annotationProperties.setProcessor(proxyAnnotationProcessor);			
 		} else  if(annotation instanceof ProxyMethodClassCastExceptionInReaderAnnotation) {
 			ProxyMethodAnnotationProcessor proxyAnnotationProcessor = new ProxyMethodAnnotationProcessor(null,null,null);
-			descriptor.setProcessor(proxyAnnotationProcessor);
+			annotationProperties.setProcessor(proxyAnnotationProcessor);
 		}
 	}
 

@@ -50,10 +50,10 @@ public class MakeATestLazy {
 				Object object = iterator.next();
 				List<AnnotationProperties> props = properties.get(object);
 				if(props != null) {
-					for (AnnotationProperties propertyDescriptor : props) {
-						AnnotationProcessor metadataProcessor = propertyDescriptor.getProcessor(); 
+					for (AnnotationProperties annotationProperties : props) {
+						AnnotationProcessor annotationProcessor = annotationProperties.getProcessor(); 
 						try {
-							metadataProcessor.process(this.instance);
+							annotationProcessor.process(this.instance);
 						} catch (Exception e) {
 							throw new MakeATestException("Exception in execute processor",e);
 						}
@@ -72,7 +72,7 @@ public class MakeATestLazy {
 			List<AnnotationProperties> props = properties.get(method);
 			if(props != null) {
 				for (AnnotationProperties annotationProperties : props) {
-					AnnotationProcessor metadataProcessor = annotationProperties.getProcessor(); 
+					AnnotationProcessor annotationProcessor = annotationProperties.getProcessor(); 
 
 					HashSet<MakeATestProxyBehavior> enums = new HashSet<MakeATestProxyBehavior>();
 					for(MakeATestProxyBehavior makeATestActionEnum : annotationProperties.getActions()){
@@ -81,11 +81,11 @@ public class MakeATestLazy {
 					
 					if(enums.contains(MakeATestProxyBehavior.BEFORE) && enums.contains(MakeATestProxyBehavior.AFTER)) {
 						try {
-							metadataProcessor.setProxyBehavior(MakeATestProxyBehavior.BEFORE);
-							metadataProcessor.process(this.instance);
+							annotationProcessor.setProxyBehavior(MakeATestProxyBehavior.BEFORE);
+							annotationProcessor.process(this.instance);
 							jp.proceed();
-							metadataProcessor.setProxyBehavior(MakeATestProxyBehavior.AFTER);
-							metadataProcessor.process(this.instance);
+							annotationProcessor.setProxyBehavior(MakeATestProxyBehavior.AFTER);
+							annotationProcessor.process(this.instance);
 							isExecuted = true;
 						} catch (Exception e) {
 							MakeATestException makeATestException = new MakeATestException("Exception in processor class: " + e);
@@ -94,8 +94,8 @@ public class MakeATestLazy {
 						}						
 					} else if(enums.contains(MakeATestProxyBehavior.BEFORE)) {
 						try {
-							metadataProcessor.setProxyBehavior(MakeATestProxyBehavior.BEFORE);
-							metadataProcessor.process(this.instance);
+							annotationProcessor.setProxyBehavior(MakeATestProxyBehavior.BEFORE);
+							annotationProcessor.process(this.instance);
 							jp.proceed();
 							isExecuted = true;
 						} catch (Exception e) {
@@ -106,8 +106,8 @@ public class MakeATestLazy {
 					} else if(enums.contains(MakeATestProxyBehavior.AFTER)) {
 						try {
 							jp.proceed();
-							metadataProcessor.setProxyBehavior(MakeATestProxyBehavior.AFTER);
-							metadataProcessor.process(this.instance);
+							annotationProcessor.setProxyBehavior(MakeATestProxyBehavior.AFTER);
+							annotationProcessor.process(this.instance);
 							isExecuted = true;
 						} catch (Exception e) {
 							MakeATestException makeATestException = new MakeATestException("Exception in processor class: " + e);

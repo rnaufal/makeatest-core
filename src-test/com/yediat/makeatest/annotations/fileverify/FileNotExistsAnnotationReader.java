@@ -6,10 +6,10 @@ import com.yediat.makeatest.core.metadata.reading.MakeATestReaderInterface;
 public class FileNotExistsAnnotationReader implements MakeATestReaderInterface<FileNotExistsAnnotation> {
 
 	@Override
-	public void readAnnotation(FileNotExistsAnnotation annotation, AnnotationProperties descriptor) {
+	public void readAnnotation(FileNotExistsAnnotation annotation, AnnotationProperties annotationProperties) {
 		String path = annotation.filePath();				
 		FileNotExistsAnnotationProcessor processor = new FileNotExistsAnnotationProcessor(path);
-		descriptor.setProcessor(processor);
+		annotationProperties.setProcessor(processor);
 	}
 
 }
