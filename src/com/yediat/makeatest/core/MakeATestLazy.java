@@ -26,8 +26,17 @@ public class MakeATestLazy {
 	
 	public void aspect(ProceedingJoinPoint jp) throws Throwable {
 		if(logger.isDebugEnabled()){logger.debug("ProceedingJoinPoint: " + jp);}
+		logger.debug("JoinPoint Aspect with kind: " + jp.getKind());
+		logger.debug("Execution metho with annotation: " + jp.getSignature().getName());
 		this.instance = jp.getTarget();
-		this.metadataReader = new MetadataReader(this.instance.getClass());
+		if(this.instance == null){
+			logger.debug("Static class: " + this.getClass().getClassLoader().loadClass(jp.getStaticPart().getSignature().getDeclaringTypeName()));
+			this.metadataReader = new MetadataReader(this.getClass().getClassLoader().loadClass(jp.getStaticPart().getSignature().getDeclaringTypeName()));
+		} else {
+			logger.debug("Target class: " + jp.getTarget().getClass().getName());
+			this.metadataReader = new MetadataReader(this.instance.getClass());
+		}
+		
 		this.load();
 		this.process(jp);
 	}
@@ -122,8 +131,13 @@ public class MakeATestLazy {
 	}
 	
 	
-	private Method getJoinpointMethod(JoinPoint jp) throws MakeATestException {
-        Class<?> c = jp.getTarget().getClass();
+	private Method getJoinpointMethod(JoinPoint jp) throws MakeATestException, ClassNotFoundException {
+		Class<?> c = null;
+		if(jp.getTarget() == null){
+			c = this.getClass().getClassLoader().loadClass(jp.getStaticPart().getSignature().getDeclaringTypeName());
+		} else {
+			c = jp.getTarget().getClass();
+		}
         for (Method m : c.getMethods()) {
             if (m.getName().equals(jp.getSignature().getName())) {
                 if (argumentsMatch(m, jp.getArgs())) {
