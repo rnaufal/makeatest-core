@@ -196,7 +196,20 @@ public class MakeATestController {
 		if(ite.getCause().getClass().getSuperclass() != null && 
 				ite.getCause().getClass().getSuperclass().equals(AssertionFailedError.class) || 
 				ite.getCause().getClass().getSuperclass().equals(AssertionError.class)){
-			MakeATestAssertionError assertionError = new MakeATestAssertionError(object.getClass().getSimpleName()+" fail " + ite.getCause().getMessage());
+			MakeATestAssertionError assertionError = null;
+			/**
+			 * This verify is because the implementation of asserTrue add null in String.  
+			 * 	static public void assertTrue(boolean condition) {
+			 *		assertTrue(null, condition);
+			 *	}
+			 */
+			if(ite.getCause().getMessage().equals("null")){
+				if(logger.isDebugEnabled()){logger.debug("Cause is null");}
+				assertionError = new MakeATestAssertionError(object.getClass().getSimpleName()+" Assert fail.");
+			} else {
+				if(logger.isDebugEnabled()){logger.debug("Cause not null: " + ite.getCause().getMessage());}
+				assertionError = new MakeATestAssertionError(object.getClass().getSimpleName()+" fail " + ite.getCause().getMessage());
+			}
 			assertionError.setStackTrace(ite.getCause().getStackTrace());
 			throw assertionError;		
 		} else {

@@ -22,7 +22,8 @@ public class ProxyMethodWithTwoAnnotationTest {
 		try {
 			proxyMethod.shouldExecuteTwoAnnotation();
 		} catch (MakeATestAssertionError e) {
-			if(!e.getMessage().equals("The text <After Execution>. not equals with <Afterrr Execution>.")){
+			System.out.println(e.getMessage());
+			if(!e.getMessage().equals("ProxyMethodWithTwoAnnotation Assert fail.")){
 				Assert.assertTrue(false);
 			} else {
 				Assert.assertTrue(true);
